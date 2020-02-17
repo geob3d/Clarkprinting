@@ -30,7 +30,7 @@ class ProductAttributeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($request)
     {
         $product_attribute = new Product_Attribute([
 

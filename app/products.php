@@ -13,10 +13,6 @@ class products extends Model implements HasMedia
 
     protected $fillable = ['sku', 'name','description','price','ordering_company_id_fk','prod_cat_fk',];
     
-    public static function last (){
-
-        return static::all()->last();
-    }
     
 
 }

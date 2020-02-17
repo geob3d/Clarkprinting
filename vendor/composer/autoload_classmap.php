@@ -35,6 +35,7 @@ return array(
     'App\\Http\\Resources\\ProductsAttributesResource' => $baseDir . '/app/Http/Resources/ProductsAttributesResource.php',
     'App\\Http\\Resources\\ProductsResource' => $baseDir . '/app/Http/Resources/ProductsResource.php',
     'App\\Http\\Resources\\StoresResource' => $baseDir . '/app/Http/Resources/StoresResource.php',
+    'App\\ProductCategories' => $baseDir . '/app/ProductCategories.php',
     'App\\Product_Attribute' => $baseDir . '/app/Product_Attribute.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

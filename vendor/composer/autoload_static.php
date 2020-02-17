@@ -499,6 +499,7 @@ class ComposerStaticInitcab908a3dabb01d032391bd0036dc3ba
         'App\\Http\\Resources\\ProductsAttributesResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProductsAttributesResource.php',
         'App\\Http\\Resources\\ProductsResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProductsResource.php',
         'App\\Http\\Resources\\StoresResource' => __DIR__ . '/../..' . '/app/Http/Resources/StoresResource.php',
+        'App\\ProductCategories' => __DIR__ . '/../..' . '/app/ProductCategories.php',
         'App\\Product_Attribute' => __DIR__ . '/../..' . '/app/Product_Attribute.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
