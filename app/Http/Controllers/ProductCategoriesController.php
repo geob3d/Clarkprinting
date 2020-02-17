@@ -15,7 +15,7 @@ class ProductCategoriesController extends Controller
      */
     public function index()
     {
-        $productCategories =ProductCategories::all();
+        $productCategories = ProductCategories::all();
         
         // Return collection of productss as a resource
         return ProductCatResource::collection($productCategories);

@@ -1,12 +1,13 @@
 <template>
 
   <div id="data-list-list-view" class="data-list-container">
+    
     <vx-card title="Multiple Selected" >
 
    <!--  <data-view-sidebar :isSidebarActive="addNewDataSidebar" @closeSidebar="toggleDataSidebar" :data="sidebarData" /> -->
 
 
-    <vs-table multiple v-model="selected" @selected="handleSelected" :data="companies">
+    <vs-table multiple v-model="selected" @selected="handleSelected" :data="prodCategories">
 
         <div slot="header" class="flex flex-wrap-reverse items-center flex-grow justify-between">
 
@@ -57,8 +58,8 @@
             <!-- ACTION - DROPDOWN -->
              <div class="centerx ">
                 <vs-button @click="popupActivo=true" color="primary" type="border" class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" icon="add"> Add New</vs-button>
-                <vs-popup class="holamundo"  title="Add New Company" :active.sync="popupActivo">
-                    <company-add />
+                <vs-popup class="holamundo"  title="Add New Product Category" :active.sync="popupActivo">
+                    <product-category-add />
                 </vs-popup>
             </div>
 
@@ -70,7 +71,7 @@
             <!-- ITEMS PER PAGE -->
             <vs-dropdown vs-trigger-click class="cursor-pointer mb-4 mr-4 items-per-page-handler">
             <div class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium">
-                <span class="mr-2">{{ currentPage * itemsPerPage - (itemsPerPage - 1) }} - {{ companies.length - currentPage * itemsPerPage > 0 ? currentPage * itemsPerPage : companies.length }} of {{ queriedItems }}</span>
+                <span class="mr-2">{{ currentPage * itemsPerPage - (itemsPerPage - 1) }} - {{ prodCategories.length - currentPage * itemsPerPage > 0 ? currentPage * itemsPerPage : prodCategories.length }} of {{ queriedItems }}</span>
                 <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
             </div>
             
@@ -94,7 +95,6 @@
       
         <template slot="thead">
             <vs-th>ID</vs-th>
-            <vs-th sort-key="company_code">Company Code</vs-th>
             <vs-th sort-key="name">Name</vs-th>
             <vs-th>Create At</vs-th>
             <vs-th>Updated At</vs-th>
@@ -107,9 +107,6 @@
                     {{data[indextr].id}}
                 </vs-td>
 
-                <vs-td :data="data[indextr].company_code">
-                    {{data[indextr].company_code}}
-                </vs-td>
 
                 <vs-td :data="data[indextr].name">
                     {{data[indextr].name}}
@@ -127,11 +124,11 @@
 
 
 
-                  <router-link :to="{name: 'EditCompany', params: { id: tr.id }}">
+                  <router-link :to="{name: 'EditProductCategory', params: { id: tr.id }}">
                     <feather-icon icon="EditIcon" svgClasses="w-5 h-5 hover:text-primary stroke-current"  />
                   </router-link>
 
-                    <feather-icon icon="TrashIcon" svgClasses="w-5 h-5 hover:text-danger stroke-current" class="ml-2" @click.prevent="deleteCompanies(tr.id)" />
+                    <feather-icon icon="TrashIcon" svgClasses="w-5 h-5 hover:text-danger stroke-current" class="ml-2" @click.prevent="deleteProdCategories(tr.id)" />
                  </vs-td>
 
             </vs-tr>
@@ -147,14 +144,14 @@
 <script>
 import axios from 'axios'
 import Prism from 'vue-prism-component'
-import CompanyAdd from './ProductCatAddSideBar'
+import ProductCategoryAdd from './ProductCatAddSideBar'
 
     
 export default {
 
     components: {
         Prism,
-        CompanyAdd,
+        ProductCategoryAdd,
         
     },
 
@@ -171,7 +168,7 @@ export default {
             // Data Sidebar
             addNewDataSidebar: false,
             sidebarData: {},
-            companies: [],
+            prodCategories: [],
           
         };
     },
@@ -184,45 +181,45 @@ export default {
         }
         return 0
       },
-      companiesquery() {
-        return this.$store.state.dataList.companies
+      prodCategoriesquery() {
+        return this.$store.state.dataList.prodCategories
       },
       queriedItems() {
-        return this.$refs.table ? this.$refs.table.queriedResults.length : this.companies.length
+        return this.$refs.table ? this.$refs.table.queriedResults.length : this.prodCategories.length
       }
     },
     
     created() {
-       this.getCompanies();
-       let uri = `/api/companies/${this.$route.params.id}`;
+       this.getProdCategories();
+       let uri = `/api/product/category/${this.$route.params.id}`;
           axios
             .get(uri)
             .then((response) => {
-            this.companies = response.data.data;
+            this.prodCategories = response.data.data;
          });
     
     },
 
     methods: {
 
-        getCompanies() {
-            this.error = this.companies = null;
+        getProdCategories() {
+            this.error = this.prodCategories = null;
             this.loading = true;
             var vm = this;
             axios
-                .get('/api/companies')
+                .get('/api/product/categories')
                 .then(response => {
                     console.log(response);
                     this.loading = false;
-                    vm.companies = response.data.data; /// the data.data fixed the issue
+                    vm.prodCategories = response.data.data; /// the data.data fixed the issue
                     
                 });
         },
 
         handleSelected(tr) {
             this.$vs.notify({
-                title: `Selected ${tr.company_code}`,
-                text: `Company: ${tr.name}`
+                
+                text: `Category Name: ${tr.name}`
             })
         },
        // toggleDataSidebar(val=false) {
@@ -232,13 +229,13 @@ export default {
 
 
 
-        deleteCompanies(id){
-          if (confirm(`Are you sure you want to delete Companies ${id}?`)){
-          let uri = `/api/company/${id}`;
+        deleteProdCategories(id){
+          if (confirm(`Are you sure you want to delete Product Category ${id}?`)){
+          let uri = `/api/product/category/${id}`;
           axios
           .delete(uri)
           .then(response => {});
-          this.getCompanies();
+          this.ProdCategories();
           }
 
 

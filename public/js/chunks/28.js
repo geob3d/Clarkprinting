@@ -27,28 +27,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       loading: false,
-      companies: {},
+      prodCategories: {},
       buttontext: 'Add',
       error: null,
-      company: {
+      prodCategory: {
         name: '',
-        company_code: ''
+        description: ''
       },
-      companyform: {}
+      prodCategoryform: {}
     };
   },
   created: function created() {
     var _this = this;
 
-    this.getCompanies();
-    var uri = "/api/companies/".concat(this.$route.params.id);
+    this.getProdCategories();
+    var uri = "/api/product/categories/".concat(this.$route.params.id);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
-      _this.company = response.data.data;
+      _this.prodCategory = response.data.data;
     });
   },
   watch: {},
@@ -56,45 +57,45 @@ __webpack_require__.r(__webpack_exports__);
     this.buttonvalue();
   },
   methods: {
-    getCompanies: function getCompanies() {
+    getProdCategories: function getProdCategories() {
       var _this2 = this;
 
-      this.error = this.companies = null;
+      this.error = this.prodCategories = null;
       this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/companies').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/product/categories').then(function (response) {
         _this2.loading = false;
-        _this2.companies = response.data;
+        _this2.prodCategories = response.data;
       });
     },
-    addCompany: function addCompany() {
+    addProdCategory: function addProdCategory() {
       var _this3 = this;
 
-      this.error = this.companies = null;
+      this.error = this.prodCategories = null;
       this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/company', this.company).then(function (response) {
-        _this3.getCompanies();
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/company', this.prodCategory).then(function (response) {
+        _this3.getProdCategories();
       }).then(function (data) {
-        _this3.getCompanies();
+        _this3.getProdCategories();
       }).catch(function (err) {
         return console.log(err);
       });
     },
-    updateCompany: function updateCompany() {
+    updateProdCategory: function updateProdCategory() {
       var _this4 = this;
 
-      var uri = "/api/company/".concat(this.$route.params.id);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.company).then(function (response) {
+      var uri = "/api/product/category/".concat(this.$route.params.id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.prodCategory).then(function (response) {
         _this4.$router.push({
-          name: 'CompanyInfo'
+          name: 'ProductCategoryInfo'
         });
       });
     },
-    companyFormValue: function companyFormValue() {
+    productCatFormValue: function productCatFormValue() {
       if ("id" in this.$route.params) {
         this.buttontext = 'Update';
-        this.updateCompany();
+        this.updateProdCategory();
       } else {
-        this.addCompany();
+        this.addProdCategory();
       }
 
       ;
@@ -136,30 +137,36 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.companyFormValue($event)
+            return _vm.productCatFormValue($event)
           }
         }
       },
       [
         _c("vs-input", {
-          attrs: { label: "Company Code", placeholder: "Company Code" },
+          attrs: { label: "Company Name", placeholder: "Company Name" },
           model: {
-            value: _vm.company.company_code,
+            value: _vm.prodCategory.name,
             callback: function($$v) {
-              _vm.$set(_vm.company, "company_code", $$v)
+              _vm.$set(_vm.prodCategory, "name", $$v)
             },
-            expression: "company.company_code"
+            expression: "prodCategory.name"
           }
         }),
         _vm._v(" "),
-        _c("vs-input", {
-          attrs: { label: "Company Name", placeholder: "Company Name" },
+        _c("br"),
+        _vm._v(" "),
+        _c("vs-textarea", {
+          attrs: {
+            label: "Company Code",
+            width: "50%",
+            placeholder: "Company Code"
+          },
           model: {
-            value: _vm.company.name,
+            value: _vm.prodCategory.description,
             callback: function($$v) {
-              _vm.$set(_vm.company, "name", $$v)
+              _vm.$set(_vm.prodCategory, "description", $$v)
             },
-            expression: "company.name"
+            expression: "prodCategory.description"
           }
         }),
         _vm._v(" "),
@@ -172,7 +179,7 @@ var render = function() {
               "btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary",
             attrs: { type: "submit" }
           },
-          [_vm._v(_vm._s(_vm.buttontext) + " Company")]
+          [_vm._v(_vm._s(_vm.buttontext) + " Product Category")]
         )
       ],
       1

@@ -1,13 +1,14 @@
 <template>
   <div class="centerx labelx">
 
-   <form @submit.prevent="companyFormValue">
-    <vs-input label="Company Code" placeholder="Company Code" v-model="company.company_code"/>
-    <vs-input label="Company Name" placeholder="Company Name" v-model="company.name"/>
+   <form @submit.prevent="productCatFormValue">
+    <vs-input label="Company Name" placeholder="Company Name" v-model="prodCategory.name"/>
+    <br>
+    <vs-textarea label="Company Code"  width="50%" placeholder="Company Code" v-model="prodCategory.description"/>
   
     <br>
     
-    <button type="submit" class="btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary">{{ buttontext }} Company</button>
+    <button type="submit" class="btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary">{{ buttontext }} Product Category</button>
    
 
   </form>
@@ -21,25 +22,25 @@ export default {
 
         return {
             loading: false,
-            companies: {},
+            prodCategories: {},
             buttontext : 'Add',
             error: null,
-            company: {
+            prodCategory: {
                     
                     name: '',
-                    company_code: ''
+                    description: ''
                 },
-            companyform : {},
+            prodCategoryform : {},
             
            
         };
     },
     created() {
-       this.getCompanies();
-       let uri = `/api/companies/${this.$route.params.id}`;
+       this.getProdCategories();
+       let uri = `/api/product/categories/${this.$route.params.id}`;
        axios
         .get(uri).then((response) => {
-          this.company = response.data.data;
+          this.prodCategory  = response.data.data;
         });
 
     },
@@ -58,51 +59,51 @@ export default {
 
 
     methods: {
-         getCompanies() {
-            this.error = this.companies = null;
+         getProdCategories() {
+            this.error = this.prodCategories = null;
             this.loading = true;
             axios
-                .get('/api/companies')
+                .get('/api/product/categories')
                 .then(response => {
                     this.loading = false;
-                    this.companies = response.data;
+                    this.prodCategories = response.data;
                     
                 });
         },
 
-        addCompany() {
-            this.error = this.companies = null;
+        addProdCategory() {
+            this.error = this.prodCategories = null;
             this.loading = true;
             axios
-                .post('/api/company',this.company)
+                .post('/api/company',this.prodCategory)
                 .then(response => {
 
-                    this.getCompanies();
+                    this.getProdCategories();
                     
                 })
                 .then(data => {
-                    this.getCompanies();
+                    this.getProdCategories();
                 })
                 
                  .catch(err => console.log(err));
 
         },
 
-        updateCompany() {
-            let uri = `/api/company/${this.$route.params.id}`;
+        updateProdCategory() {
+            let uri = `/api/product/category/${this.$route.params.id}`;
             axios
-            .put(uri, this.company)
+            .put(uri, this.prodCategory)
             .then((response) => {
-            this.$router.push({name:'CompanyInfo'});
+            this.$router.push({name:'ProductCategoryInfo'});
             });
         },
 
-        companyFormValue: function(){
+        productCatFormValue: function(){
           if ("id" in this.$route.params) {
             this.buttontext = 'Update';
-            this.updateCompany();
+            this.updateProdCategory();
           } else {
-            this.addCompany();
+            this.addProdCategory();
           };
         },
 
