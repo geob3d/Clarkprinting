@@ -28,7 +28,7 @@ class ProductTableSeeder extends Seeder
 
         ];
         foreach ($items as $item) {
-            \App\Products::create($item);
+            \App\products::create($item);
         }
     }
 }
