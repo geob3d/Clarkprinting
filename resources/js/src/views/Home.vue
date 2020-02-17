@@ -1,4 +1,4 @@
 <template>
 	<h4>You are in home.</h4>
-	<p> test </p>
+	<h4>You are in home.</h4>
 </template>
