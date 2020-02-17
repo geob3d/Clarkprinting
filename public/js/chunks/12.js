@@ -189,11 +189,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -429,11 +424,15 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "vs-td",
-                            { attrs: { data: data[indextr].prod_cat_fk } },
+                            {
+                              attrs: {
+                                data: data[indextr].prod_categories.name
+                              }
+                            },
                             [
                               _vm._v(
                                 "\n                   " +
-                                  _vm._s(data[indextr].prod_cat_fk) +
+                                  _vm._s(data[indextr].prod_categories.name) +
                                   "\n               "
                               )
                             ]

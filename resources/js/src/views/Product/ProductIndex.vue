@@ -134,15 +134,10 @@
                     {{data[indextr].ordering_company_id_fk}}
                 </vs-td>
 
-
-                <vs-td :data="data[indextr].prod_cat_fk">
-                    {{data[indextr].prod_cat_fk}}
-                </vs-td>
                 
-                 <!-- Product Image PAGE 
-                <vs-td :data="data[indextr].media[0].file_name">
-                    {{data[indextr].media[0].file_name}}
-                </vs-td>-->
+                <vs-td :data="data[indextr].prod_categories.name">
+                    {{data[indextr].prod_categories.name}}
+                </vs-td>
                
 
                 <vs-td :data="data[indextr].created_at">
@@ -163,10 +158,10 @@
 
                     <feather-icon icon="TrashIcon" svgClasses="w-5 h-5 hover:text-danger stroke-current" class="ml-2" @click.prevent="deleteProducts(tr.id)" />
                  </vs-td>
+   
 
             </vs-tr>
-
-            
+         
         </template>
 
         

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\products;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductsResource as ProductResource;
+use App\ProductCategories;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
@@ -17,7 +18,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = products::all();
+        $products = products::with('prodCategories')->get();
 
 
         foreach ($products as $p) {
@@ -125,7 +126,7 @@ class ProductsController extends Controller
     public function show(products $products, $id)
     {
         // Get a single products
-        $products = Products::findOrFail($id);
+        $products = products::with('prodCategories')->findOrFail($id);
         $products ->getMedia();
         // Return a single products as a resource
         return new ProductResource($products);
