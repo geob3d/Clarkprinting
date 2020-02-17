@@ -58,7 +58,7 @@
             <!-- ACTION - DROPDOWN -->
              <div class="centerx ">
                 <vs-button @click="popupActivo=true" color="primary" type="border" class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" icon="add"> Add New</vs-button>
-                <vs-popup class="holamundo"  title="Add New Product Category" :active.sync="popupActivo">
+                <vs-popup class="holamundo"  title="Add New Company" :active.sync="popupActivo">
                     <product-category-add />
                 </vs-popup>
             </div>

@@ -775,7 +775,7 @@ var render = function() {
                             {
                               staticClass: "holamundo",
                               attrs: {
-                                title: "Add New Product Category",
+                                title: "Add New Company",
                                 active: _vm.popupActivo
                               },
                               on: {
