@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[29],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Page2.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
@@ -34,7 +34,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['products']),
   created: function created() {
     this.$store.dispatch('loadProducts');
-    this.$store.$state.inCart;
   }
 });
 
@@ -114,7 +113,7 @@ var render = function() {
         _vm._l(_vm.products, function(product) {
           return _c("tr", [_c("td", [_vm._v(_vm._s(product.name))])])
         }),
-        _vm._v("\n\n    " + _vm._s(_vm.inCart) + "\n  ")
+        _vm._v("\n\n    " + _vm._s(_vm.products) + "\n  ")
       ],
       2
     )

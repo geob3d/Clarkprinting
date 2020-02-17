@@ -6,6 +6,7 @@
   Author: Pixinvent
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+import axios from 'axios'
 
 const actions = {
 
@@ -49,6 +50,18 @@ const actions = {
     updateUserInfo({ commit }, payload) {
       commit('UPDATE_USER_INFO', payload)
     },
+        
+      loadProducts({commit}) {
+        axios.get('/api/products').then(result => {
+          console.log(result)
+          commit('SAVE_PRODUCTS', result.data.data);
+        }).catch(error => {
+          throw new Error(`API ${error}`);
+        });
+      }
+    
+
+
 }
 
 export default actions

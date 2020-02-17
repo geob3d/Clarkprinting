@@ -79,7 +79,7 @@
 
                     <div class="p-6 filter-container">
 
-                        <!-- CATEGORIES -->
+                        <!-- CATEGORIES 
                         <h6 class="font-bold mb-4">Category</h6>
                         <ais-hierarchical-menu :attributes="algoliaCategories">
                             <div slot-scope="{
@@ -93,9 +93,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </ais-hierarchical-menu>
+                        </ais-hierarchical-menu>-->
 
-                        <vs-divider />
+                       
 
                         <!-- Brands -->
                         <h6 class="font-bold mb-4">Product Category</h6>
