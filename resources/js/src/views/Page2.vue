@@ -16,7 +16,7 @@
 
     </table>
 
-
+        <button class="btn btn-primary">Cart ({{ inCart.length }})</button>
       {{ inCart }}
       
   </div>

@@ -159,7 +159,11 @@ var render = function() {
       ],
       2
     ),
-    _vm._v("\n\n\n    " + _vm._s(_vm.inCart) + "\n    \n")
+    _vm._v(" "),
+    _c("button", { staticClass: "btn btn-primary" }, [
+      _vm._v("Cart (" + _vm._s(_vm.inCart.length) + ")")
+    ]),
+    _vm._v("\n    " + _vm._s(_vm.inCart) + "\n    \n")
   ])
 }
 var staticRenderFns = [

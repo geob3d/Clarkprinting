@@ -61,7 +61,6 @@ const actions = {
       },
 
 
-
       addToCart({commit},product) { 
         commit('ADD_TO_CART', product);
       },

@@ -20,12 +20,15 @@
         <feather-icon class="sm:inline-flex xl:hidden cursor-pointer p-2" icon="MenuIcon" @click.stop="showSidebar" />
 
         <bookmarks :navbarColor="navbarColor" v-if="windowWidth >= 992" />
+        
 
         <vs-spacer />
 
         <search-bar />
 
         <notification-drop-down />
+
+        <cart-notifcation />
 
         <profile-drop-down />
 
@@ -36,6 +39,7 @@
 
 
 <script>
+import CartNotifcation      from "./components/CartDropDown.vue"
 import Bookmarks            from "./components/Bookmarks.vue"
 import SearchBar            from "./components/SearchBar.vue"
 import NotificationDropDown from "./components/NotificationDropDown.vue"
@@ -54,6 +58,7 @@ export default {
     SearchBar,
     NotificationDropDown,
     ProfileDropDown,
+    CartNotifcation,
   },
   computed: {
     navbarColorLocal() {
