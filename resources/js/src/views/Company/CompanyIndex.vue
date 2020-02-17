@@ -125,12 +125,10 @@
                 
                 <vs-td class="whitespace-no-wrap">
 
-
-
-                  <router-link :to="{name: 'EditCompany', params: { id: tr.id }}">
-                    <feather-icon icon="EditIcon" svgClasses="w-5 h-5 hover:text-primary stroke-current"  />
-                  </router-link>
-
+                    <router-link :to="{name: 'EditCompany', params: { id: tr.id }}">
+                      <feather-icon  icon="EditIcon" svgClasses="w-5 h-5 hover:text-primary stroke-current"  />
+                    </router-link>
+                
                     <feather-icon icon="TrashIcon" svgClasses="w-5 h-5 hover:text-danger stroke-current" class="ml-2" @click.prevent="deleteCompanies(tr.id)" />
                  </vs-td>
 

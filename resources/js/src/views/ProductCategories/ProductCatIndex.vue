@@ -59,7 +59,7 @@
              <div class="centerx ">
                 <vs-button @click="popupActivo=true" color="primary" type="border" class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" icon="add"> Add New</vs-button>
                 <vs-popup class="holamundo"  title="Add New Company" :active.sync="popupActivo">
-                    <product-category-add />
+                    <category-add />
                 </vs-popup>
             </div>
 
@@ -125,8 +125,11 @@
 
 
                   <router-link :to="{name: 'EditProductCategory', params: { id: tr.id }}">
+
                     <feather-icon icon="EditIcon" svgClasses="w-5 h-5 hover:text-primary stroke-current"  />
+                    
                   </router-link>
+                  
 
                     <feather-icon icon="TrashIcon" svgClasses="w-5 h-5 hover:text-danger stroke-current" class="ml-2" @click.prevent="deleteProdCategories(tr.id)" />
                  </vs-td>
@@ -144,14 +147,14 @@
 <script>
 import axios from 'axios'
 import Prism from 'vue-prism-component'
-import ProductCategoryAdd from './ProductCatAddSideBar'
+import CategoryAdd from './ProductCatAddSideBar'
 
     
 export default {
 
     components: {
         Prism,
-        ProductCategoryAdd,
+        CategoryAdd,
         
     },
 

@@ -272,13 +272,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Prism: vue_prism_component__WEBPACK_IMPORTED_MODULE_1___default.a,
-    ProductCategoryAdd: _ProductCatAddSideBar__WEBPACK_IMPORTED_MODULE_2__["default"]
+    CategoryAdd: _ProductCatAddSideBar__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -784,7 +787,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_c("product-category-add")],
+                            [_c("category-add")],
                             1
                           )
                         ],
