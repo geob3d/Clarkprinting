@@ -96,3 +96,19 @@ Route::put('product/attribute/{id}', 'ProductAttributeController@store');
     
     // Delete 
 Route::delete('product/attribute/{id}', 'ProductAttributeController@destroy');
+
+
+//Stores Product Categories
+Route::get('product/categories', 'ProductCategoriesController@index');
+
+    //Route for single
+Route::get('product/categories/{id}', 'ProductCategoriesController@show');
+
+    // Create a new 
+Route::post('product/category', 'ProductCategoriesController@store');
+    
+    // Update 
+Route::put('product/category/{id}', 'ProductCategoriesController@store');
+    
+    // Delete 
+Route::delete('product/category/{id}', 'ProductCategoriesController@destroy');

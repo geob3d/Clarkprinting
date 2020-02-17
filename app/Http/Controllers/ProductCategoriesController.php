@@ -15,10 +15,10 @@ class ProductCategoriesController extends Controller
      */
     public function index()
     {
-        $productCat =ProductCategories::all();
+        $productCategories =ProductCategories::all();
         
         // Return collection of productss as a resource
-        return ProductCatResource::collection($productCat);
+        return ProductCatResource::collection($productCategories);
     }
 
     /**
@@ -26,9 +26,16 @@ class ProductCategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($request)
     {
-        //
+        $productCategories = new ProductCategories([
+            'name' => $request->input('name'),
+            'description' => $request->$this->description,
+
+        ]);
+        $productCategories->save();
+
+        return response()->json('A Product Category successfully added');
     }
 
     /**
@@ -39,7 +46,15 @@ class ProductCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            //  Allow for post update *or* create a new post
+            $productCategories = $request->isMethod('put') ? ProductCategories::findOrFail($request->id) : new ProductCategories;
+
+            $productCategories->name = $request->input('name');
+            $productCategories->description  = $request->input('description');
+            
+            if ($productCategories->save()) {
+                return new ProductCatResource($productCategories);
+            }
     }
 
     /**
@@ -48,9 +63,13 @@ class ProductCategoriesController extends Controller
      * @param  \App\ProductCategories  $productCategories
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductCategories $productCategories)
+    public function show(ProductCategories $productCategories, $id)
     {
-        //
+        // Get a single Product Categories
+        $productCategories = ProductCategories::findOrFail($id);
+
+        // Return a single Product Categories as a resource
+        return new ProductCatResource($productCategories);
     }
 
     /**
@@ -59,9 +78,13 @@ class ProductCategoriesController extends Controller
      * @param  \App\ProductCategories  $productCategories
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductCategories $productCategories)
+    public function edit(ProductCategories $productCategories, $id)
     {
-        //
+        // Get a single item
+        $productCategories = ProductCategories::findOrFail($id);
+
+        // Return a single Product Categories as a resource
+        return new ProductCatResource($productCategories);
     }
 
     /**
@@ -82,8 +105,12 @@ class ProductCategoriesController extends Controller
      * @param  \App\ProductCategories  $productCategories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductCategories $productCategories)
+    public function destroy(ProductCategories $productCategories, $id)
     {
-        //
+        $productCategories = ProductCategories::find($id);
+        //Delete the item, return as confirmation
+        if ($productCategories->delete()) {
+        return new ProductCatResource($productCategories);
+        }
     }
 }
