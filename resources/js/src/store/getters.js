@@ -23,7 +23,14 @@ const getters = {
     else if (state.windowWidth >= 768) return "md"
     else if (state.windowWidth >= 576) return "sm"
     else return "xs"
-  }
+  },
+  
+  //products: state => state.dispatch('loadProducts'),
+  inCart: state => state.inCart,
+
+  //this.$store.dispatch('loadProducts')
+
+
 }
 
 export default getters

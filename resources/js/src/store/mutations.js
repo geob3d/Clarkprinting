@@ -122,8 +122,10 @@ const mutations = {
  
     SAVE_PRODUCTS(state, products) {
       state.products = products;
-    
-  },
+    },
+    ADD_TO_CART(state, product) { 
+      state.inCart.push(product.id); 
+    },
 
 
 

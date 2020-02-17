@@ -56040,7 +56040,19 @@ var actions = {
     }).catch(function (error) {
       throw new Error("API ".concat(error));
     });
-  }
+  },
+  addToCart: function addToCart(_ref9, product) {
+    var commit = _ref9.commit;
+    commit('ADD_TO_CART', product);
+  } //addToCart(context, prodId) { 
+  //  context.commit('ADD_TO_CART', prodId);
+  //},
+  // addToCart({ commit }, product){
+  // commit('ADD_TO_CART', {
+  // prodId: product.id
+  //})
+  //}
+
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
 
@@ -57125,7 +57137,12 @@ var getters = {
   windowBreakPoint: function windowBreakPoint(state) {
     // This should be same as tailwind. So, it stays in sync with tailwind utility classes
     if (state.windowWidth >= 1200) return "xl";else if (state.windowWidth >= 992) return "lg";else if (state.windowWidth >= 768) return "md";else if (state.windowWidth >= 576) return "sm";else return "xs";
-  }
+  },
+  //products: state => state.dispatch('loadProducts'),
+  inCart: function inCart(state) {
+    return state.inCart;
+  } //this.$store.dispatch('loadProducts')
+
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
 
@@ -57252,6 +57269,9 @@ var mutations = {
   ////
   SAVE_PRODUCTS: function SAVE_PRODUCTS(state, products) {
     state.products = products;
+  },
+  ADD_TO_CART: function ADD_TO_CART(state, product) {
+    state.inCart.push(product.id);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);

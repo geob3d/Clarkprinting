@@ -58,7 +58,25 @@ const actions = {
         }).catch(error => {
           throw new Error(`API ${error}`);
         });
-      }
+      },
+
+
+
+      addToCart({commit},product) { 
+        commit('ADD_TO_CART', product);
+      },
+
+      //addToCart(context, prodId) { 
+      //  context.commit('ADD_TO_CART', prodId);
+      //},
+      
+     // addToCart({ commit }, product){
+       // commit('ADD_TO_CART', {
+         // prodId: product.id
+        //})
+      //}
+
+
     
 
 
