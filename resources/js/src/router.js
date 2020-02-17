@@ -110,6 +110,16 @@ const router = new Router({
                 component: () => import('./views/shop/ECommerceCheckout.vue'),
                 
               },
+              {
+                path: '/ProductCategoryInfo',
+                name: 'ProductCategoryInfo',
+                component: () => import('./views/ProductCategories/ProductCatIndex.vue'),
+              },
+              {
+                path: '/edit/ProductCategory/:id',
+                name: 'EditProductCategory',
+                component: () => import('./views/ProductCategories/ProductCatAddSideBar.vue'),
+              },
 
             ],
         },

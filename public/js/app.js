@@ -55915,6 +55915,18 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./views/shop/ECommerceCheckout.vue */ "./resources/js/src/views/shop/ECommerceCheckout.vue"));
       }
+    }, {
+      path: '/ProductCategoryInfo',
+      name: 'ProductCategoryInfo',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./views/ProductCategories/ProductCatIndex.vue */ "./resources/js/src/views/ProductCategories/ProductCatIndex.vue"));
+      }
+    }, {
+      path: '/edit/ProductCategory/:id',
+      name: 'EditProductCategory',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./views/ProductCategories/ProductCatAddSideBar.vue */ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue"));
+      }
     }]
   }, // =============================================================================
   // FULL PAGE LAYOUTS
