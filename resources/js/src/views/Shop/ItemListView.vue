@@ -15,7 +15,7 @@
 
                 <!-- IMG COL -->
                 <div class="vx-col sm:w-1/4 w-full item-img-container bg-white flex items-center justify-center cursor-pointer"   @click="navigate_to_detail_view">
-                    <img :src="`/storage/${item.media[0].order_column}/${item.media[0].file_name}`" :alt="item.name" class="grid-view-img p-4" v-if="item.media[0]"/>
+                    <img :src="`/storage/${item.media[0].id}/${item.media[0].file_name}`" :alt="item.name" class="grid-view-img p-4" v-if="item.media[0]"/>
                     <div v-else> No Image to Display</div>
                 </div>
 

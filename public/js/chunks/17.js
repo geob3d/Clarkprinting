@@ -169,7 +169,7 @@ var render = function() {
                     attrs: {
                       src:
                         "/storage/" +
-                        _vm.item.media[0].order_column +
+                        _vm.item.media[0].id +
                         "/" +
                         _vm.item.media[0].file_name,
                       alt: _vm.item.name

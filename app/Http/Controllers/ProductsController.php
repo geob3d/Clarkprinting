@@ -178,9 +178,9 @@ class ProductsController extends Controller
     }
 
 
-    public function upload(Request $request, products $product)
+    public function upload(Request $request, products $product,$id)
     {
-        $product = products::find(3);
+        $product = products::where('id', 'LIKE', $id);
         try {
             $product->addMedia($request->file('file'))->toMediaCollection();
             //$product->addMediaFromRequest('file')->toMediaCollection('images');

@@ -12,6 +12,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ProductAttributeForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAttributeForm */ "./resources/js/src/views/Product/ProductAttributeForm.vue");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58,6 +76,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      props: ['uploadurl'],
+      files: [],
+      fileIsUploading: true,
       loading: false,
       products: {},
       buttontext: 'Add',
@@ -86,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {},
   mounted: function mounted() {
-    this.buttonvalue();
+    this.buttonvalue(), this.uploadFile(event);
   },
   methods: {
     getProducts: function getProducts() {
@@ -95,6 +116,7 @@ __webpack_require__.r(__webpack_exports__);
       this.error = this.products = null;
       this.loading = true;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/products').then(function (response) {
+        console.log(_this2.$route.params.id);
         _this2.loading = false;
         _this2.products = response.data;
       });
@@ -141,6 +163,34 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       ;
+    },
+    uploadFile: function uploadFile(event) {
+      var _this5 = this;
+
+      this.fileIsUploading = true;
+      this.tableIsUploading = true; //let uploadurl = 'api/files/upload'
+
+      var data = new FormData();
+      data.append('file', event.file);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/files/upload/".concat(this.$route.params.id), data).then(function (response) {
+        var _this5$$emit;
+
+        var responseData = response.data.data; // send event back to parent file was uploaded and return file data
+
+        _this5.$emit('upload-success', (_this5$$emit = {
+          'created_at': _this5.$route.params.id
+        }, _defineProperty(_this5$$emit, "created_at", responseData.created_at), _defineProperty(_this5$$emit, 'name', responseData.name), _defineProperty(_this5$$emit, 'mime_type', responseData.mime_type), _defineProperty(_this5$$emit, 'size', responseData.size), _this5$$emit));
+
+        _this5.fileIsUploading = false;
+      }).catch(function (error) {
+        _this5.fileIsUploading = false;
+        _this5.tableIsUploading = false;
+
+        _this5.$notify.error({
+          title: 'Error',
+          message: error.response.data.errors.message
+        });
+      });
     }
   }
 });
@@ -430,11 +480,10 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("vs-input", {
-                    attrs: {
-                      label: "Product Description",
-                      placeholder: "Product Description"
-                    },
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("vs-textarea", {
+                    attrs: { label: "Product Description" },
                     model: {
                       value: _vm.product.description,
                       callback: function($$v) {
@@ -483,26 +532,83 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "productImg",
-                      type: "file",
-                      name: "productImg"
-                    }
-                  }),
-                  _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v(_vm._s(_vm.buttontext) + " Product")]
-                  )
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-xs-12" },
+                      [
+                        _c(
+                          "el-upload",
+                          {
+                            staticClass: "upload-demo",
+                            staticStyle: {
+                              display: "inline-block",
+                              "margin-right": "10px"
+                            },
+                            attrs: {
+                              drag: "",
+                              action: "uploadurl",
+                              "file-list": _vm.files,
+                              "show-file-list": false,
+                              multiple: true,
+                              "http-request": _vm.uploadFile,
+                              loading: _vm.fileIsUploading
+                            }
+                          },
+                          [
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.fileIsUploading,
+                                  expression: "!fileIsUploading"
+                                }
+                              ],
+                              staticClass: "el-icon-upload"
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.fileIsUploading,
+                                  expression: "fileIsUploading"
+                                }
+                              ],
+                              staticClass: "el-icon-loading",
+                              staticStyle: {
+                                "font-size": "67px",
+                                color: "#c0c4cc",
+                                margin: "40px 0 16px",
+                                "line-height": "50px"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.fileIsUploading,
+                                    expression: "!fileIsUploading"
+                                  }
+                                ],
+                                staticClass: "el-upload__text"
+                              },
+                              [_vm._v("Upload Image Here ")]
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ],
                 1
               )
