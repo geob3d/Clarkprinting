@@ -98,7 +98,9 @@
 
                   <div class="vx-col w-full">
                     <p class="my-2">
+
                       <span>Available</span>
+
                       <span class="mx-2">-</span>
                       <span class="text-success">In Stock</span>
                     </p>
