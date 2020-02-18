@@ -16,14 +16,14 @@
               <ul class="bordered-items">
                   <li
                     v-for="item in cartItems"
-                    :key="item.objectID"
+                    :key="item.id"
                     class="vx-row no-gutter cart-item cursor-pointer"
-                    @click="$router.push({name: 'ecommerce-item-detail-view', params: {item_id: item.objectID }}).catch(() => {})">
+                    @click="$router.push({name: 'ecommerce-item-detail-view', params: {item_id: item.id }}).catch(() => {})">
 
-                      <!-- IMG COL -->
+                      <!-- IMG COL 
                       <div class="vx-col w-1/5 item-img-container bg-white flex items-center justify-center">
                           <img :src="item.image" alt="item" class="cart-dropdown-item-img p-4">
-                      </div>
+                      </div>-->
 
                       <!-- INFO COL -->
                       <div class="vx-col w-4/5 pr-4 pl-2 py-4 flex flex-col justify-center">

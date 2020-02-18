@@ -104,6 +104,7 @@
                               items,
                               isFromSearch,
                               refine,
+                              
                             }">
                                 <ul>
                                     <li v-if="isFromSearch && !items.length">No results.</li>

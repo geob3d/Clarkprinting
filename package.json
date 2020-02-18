@@ -84,9 +84,9 @@
         "xlsx": "^0.15.0"
     },
     "dependencies": {
+        "element-ui": "^2.13.0",
         "vue-good-table": "^2.18.1",
         "vue-lodash": "^2.0.2",
         "vue-multiselect": "^2.1.6"
-        
     }
 }

@@ -4599,7 +4599,7 @@ var render = function() {
                         return _c(
                           "li",
                           {
-                            key: item.objectID,
+                            key: item.id,
                             staticClass:
                               "vx-row no-gutter cart-item cursor-pointer",
                             on: {
@@ -4607,27 +4607,13 @@ var render = function() {
                                 _vm.$router
                                   .push({
                                     name: "ecommerce-item-detail-view",
-                                    params: { item_id: item.objectID }
+                                    params: { item_id: item.id }
                                   })
                                   .catch(function() {})
                               }
                             }
                           },
                           [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "vx-col w-1/5 item-img-container bg-white flex items-center justify-center"
-                              },
-                              [
-                                _c("img", {
-                                  staticClass: "cart-dropdown-item-img p-4",
-                                  attrs: { src: item.image, alt: "item" }
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
                             _c(
                               "div",
                               {
