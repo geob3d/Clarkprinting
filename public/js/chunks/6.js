@@ -4686,7 +4686,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         _vm.$router
-                          .push("/apps/eCommerce/checkout")
+                          .push("..../views/Shop/ECommerceCheckout")
                           .catch(function() {})
                       }
                     }
