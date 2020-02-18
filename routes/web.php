@@ -14,4 +14,6 @@
 use App\products;
 
 Route::get('/{any}', 'ApplicationController')->where('any', '.*');
+Route::post('files/upload', ['uses' =>'ProductsController@upload']);
+
 

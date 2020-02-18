@@ -8,6 +8,8 @@ use App\Http\Resources\ProductsResource as ProductResource;
 use App\ProductCategories;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use App\Http\Resources\FilesResource as FilesResource;
+
 
 class ProductsController extends Controller
 {
@@ -173,5 +175,21 @@ class ProductsController extends Controller
         if ($products->delete()) {
         return new ProductResource($products);
         }
+    }
+
+
+    public function upload(Request $request, products $product)
+    {
+        $product = products::find(3);
+        try {
+            $product->addMedia($request->file('file'))->toMediaCollection();
+            //$product->addMediaFromRequest('file')->toMediaCollection('images');
+        } catch (\Exception $e) {
+            return response(['errors' => [ 'message' => $e->getMessage()]] , 404);
+        }
+
+        $media = $product->getMedia()->last();
+        
+        return new FilesResource($media);
     }
 }

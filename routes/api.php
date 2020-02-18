@@ -112,3 +112,9 @@ Route::put('product/category/{id}', 'ProductCategoriesController@store');
     
     // Delete 
 Route::delete('product/category/{id}', 'ProductCategoriesController@destroy');
+
+
+//upload test 
+
+
+Route::post('files/upload', 'ProductsController@upload');

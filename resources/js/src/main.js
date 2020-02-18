@@ -13,8 +13,14 @@ import App from './App.vue'
 
 
 // Vuesax Component Framework
-import Vuesax from 'vuesax'
 
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+
+import Vuesax from 'vuesax'
 Vue.use(Vuesax)
 
 // axios
