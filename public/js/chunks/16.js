@@ -205,6 +205,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -235,7 +246,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     item_qty: function item_qty() {
-      var item = this.$store.getters['eCommerce/getCartItem'](this.product.di);
+      var item = this.$store.getters['eCommerce/getCartItem'](this.product.id);
       return Object.keys(item).length ? item.quantity : 1;
     },
     itemColor: function itemColor() {

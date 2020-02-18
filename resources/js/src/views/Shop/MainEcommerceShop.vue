@@ -261,6 +261,8 @@
 <script>
 import axios from 'axios'
 import Prism from 'vue-prism-component'
+import {mapState} from "vuex";
+import { mapActions } from 'vuex';
 
 import {
   AisClearRefinements,
@@ -299,7 +301,7 @@ export default {
   },
   data() {
     return {
-      products: [],
+      //products: [],
       searchClient: algoliasearch(
         'latency',
         '6be0576ff61c053d5f9a3225e2a90f76'
@@ -324,6 +326,8 @@ export default {
     }
   },
   computed: {
+    ...mapState(['products']),
+
     toValue() {
       return (value, range) => [
         value.min !== null ? value.min : range.min,
@@ -347,19 +351,19 @@ export default {
   },
   
   methods: {
-    getAllProducts() {
-      this.error = this.products = null;
-      this.loading = true;
-      var vm = this;
-      axios
-        .get('/api/products')
-        .then(response => {
-          console.log(response);
-          this.loading = false;
-          vm.products = response.data.data; /// the data.data fixed the issue 
+   // getAllProducts() {
+     // this.error = this.products = null;
+      //this.loading = true;
+      //var vm = this;
+      //axios
+       // .get('/api/products')
+        //.then(response => {
+          //console.log(response);
+          //this.loading = false;
+          //vm.products = response.data.data; /// the data.data fixed the issue 
          
-        });
-    },
+        //});
+    //},
 
     setSidebarWidth() {
       if (this.windowWidth < 992) {
@@ -386,8 +390,9 @@ export default {
 
   },
   created() {
+    this.$store.dispatch('loadProducts');
     this.setSidebarWidth();
-    this.getAllProducts();
+    //this.getAllProducts();
     
   },
 

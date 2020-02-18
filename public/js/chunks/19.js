@@ -13,9 +13,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_prism_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-prism-component */ "./node_modules/vue-prism-component/dist/vue-prism-component.common.js");
 /* harmony import */ var vue_prism_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_prism_component__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/dist/vue-instantsearch.esm.js");
-/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! algoliasearch/lite */ "./node_modules/algoliasearch/src/browser/builds/algoliasearchLite.js");
-/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/dist/vue-instantsearch.esm.js");
+/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! algoliasearch/lite */ "./node_modules/algoliasearch/src/browser/builds/algoliasearchLite.js");
+/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(algoliasearch_lite__WEBPACK_IMPORTED_MODULE_4__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -276,6 +283,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
 
 
 
@@ -288,24 +297,24 @@ __webpack_require__.r(__webpack_exports__);
     ItemListView: function ItemListView() {
       return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ./ItemListView.vue */ "./resources/js/src/views/shop/ItemListView.vue"));
     },
-    AisClearRefinements: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisClearRefinements"],
-    AisConfigure: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisConfigure"],
-    AisHierarchicalMenu: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisHierarchicalMenu"],
-    AisHits: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisHits"],
-    AisInstantSearch: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisInstantSearch"],
-    AisNumericMenu: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisNumericMenu"],
-    AisPagination: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisPagination"],
-    AisRangeInput: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisRangeInput"],
-    AisRatingMenu: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisRatingMenu"],
-    AisRefinementList: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisRefinementList"],
-    AisSearchBox: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisSearchBox"],
-    AisSortBy: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisSortBy"],
-    AisStats: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisStats"]
+    AisClearRefinements: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisClearRefinements"],
+    AisConfigure: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisConfigure"],
+    AisHierarchicalMenu: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisHierarchicalMenu"],
+    AisHits: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisHits"],
+    AisInstantSearch: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisInstantSearch"],
+    AisNumericMenu: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisNumericMenu"],
+    AisPagination: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisPagination"],
+    AisRangeInput: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisRangeInput"],
+    AisRatingMenu: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisRatingMenu"],
+    AisRefinementList: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisRefinementList"],
+    AisSearchBox: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisSearchBox"],
+    AisSortBy: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisSortBy"],
+    AisStats: vue_instantsearch__WEBPACK_IMPORTED_MODULE_3__["AisStats"]
   },
   data: function data() {
     return {
-      products: [],
-      searchClient: algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3___default()('latency', '6be0576ff61c053d5f9a3225e2a90f76'),
+      //products: [],
+      searchClient: algoliasearch_lite__WEBPACK_IMPORTED_MODULE_4___default()('latency', '6be0576ff61c053d5f9a3225e2a90f76'),
       // Filter Sidebar
       isFilterSidebarActive: true,
       clickNotClose: true,
@@ -330,7 +339,7 @@ __webpack_require__.r(__webpack_exports__);
       algoliaCategories: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1', 'hierarchicalCategories.lvl2', 'hierarchicalCategories.lvl3']
     };
   },
-  computed: {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['products']), {
     toValue: function toValue() {
       return function (value, range) {
         return [value.min !== null ? value.min : range.min, value.max !== null ? value.max : range.max];
@@ -354,25 +363,25 @@ __webpack_require__.r(__webpack_exports__);
     windowWidth: function windowWidth() {
       return this.$store.state.windowWidth;
     }
-  },
+  }),
   watch: {
     windowWidth: function windowWidth() {
       this.setSidebarWidth();
     }
   },
   methods: {
-    getAllProducts: function getAllProducts() {
-      var _this3 = this;
-
-      this.error = this.products = null;
-      this.loading = true;
-      var vm = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/products').then(function (response) {
-        console.log(response);
-        _this3.loading = false;
-        vm.products = response.data.data; /// the data.data fixed the issue 
-      });
-    },
+    // getAllProducts() {
+    // this.error = this.products = null;
+    //this.loading = true;
+    //var vm = this;
+    //axios
+    // .get('/api/products')
+    //.then(response => {
+    //console.log(response);
+    //this.loading = false;
+    //vm.products = response.data.data; /// the data.data fixed the issue 
+    //});
+    //},
     setSidebarWidth: function setSidebarWidth() {
       if (this.windowWidth < 992) {
         this.isFilterSidebarActive = this.clickNotClose = false;
@@ -396,8 +405,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.setSidebarWidth();
-    this.getAllProducts();
+    this.$store.dispatch('loadProducts');
+    this.setSidebarWidth(); //this.getAllProducts();
   }
 });
 

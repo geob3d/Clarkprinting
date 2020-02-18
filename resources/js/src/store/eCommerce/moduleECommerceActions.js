@@ -12,7 +12,7 @@ export default {
         commit('TOGGLE_ITEM_IN_WISH_LIST', item)
     },
     toggleItemInCart({ getters, commit, dispatch }, item) {
-        getters.isInCart(item.objectID) ? commit('REMOVE_ITEM_FROM_CART', item) : dispatch("additemInCart", item)
+        getters.isInCart(item.id) ? commit('REMOVE_ITEM_FROM_CART', item) : dispatch("additemInCart", item)
     },
     additemInCart({ commit }, item) {
 

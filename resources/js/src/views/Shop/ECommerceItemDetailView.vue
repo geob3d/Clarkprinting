@@ -127,6 +127,17 @@
                       </vs-button>
                      <!-- Add To Cart Button -->
 
+                    <!-- <vs-button
+                        v-else
+                        class="mr-4 mb-4"
+                        icon-pack="feather"
+                        icon="icon-shopping-cart"
+                        @click="$router.push({name: 'ecommerce-checkout'}).catch(err => {})">
+                        VIEW IN CART
+                      </vs-button>
+                       /Add To Cart Button -->
+
+
                       <!-- Wishlist Button
                       <vs-button
                         v-if="isInWishList(item_data.objectID)"
@@ -172,7 +183,7 @@
           </div>
 
 
-
+    
         </div>
 
 
@@ -223,7 +234,7 @@ export default{
   },
   computed: {
     item_qty() {
-      const item = this.$store.getters['eCommerce/getCartItem'](this.product.di)
+      const item = this.$store.getters['eCommerce/getCartItem'](this.product.id)
       return Object.keys(item).length ? item.quantity : 1
     },
     itemColor() {

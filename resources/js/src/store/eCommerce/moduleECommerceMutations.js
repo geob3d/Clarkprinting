@@ -20,8 +20,9 @@ export default {
     const index = state.cartItems.findIndex(i => i.objectID == item.objectID)
     if (index > -1) { state.cartItems.splice(index, 1) }
   },
-  ADD_ITEM_IN_CART(state, item) {
-    state.cartItems.push(Object.assign({}, item))
+  ADD_ITEM_IN_CART(state, product) {
+    state.cartItems.push(product)
+    //state.inCart.push(product.id);
   },
   UPDATE_ITEM_QUANTITY(state, payload) {
     state.cartItems[payload.index].quantity = payload.quantity
