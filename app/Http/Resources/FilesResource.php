@@ -21,7 +21,8 @@ class FilesResource extends JsonResource
             'mime_type'   => $this->mime_type,
             'path' => $this->getUrl(),
             'created_at' => $this->created_at->format('d-m-Y'),
-            'full_size' => $this->size
+            'full_size' => $this->size,
+            'model_id' => $this->model_id
         ];
     }
 }

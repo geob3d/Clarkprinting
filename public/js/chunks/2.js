@@ -12,8 +12,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ProductAttributeForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAttributeForm */ "./resources/js/src/views/Product/ProductAttributeForm.vue");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -78,7 +76,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       props: ['uploadurl'],
       files: [],
-      fileIsUploading: true,
+      fileIsUploading: false,
       loading: false,
       products: {},
       buttontext: 'Add',
@@ -107,7 +105,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   watch: {},
   mounted: function mounted() {
-    this.buttonvalue(), this.uploadFile(event);
+    this.buttonvalue(), this.uploadFile();
   },
   methods: {
     getProducts: function getProducts() {
@@ -173,13 +171,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var data = new FormData();
       data.append('file', event.file);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/files/upload/".concat(this.$route.params.id), data).then(function (response) {
-        var _this5$$emit;
-
         var responseData = response.data.data; // send event back to parent file was uploaded and return file data
 
-        _this5.$emit('upload-success', (_this5$$emit = {
-          'created_at': _this5.$route.params.id
-        }, _defineProperty(_this5$$emit, "created_at", responseData.created_at), _defineProperty(_this5$$emit, 'name', responseData.name), _defineProperty(_this5$$emit, 'mime_type', responseData.mime_type), _defineProperty(_this5$$emit, 'size', responseData.size), _this5$$emit));
+        _this5.$emit('upload-success', {
+          'model_id': _this5.$route.params.id,
+          'created_at': responseData.created_at,
+          'name': responseData.name,
+          'mime_type': responseData.mime_type,
+          'size': responseData.size
+        });
 
         _this5.fileIsUploading = false;
       }).catch(function (error) {
@@ -482,7 +482,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _c("vs-textarea", {
+                  _c("vs-input", {
                     attrs: { label: "Product Description" },
                     model: {
                       value: _vm.product.description,

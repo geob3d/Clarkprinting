@@ -11,7 +11,7 @@
                 <vs-input label="SKU" placeholder="SKU" v-model="product.sku"/>
                 <vs-input label="Product Name" placeholder="Product Name" v-model="product.name"/>
                 <br>
-                <vs-textarea label="Product Description"  v-model="product.description"/>
+                <vs-input label="Product Description"  v-model="product.description"/>
                 <vs-input label="Price" placeholder="Price" v-model="product.price"/>
                 <vs-input label="Ordering Company" placeholder="Ordering Company" v-model="product.ordering_company_id_fk"/>  
                 <vs-input label="Product Category" placeholder="Product Category" v-model="product.prod_cat_fk"/>
@@ -68,7 +68,7 @@ export default {
         return {
             props: ['uploadurl'],
             files: [],
-				    fileIsUploading: true,
+				    fileIsUploading: false,
             loading: false,
             products: {},
             buttontext : 'Add',
@@ -108,7 +108,7 @@ export default {
 
     mounted(){
       this.buttonvalue(),
-      this.uploadFile(event)
+      this.uploadFile()
 
     },
 
@@ -174,35 +174,34 @@ export default {
           };
 
         },
-
-         uploadFile(event) {
+ uploadFile(event) {
                 this.fileIsUploading = true;
                 this.tableIsUploading = true;
 				//let uploadurl = 'api/files/upload'
                 const data = new FormData();
                 data.append('file', event.file);
-                axios.post(`/api/files/upload/${this.$route.params.id}`, data)
-                        .then((response) => {
-                            var responseData = response.data.data;
-                            // send event back to parent file was uploaded and return file data
-                            this.$emit('upload-success', {
-                                'created_at': this.$route.params.id,
-                                'created_at': responseData.created_at,
-                                'name': responseData.name,
-                                'mime_type': responseData.mime_type,
-                                'size': responseData.size
-                            });
-                            this.fileIsUploading = false;
-                        })
-                        .catch((error) => {
-                            this.fileIsUploading = false;
-                            this.tableIsUploading = false;
+				axios.post(`/api/files/upload/${this.$route.params.id}`, data)
+                .then((response) => {
+                    var responseData = response.data.data;
+                    // send event back to parent file was uploaded and return file data
+                    this.$emit('upload-success', {
+                        'model_id':this.$route.params.id,
+                        'created_at': responseData.created_at,
+                        'name': responseData.name,
+                        'mime_type': responseData.mime_type,
+                        'size': responseData.size
+                    });
+                    this.fileIsUploading = false;
+                })
+                .catch((error) => {
+                    this.fileIsUploading = false;
+                    this.tableIsUploading = false;
 
-                            this.$notify.error({
-                                title: 'Error',
-                                message: error.response.data.errors.message,
-                            });
-                        });
+                    this.$notify.error({
+                        title: 'Error',
+                        message: error.response.data.errors.message,
+                    });
+                });
             }
         }
 }

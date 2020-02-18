@@ -180,16 +180,15 @@ class ProductsController extends Controller
 
     public function upload(Request $request, products $product,$id)
     {
-        $product = products::where('id', 'LIKE', $id);
-        try {
-            $product->addMedia($request->file('file'))->toMediaCollection();
-            //$product->addMediaFromRequest('file')->toMediaCollection('images');
-        } catch (\Exception $e) {
-            return response(['errors' => [ 'message' => $e->getMessage()]] , 404);
-        }
-
-        $media = $product->getMedia()->last();
-        
-        return new FilesResource($media);
+    $product = products::find($id);
+    try {
+    $product->addMedia($request->file('file'))->toMediaCollection();
+    //$product->addMediaFromRequest('file')->toMediaCollection('images');
+    } catch (\Exception $e) {
+    return response(['errors' => [ 'message' => $e->getMessage()]] , 404);
+    }
+    
+    $media = $product->getMedia()->last();
+    return new FilesResource($media);
     }
 }
