@@ -183,7 +183,7 @@ var ItemListView = function ItemListView() {
   methods: {
     // TAB 1
     removeItemFromCart: function removeItemFromCart(item) {
-      this.$store.dispatch('eCommerce/toggleItemInCart', item);
+      if (confirm('Are you sure that you want to remove the item from the cart? ')) this.$store.dispatch('eCommerce/toggleItemInCart', item);
     },
     wishListButtonClicked: function wishListButtonClicked(item) {
       // Toggle in Wish List
@@ -479,53 +479,6 @@ var render = function() {
                                         },
                                         [_vm._v("REMOVE")]
                                       )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "item-view-secondary-action-btn bg-primary p-3 rounded-lg flex flex-grow items-center justify-center text-white cursor-pointer",
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.wishListButtonClicked(item)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("feather-icon", {
-                                        attrs: {
-                                          icon: "HeartIcon",
-                                          svgClasses: [
-                                            {
-                                              "text-white fill-current": _vm.isInWishList(
-                                                item.objectID
-                                              )
-                                            },
-                                            "h-4 w-4"
-                                          ]
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _vm.isInWishList(item.objectID)
-                                        ? _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "text-sm font-semibold ml-2"
-                                            },
-                                            [_vm._v("WISHLIST")]
-                                          )
-                                        : _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "text-sm font-semibold ml-2"
-                                            },
-                                            [_vm._v("WISHLIST")]
-                                          )
                                     ],
                                     1
                                   )

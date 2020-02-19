@@ -50,12 +50,12 @@
                                         <span class="text-sm font-semibold ml-2">REMOVE</span>
                                     </div>
 
-                                    <!-- SECONDARY BUTTON: MOVE-TO/VIEW-IN WISHLIST -->
+                                    <!-- SECONDARY BUTTON: MOVE-TO/VIEW-IN WISHLIST 
                                     <div class="item-view-secondary-action-btn bg-primary p-3 rounded-lg flex flex-grow items-center justify-center text-white cursor-pointer" @click="wishListButtonClicked(item)">
                                         <feather-icon icon="HeartIcon" :svgClasses="[{'text-white fill-current': isInWishList(item.objectID)}, 'h-4 w-4']" />
                                         <span class="text-sm font-semibold ml-2" v-if="isInWishList(item.objectID)">WISHLIST</span>
                                         <span class="text-sm font-semibold ml-2" v-else>WISHLIST</span>
-                                    </div>
+                                    </div> -->
                                 </template>
                             </item-list-view>
                         </div>
@@ -162,6 +162,7 @@ export default {
 
         // TAB 1
         removeItemFromCart(item) {
+            if(confirm('Are you sure that you want to remove the item from the cart? '))
             this.$store.dispatch('eCommerce/toggleItemInCart', item)
         },
         wishListButtonClicked(item) {

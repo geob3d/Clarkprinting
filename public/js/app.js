@@ -117388,7 +117388,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   REMOVE_ITEM_FROM_CART: function REMOVE_ITEM_FROM_CART(state, item) {
     var index = state.cartItems.findIndex(function (i) {
-      return i.objectID == item.objectID;
+      return i == item.objectID;
     });
 
     if (index > -1) {

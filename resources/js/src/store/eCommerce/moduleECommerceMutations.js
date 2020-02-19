@@ -17,7 +17,7 @@ export default {
     }
   },
   REMOVE_ITEM_FROM_CART(state, item) {
-    const index = state.cartItems.findIndex(i => i.objectID == item.objectID)
+    const index = state.cartItems.findIndex(i => i == item.objectID)
     if (index > -1) { state.cartItems.splice(index, 1) }
   },
   ADD_ITEM_IN_CART(state, product) {
