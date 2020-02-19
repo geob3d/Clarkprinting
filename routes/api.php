@@ -114,9 +114,25 @@ Route::put('product/category/{id}', 'ProductCategoriesController@store');
 Route::delete('product/category/{id}', 'ProductCategoriesController@destroy');
 
 
+//Stores Orders and Order Items
+Route::get('orders', 'OrdersController@index');
+
+    //Route for single
+Route::get('orders/{id}', 'OrdersController@show');
+
+    // Create a new 
+Route::post('order', 'OrdersController@create');
+    
+    // Update 
+Route::put('order/{id}', 'OrdersController@update');
+    
+    // Delete 
+Route::delete('order/{id}', 'OrdersController@destroy');
+
+
 //UploadFilePaths
 
 //Route::post('files/upload', 'ProductsController@upload');
 
-//UploadSingleFile
+    //UploadSingleFile
 Route::post('files/upload/{id}', 'ProductsController@upload');

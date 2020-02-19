@@ -72,49 +72,20 @@ class ProductsController extends Controller
         //  Allow for post update *or* create a new post
         $products = $request->isMethod('put') ? products::findOrFail($request->id) : new products;
 
+
         $products->sku = $request->input('sku');
         $products->name = $request->input('name');
         $products->description = $request->input('description');
         $products->price = $request->input('price');
         $products->ordering_company_id_fk = $request->input('ordering_company_id_fk');
         $products->prod_cat_fk = $request->input('prod_cat_fk');
-        //$products->addMedia($request->file('productImg'))->toMediaCollection();
-        //$products->addMediaFromRequest('productImg')->toMediaCollection();
 
-
-       // $products->prodimage = $request-> addMediaFromRequest('productImg')->toMediaCollection();
-
-        //if (request()->hasFile('productImg'))
-        //{
-          //  $products->addMedia(request()->file('productImg'))->toMediaCollection();
-        //}
- 
-
-         //if (!$request->hasFile('productImg') ) {
-           // return back()->with('error', 'Missing image!');
-        //}
 
         
         if ($products->save()) {
             return new ProductResource($products);
         }
 
-        //if (request()->hasFile('productImg'))
-        //{
-          //  $products->addMedia(request()->file('productImg'))->toMediaCollection();
-        //}
-
-        if($request->hasFile('productImg') && $request->file('productImg')->isValid()){
-            $products->addMediaFromRequest('productImg')->toMediaCollection();
-            
-        }
-
-
-
-
-        //if (isset($data['media'])) {
-          //  $products->addMediaFromRequest('productImg')->toMediaCollection();
-        //}
 
     }
 

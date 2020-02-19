@@ -35,7 +35,12 @@
                                   <div class="el-upload__text" v-show="!fileIsUploading">Upload Image Here </div>
                               </el-upload>
                       </div>
-                  </div>              
+                  </div>    
+
+                  <br>
+                  
+                  <button type="submit" class="btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary">{{ buttontext }} Product </button>
+
                </form>
 
           </div>
