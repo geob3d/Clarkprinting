@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -27,29 +27,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       loading: false,
-      prodCategories: {},
+      companies: {},
       buttontext: 'Add',
       error: null,
-      prodCategory: {
+      company: {
         name: '',
-        description: ''
+        company_code: ''
       },
-      prodCategoryform: {}
+      companyform: {}
     };
   },
   created: function created() {
     var _this = this;
 
-    this.getProdCategories();
-    var uri = "/api/product/categories/".concat(this.$route.params.id);
+    this.getCompanies();
+    var uri = "/api/companies/".concat(this.$route.params.id);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
-      _this.prodCategory = response.data.data;
+      _this.company = response.data.data;
     });
   },
   watch: {},
@@ -57,45 +56,45 @@ __webpack_require__.r(__webpack_exports__);
     this.buttonvalue();
   },
   methods: {
-    getProdCategories: function getProdCategories() {
+    getCompanies: function getCompanies() {
       var _this2 = this;
 
-      this.error = this.prodCategories = null;
+      this.error = this.companies = null;
       this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/product/categories').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/companies').then(function (response) {
         _this2.loading = false;
-        _this2.prodCategories = response.data;
+        _this2.companies = response.data;
       });
     },
-    addProdCategory: function addProdCategory() {
+    addCompany: function addCompany() {
       var _this3 = this;
 
-      this.error = this.prodCategories = null;
+      this.error = this.companies = null;
       this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/company', this.prodCategory).then(function (response) {
-        _this3.getProdCategories();
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/company', this.company).then(function (response) {
+        _this3.getCompanies();
       }).then(function (data) {
-        _this3.getProdCategories();
+        _this3.getCompanies();
       }).catch(function (err) {
         return console.log(err);
       });
     },
-    updateProdCategory: function updateProdCategory() {
+    updateCompany: function updateCompany() {
       var _this4 = this;
 
-      var uri = "/api/product/category/".concat(this.$route.params.id);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.prodCategory).then(function (response) {
+      var uri = "/api/company/".concat(this.$route.params.id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.company).then(function (response) {
         _this4.$router.push({
-          name: 'ProductCategoryInfo'
+          name: 'CompanyInfo'
         });
       });
     },
-    productCatFormValue: function productCatFormValue() {
+    companyFormValue: function companyFormValue() {
       if ("id" in this.$route.params) {
         this.buttontext = 'Update';
-        this.updateProdCategory();
+        this.updateCompany();
       } else {
-        this.addProdCategory();
+        this.addCompany();
       }
 
       ;
@@ -115,10 +114,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=template&id=87a001e0&":
-/*!****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=template&id=87a001e0& ***!
-  \****************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc& ***!
+  \***************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -137,36 +136,30 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.productCatFormValue($event)
+            return _vm.companyFormValue($event)
           }
         }
       },
       [
         _c("vs-input", {
-          attrs: { label: "Company Name", placeholder: "Company Name" },
+          attrs: { label: "Company Code", placeholder: "Company Code" },
           model: {
-            value: _vm.prodCategory.name,
+            value: _vm.company.company_code,
             callback: function($$v) {
-              _vm.$set(_vm.prodCategory, "name", $$v)
+              _vm.$set(_vm.company, "company_code", $$v)
             },
-            expression: "prodCategory.name"
+            expression: "company.company_code"
           }
         }),
         _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("vs-textarea", {
-          attrs: {
-            label: "Company Code",
-            width: "50%",
-            placeholder: "Company Code"
-          },
+        _c("vs-input", {
+          attrs: { label: "Company Name", placeholder: "Company Name" },
           model: {
-            value: _vm.prodCategory.description,
+            value: _vm.company.name,
             callback: function($$v) {
-              _vm.$set(_vm.prodCategory, "description", $$v)
+              _vm.$set(_vm.company, "name", $$v)
             },
-            expression: "prodCategory.description"
+            expression: "company.name"
           }
         }),
         _vm._v(" "),
@@ -179,7 +172,7 @@ var render = function() {
               "btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary",
             attrs: { type: "submit" }
           },
-          [_vm._v(_vm._s(_vm.buttontext) + " Product Category")]
+          [_vm._v(_vm._s(_vm.buttontext) + " Company")]
         )
       ],
       1
@@ -193,17 +186,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue":
-/*!***************************************************************************!*\
-  !*** ./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue ***!
-  \***************************************************************************/
+/***/ "./resources/js/src/views/Company/CompanyAddSideBar.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/src/views/Company/CompanyAddSideBar.vue ***!
+  \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProductCatAddSideBar_vue_vue_type_template_id_87a001e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductCatAddSideBar.vue?vue&type=template&id=87a001e0& */ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=template&id=87a001e0&");
-/* harmony import */ var _ProductCatAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductCatAddSideBar.vue?vue&type=script&lang=js& */ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CompanyAddSideBar_vue_vue_type_template_id_3cc0cbcc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc& */ "./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc&");
+/* harmony import */ var _CompanyAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CompanyAddSideBar.vue?vue&type=script&lang=js& */ "./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -213,9 +206,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ProductCatAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProductCatAddSideBar_vue_vue_type_template_id_87a001e0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ProductCatAddSideBar_vue_vue_type_template_id_87a001e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CompanyAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CompanyAddSideBar_vue_vue_type_template_id_3cc0cbcc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CompanyAddSideBar_vue_vue_type_template_id_3cc0cbcc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -225,38 +218,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue"
+component.options.__file = "resources/js/src/views/Company/CompanyAddSideBar.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************!*\
-  !*** ./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************/
+/***/ "./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductCatAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductCatAddSideBar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductCatAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CompanyAddSideBar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=template&id=87a001e0&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=template&id=87a001e0& ***!
-  \**********************************************************************************************************/
+/***/ "./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc& ***!
+  \*********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductCatAddSideBar_vue_vue_type_template_id_87a001e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductCatAddSideBar.vue?vue&type=template&id=87a001e0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue?vue&type=template&id=87a001e0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductCatAddSideBar_vue_vue_type_template_id_87a001e0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyAddSideBar_vue_vue_type_template_id_3cc0cbcc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Company/CompanyAddSideBar.vue?vue&type=template&id=3cc0cbcc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyAddSideBar_vue_vue_type_template_id_3cc0cbcc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductCatAddSideBar_vue_vue_type_template_id_87a001e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyAddSideBar_vue_vue_type_template_id_3cc0cbcc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

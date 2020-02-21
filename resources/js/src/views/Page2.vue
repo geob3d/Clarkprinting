@@ -8,12 +8,12 @@
           <div class="App">
             <div class="wrapper">
               <div class="workspace" ref="workspace">
-                <div v-for="row in rows">
+                <div v-for="row in imgCord">
                 <FreeTransform
                   
                   :key="row.id"
-                  :x="row.x"
-                  :y="row.y"
+                  :x="row.x_coordinate"
+                  :y="row.y_coordinate"
                   :scale-x="row.scaleX"
                   :scale-y="row.scaleY"
                   :width="row.width"
@@ -24,8 +24,8 @@
                   :disable-scale="row.disableScale === true"
                   @update="update(row.id, $event);"
                 >
-                  <div class="element" :style="getElementStyles(rows)">
-                    {{ row.field }}
+                  <div class="element" :style="getElementStyles(imgCord)">
+                    {{ row.field_name }}
                   </div>
                 </FreeTransform>
                 </div>
@@ -54,21 +54,21 @@
                       <vs-th><strong>Field Name</strong></vs-th>
                       <vs-th><strong>Field Type</strong></vs-th>
                       <vs-th><strong>Field Value</strong></vs-th>
-                    <!--  <td><strong>X-Cordinate</strong></td>
+                      <td><strong>X-Cordinate</strong></td>
                       <td><strong>Y-Cordinate</strong></td>
                       <td><strong>ScaleX</strong></td>
-                      <td><strong>ScaleY</strong></td>-->
+                      <td><strong>ScaleY</strong></td>
                       <vs-th><strong>Width</strong></vs-th>
                       <vs-th><strong>Height</strong></vs-th>
                       <!-- <td><strong>Angle</strong></td>-->
                   </vs-tr>
               </thead>
               <tbody>
-                  <tr v-for="(row, index) in rows">
+                  <tr v-for="(row, index) in imgCord">
 
-                      <vs-td><input type="text" v-model="row.prodID"></vs-td>
                       <vs-td><input type="text" v-model="row.id"></vs-td>
-                      <vs-td><input type="text" v-model="row.name"></vs-td>
+                      <vs-td><input type="text" v-model="row.row_id"></vs-td>
+                      <vs-td><input type="text" v-model="row.field_name"></vs-td>
 
                       <vs-td>
                       <el-select v-model="row.fieldType" filterable placeholder="Select">
@@ -82,7 +82,7 @@
                       </vs-td>
 
                       <vs-td>
-                      <input v-if="row.fieldType" 
+                      <input v-if="row.field_type" 
                       :type="row.fieldType" :name="name" 
                       :placeholder="label" 
                       v-model="row.field"
@@ -90,13 +90,13 @@
                       </vs-td>
 
 
-                    <!-- <vs-td><input type="text" v-model="row.x"></vs-td>
-                      <vs-td><input type="text" v-model="row.y"></vs-td>
-                      <vs-td><input type="text" v-model="row.scaleX"></vs-td>
-                      <vs-td><input type="text" v-model="row.scaleY"></vs-td>-->
-                      <vs-td><input type="text" v-model="row.width"></vs-td>
-                      <vs-td><input type="text" v-model="row.height"></vs-td>
-                    <!--  <vs-td><input type="text" v-model="row.angle"></vs-td>-->
+                      <vs-td><input type="text" v-model.number="row.x_coordinate"></vs-td>
+                      <vs-td><input type="text" v-model.number="row.y_coordinate"></vs-td>
+                      <vs-td><input type="text" v-model.number="row.scaleX"></vs-td>
+                      <vs-td><input type="text" v-model.number="row.scaleY"></vs-td>
+                      <vs-td><input type="text" v-model.number="row.width"></vs-td>
+                      <vs-td><input type="text" v-model.number="row.height"></vs-td>
+                      <vs-td><input type="text" v-model.number="row.angle"></vs-td>
                       
       
                       <vs-td>
@@ -129,6 +129,7 @@ export default{
         return {
           rows: [],
 
+          imgCord:{},
 
           "fields": [
           {
@@ -161,6 +162,20 @@ export default{
 
     methods:{
 
+    getallImgCord (){
+      this.error = this.imgCord = null;
+      axios
+        .get('/api/imageCordianates') 
+        .then(response => {
+            this.loading = false;
+            this.imgCord = response.data.data;
+            console.log(thi.imgCord.id)
+        });
+
+
+
+    },
+
     update(id, payload) {
       this.rows = this.rows.map(item => {
         if (item.id === id) {
@@ -184,7 +199,7 @@ export default{
 
         addRow() {
             var elem = document.createElement('tr');
-            this.rows.push({
+            this.imgCord.push({
                 id: "", //!model id
                 prodID:"", // user this. param
                 Name: "",
@@ -212,6 +227,10 @@ export default{
             row.file = file
         }
     },
+
+    created(){
+      this.getallImgCord();
+    }
 
 }
 

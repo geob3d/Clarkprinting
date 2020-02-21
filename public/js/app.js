@@ -116994,7 +116994,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     // =============================================================================
     path: '',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(8), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/js/src/layouts/main/Main.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(9), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/js/src/layouts/main/Main.vue"));
     },
     children: [// =============================================================================
     // Theme Routes
@@ -117003,43 +117003,43 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/',
       name: 'home',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(29), __webpack_require__.e(30)]).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
       }
     }, {
       path: '/page2',
       name: 'page-2',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(29), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, /*! ./views/Page2.vue */ "./resources/js/src/views/Page2.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ./views/Page2.vue */ "./resources/js/src/views/Page2.vue"));
       }
     }, {
       path: '/CompanyInfo',
       name: 'CompanyInfo',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/Company/CompanyIndex.vue */ "./resources/js/src/views/Company/CompanyIndex.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/Company/CompanyIndex.vue */ "./resources/js/src/views/Company/CompanyIndex.vue"));
       }
     }, {
       path: '/edit/Company/:id',
       name: 'EditCompany',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! ./views/Company/CompanyAddSideBar.vue */ "./resources/js/src/views/Company/CompanyAddSideBar.vue"));
+        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./views/Company/CompanyAddSideBar.vue */ "./resources/js/src/views/Company/CompanyAddSideBar.vue"));
       }
     }, {
       path: '/BannerInfo',
       name: 'BannerInfo',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Banner/BannerIndex.vue */ "./resources/js/src/views/Banner/BannerIndex.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Banner/BannerIndex.vue */ "./resources/js/src/views/Banner/BannerIndex.vue"));
       }
     }, {
       path: '/edit/Banner/:id',
       name: 'EditBanner',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, /*! ./views/Banner/BannerAddSideBar.vue */ "./resources/js/src/views/Banner/BannerAddSideBar.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, /*! ./views/Banner/BannerAddSideBar.vue */ "./resources/js/src/views/Banner/BannerAddSideBar.vue"));
       }
     }, {
       path: '/StoreInfo',
       name: 'StoreInfo',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./views/Store/StoreIndex.vue */ "./resources/js/src/views/Store/StoreIndex.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, /*! ./views/Store/StoreIndex.vue */ "./resources/js/src/views/Store/StoreIndex.vue"));
       }
     }, {
       path: '/edit/Store/:id',
@@ -117051,7 +117051,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/ProductInfo',
       name: 'ProductInfo',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(4), __webpack_require__.e(2), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./views/Product/ProductIndex.vue */ "./resources/js/src/views/Product/ProductIndex.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(4), __webpack_require__.e(2), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ./views/Product/ProductIndex.vue */ "./resources/js/src/views/Product/ProductIndex.vue"));
       }
     }, {
       path: '/edit/Product/:id',
@@ -117063,43 +117063,43 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/ProductAttributeInfo',
       name: 'ProductAttributeInfo',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/ProductAttribute/ProductAttributeIndex.vue */ "./resources/js/src/views/ProductAttribute/ProductAttributeIndex.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/ProductAttribute/ProductAttributeIndex.vue */ "./resources/js/src/views/ProductAttribute/ProductAttributeIndex.vue"));
       }
     }, {
       path: '/edit/ProductAttribute/:id',
       name: 'EditProduct',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./views/ProductAttribute/ProductAttributeAddSideBar.vue */ "./resources/js/src/views/ProductAttribute/ProductAttributeAddSideBar.vue"));
+        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./views/ProductAttribute/ProductAttributeAddSideBar.vue */ "./resources/js/src/views/ProductAttribute/ProductAttributeAddSideBar.vue"));
       }
     }, {
       path: '/MainShop',
       name: 'Shop',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(6), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! ./views/shop/MainEcommerceShop.vue */ "./resources/js/src/views/shop/MainEcommerceShop.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(7), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, /*! ./views/shop/MainEcommerceShop.vue */ "./resources/js/src/views/shop/MainEcommerceShop.vue"));
       }
     }, {
       path: '/ProductDetails/:item_id',
       name: 'Shopecommerce-item-detail-view',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(20), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ./views/shop/ECommerceItemDetailView.vue */ "./resources/js/src/views/shop/ECommerceItemDetailView.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(23), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, /*! ./views/shop/ECommerceItemDetailView.vue */ "./resources/js/src/views/shop/ECommerceItemDetailView.vue"));
       }
     }, {
       path: '/Checkout',
       name: 'ecommerce-checkout',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(27), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ./views/shop/ECommerceCheckout.vue */ "./resources/js/src/views/shop/ECommerceCheckout.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(29), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! ./views/shop/ECommerceCheckout.vue */ "./resources/js/src/views/shop/ECommerceCheckout.vue"));
       }
     }, {
       path: '/ProductCategoryInfo',
       name: 'ProductCategoryInfo',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/ProductCategories/ProductCatIndex.vue */ "./resources/js/src/views/ProductCategories/ProductCatIndex.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/ProductCategories/ProductCatIndex.vue */ "./resources/js/src/views/ProductCategories/ProductCatIndex.vue"));
       }
     }, {
       path: '/edit/ProductCategory/:id',
       name: 'EditProductCategory',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./views/ProductCategories/ProductCatAddSideBar.vue */ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue"));
+        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./views/ProductCategories/ProductCatAddSideBar.vue */ "./resources/js/src/views/ProductCategories/ProductCatAddSideBar.vue"));
       }
     }]
   }, // =============================================================================
@@ -117108,7 +117108,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   {
     path: '',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
     },
     children: [// =============================================================================
     // PAGES
@@ -117117,13 +117117,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/pages/login',
       name: 'page-login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
       }
     }, {
       path: '/pages/error-404',
       name: 'page-error-404',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
+        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
       }
     }]
   }, // Redirect to 404 page, if no match found

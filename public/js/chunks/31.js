@@ -146,6 +146,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       rows: [],
+      imgCord: {},
       "fields": [{
         "label": "Input",
         "name": "fulllName",
@@ -166,6 +167,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.offsetY = this.$refs.workspace.offsetTop;
   },
   methods: {
+    getallImgCord: function getallImgCord() {
+      var _this = this;
+
+      this.error = this.imgCord = null;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/imageCordianates').then(function (response) {
+        _this.loading = false;
+        _this.imgCord = response.data.data;
+        console.log(thi.imgCord.id);
+      });
+    },
     update: function update(id, payload) {
       this.rows = this.rows.map(function (item) {
         if (item.id === id) {
@@ -184,7 +195,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     addRow: function addRow() {
       var elem = document.createElement('tr');
-      this.rows.push({
+      this.imgCord.push({
         id: "",
         //!model id
         prodID: "",
@@ -212,6 +223,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var file = event.target.files[0];
       row.file = file;
     }
+  },
+  created: function created() {
+    this.getallImgCord();
   }
 });
 
@@ -308,7 +322,7 @@ var render = function() {
                     _c(
                       "div",
                       { ref: "workspace", staticClass: "workspace" },
-                      _vm._l(_vm.rows, function(row) {
+                      _vm._l(_vm.imgCord, function(row) {
                         return _c(
                           "div",
                           [
@@ -317,8 +331,8 @@ var render = function() {
                               {
                                 key: row.id,
                                 attrs: {
-                                  x: row.x,
-                                  y: row.y,
+                                  x: row.x_coordinate,
+                                  y: row.y_coordinate,
                                   "scale-x": row.scaleX,
                                   "scale-y": row.scaleY,
                                   width: row.width,
@@ -339,12 +353,12 @@ var render = function() {
                                   "div",
                                   {
                                     staticClass: "element",
-                                    style: _vm.getElementStyles(_vm.rows)
+                                    style: _vm.getElementStyles(_vm.imgCord)
                                   },
                                   [
                                     _vm._v(
                                       "\n                  " +
-                                        _vm._s(row.field) +
+                                        _vm._s(row.field_name) +
                                         "\n                "
                                     )
                                   ]
@@ -419,6 +433,14 @@ var render = function() {
                         _vm._v(" "),
                         _c("vs-th", [_c("strong", [_vm._v("Field Value")])]),
                         _vm._v(" "),
+                        _c("td", [_c("strong", [_vm._v("X-Cordinate")])]),
+                        _vm._v(" "),
+                        _c("td", [_c("strong", [_vm._v("Y-Cordinate")])]),
+                        _vm._v(" "),
+                        _c("td", [_c("strong", [_vm._v("ScaleX")])]),
+                        _vm._v(" "),
+                        _c("td", [_c("strong", [_vm._v("ScaleY")])]),
+                        _vm._v(" "),
                         _c("vs-th", [_c("strong", [_vm._v("Width")])]),
                         _vm._v(" "),
                         _c("vs-th", [_c("strong", [_vm._v("Height")])])
@@ -431,33 +453,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.rows, function(row, index) {
+                  _vm._l(_vm.imgCord, function(row, index) {
                     return _c(
                       "tr",
                       [
-                        _c("vs-td", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: row.prodID,
-                                expression: "row.prodID"
-                              }
-                            ],
-                            attrs: { type: "text" },
-                            domProps: { value: row.prodID },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(row, "prodID", $event.target.value)
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
                         _c("vs-td", [
                           _c("input", {
                             directives: [
@@ -487,18 +486,41 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: row.name,
-                                expression: "row.name"
+                                value: row.row_id,
+                                expression: "row.row_id"
                               }
                             ],
                             attrs: { type: "text" },
-                            domProps: { value: row.name },
+                            domProps: { value: row.row_id },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(row, "name", $event.target.value)
+                                _vm.$set(row, "row_id", $event.target.value)
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("vs-td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: row.field_name,
+                                expression: "row.field_name"
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: row.field_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(row, "field_name", $event.target.value)
                               }
                             }
                           })
@@ -535,7 +557,7 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c("vs-td", [
-                          row.fieldType === "checkbox" && row.fieldType
+                          row.fieldType === "checkbox" && row.field_type
                             ? _c("input", {
                                 directives: [
                                   {
@@ -587,7 +609,7 @@ var render = function() {
                                   }
                                 }
                               })
-                            : row.fieldType === "radio" && row.fieldType
+                            : row.fieldType === "radio" && row.field_type
                             ? _c("input", {
                                 directives: [
                                   {
@@ -610,7 +632,7 @@ var render = function() {
                                   }
                                 }
                               })
-                            : row.fieldType
+                            : row.field_type
                             ? _c("input", {
                                 directives: [
                                   {
@@ -644,19 +666,27 @@ var render = function() {
                             directives: [
                               {
                                 name: "model",
-                                rawName: "v-model",
-                                value: row.width,
-                                expression: "row.width"
+                                rawName: "v-model.number",
+                                value: row.x_coordinate,
+                                expression: "row.x_coordinate",
+                                modifiers: { number: true }
                               }
                             ],
                             attrs: { type: "text" },
-                            domProps: { value: row.width },
+                            domProps: { value: row.x_coordinate },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(row, "width", $event.target.value)
+                                _vm.$set(
+                                  row,
+                                  "x_coordinate",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
                               }
                             }
                           })
@@ -667,9 +697,134 @@ var render = function() {
                             directives: [
                               {
                                 name: "model",
-                                rawName: "v-model",
+                                rawName: "v-model.number",
+                                value: row.y_coordinate,
+                                expression: "row.y_coordinate",
+                                modifiers: { number: true }
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: row.y_coordinate },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  row,
+                                  "y_coordinate",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("vs-td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.number",
+                                value: row.scaleX,
+                                expression: "row.scaleX",
+                                modifiers: { number: true }
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: row.scaleX },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  row,
+                                  "scaleX",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("vs-td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.number",
+                                value: row.scaleY,
+                                expression: "row.scaleY",
+                                modifiers: { number: true }
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: row.scaleY },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  row,
+                                  "scaleY",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("vs-td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.number",
+                                value: row.width,
+                                expression: "row.width",
+                                modifiers: { number: true }
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: row.width },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  row,
+                                  "width",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("vs-td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.number",
                                 value: row.height,
-                                expression: "row.height"
+                                expression: "row.height",
+                                modifiers: { number: true }
                               }
                             ],
                             attrs: { type: "text" },
@@ -679,7 +834,45 @@ var render = function() {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(row, "height", $event.target.value)
+                                _vm.$set(
+                                  row,
+                                  "height",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("vs-td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.number",
+                                value: row.angle,
+                                expression: "row.angle",
+                                modifiers: { number: true }
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: row.angle },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  row,
+                                  "angle",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
                               }
                             }
                           })

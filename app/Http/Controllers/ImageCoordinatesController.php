@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ImageCoordinates;
 use Illuminate\Http\Request;
+use App\Http\Resources\ImageCoordinatesResource as IOResource;
 
 class ImageCoordinatesController extends Controller
 {
@@ -14,7 +15,12 @@ class ImageCoordinatesController extends Controller
      */
     public function index()
     {
-        //
+        $imageCoordinates = ImageCoordinates::all();
+
+
+        
+        // Return collection of productss as a resource
+        return IOResource::collection($imageCoordinates);
     }
 
     /**
@@ -22,9 +28,29 @@ class ImageCoordinatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $imageCoordinates = new ImageCoordinates([
+            
+            'model_id'=> $request->input('model_id'),
+            'row_id' => $request->input('row_id'),
+            'field_name'=> $request->input('field_name'),
+            'field_type'=> $request->input('field_type'),
+            'x_coordinate'=> $request->input('x_coordinate'),
+            'y_coordinate'=> $request->input('y_coordinate'),
+            'scaleX'=> $request->input('scaleX'),
+            'scaleY'=> $request->input('scaleY'),
+            'width'=> $request->input('width'),
+            'height'=> $request->input('height'),
+            'angle'=> $request->input('angle'),
+            
+
+        ]);
+
+        $imageCoordinates->save();
+
+        return response()->json('The Image Coordinates successfully added');
+
     }
 
     /**
@@ -44,9 +70,13 @@ class ImageCoordinatesController extends Controller
      * @param  \App\ImageCoordinates  $imageCoordinates
      * @return \Illuminate\Http\Response
      */
-    public function show(ImageCoordinates $imageCoordinates)
+    public function show(ImageCoordinates $imageCoordinates,$cordid)
     {
-        //
+        // Get a single Companies
+        $imageCoordinates = ImageCoordinates::findOrFail($cordid);
+
+        // Return a single Companies as a resource
+        return new IOResource($imageCoordinates);
     }
 
     /**
@@ -69,7 +99,22 @@ class ImageCoordinatesController extends Controller
      */
     public function update(Request $request, ImageCoordinates $imageCoordinates)
     {
-        //
+        $imageCoordinates =  ImageCoordinates::findOrFail($request->cordid);
+
+        $imageCoordinates->model_id = $request->input('model_id');
+        $imageCoordinates->row_id = $request->input('row_id');  // do not let user change
+        $imageCoordinates->field_name= $request->input('field_name'); //only by clark
+        $imageCoordinates->x_coordinate = $request->input('x_coordinate');
+        $imageCoordinates->y_coordinate = $request->input('y_coordinate');
+        $imageCoordinates->scaleX = $request->input('scaleX');
+        $imageCoordinates->scaleY = $request->input('scaleY');
+        $imageCoordinates->width = $request->input('width');
+        $imageCoordinates->height = $request->input('height');
+        $imageCoordinates->angle = $request->input('angle');
+
+        if ($imageCoordinates->save()) {
+            return new IoResource($imageCoordinates);
+        }
     }
 
     /**
@@ -78,8 +123,12 @@ class ImageCoordinatesController extends Controller
      * @param  \App\ImageCoordinates  $imageCoordinates
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ImageCoordinates $imageCoordinates)
+    public function destroy(ImageCoordinates $imageCoordinates,$cordid)
     {
-        //
+        $imageCoordinates = ImageCoordinates::find($cordid);
+        //Delete the item, return as confirmation
+        if ($imageCoordinates->delete()) {
+        return new IOResource($imageCoordinates);
+        }
     }
 }

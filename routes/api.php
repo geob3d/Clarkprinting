@@ -81,6 +81,28 @@ Route::put('product/{id}', 'ProductsController@store');
     // Delete 
 Route::delete('product/{id}', 'ProductsController@destroy');
 
+//Stores Prodcut Image Cordinates
+
+Route::get('imageCordianates', 'ImageCoordinatesController@index');
+
+
+    //Route for single
+Route::get('imageCordianates/{cordid}', 'ImageCoordinatesController@show');
+
+    // Create a new 
+Route::post('imageCordianate', 'ImageCoordinatesController@create');
+    
+    // Update 
+Route::put('imageCordianate/{cordid}', 'ImageCoordinatesController@update');
+    
+    // Delete 
+Route::delete('imageCordianate/{cordid}', 'ImageCoordinatesController@destroy');
+
+
+
+
+
+
 
 //Stores Product Attributes
 Route::get('product/attributes', 'ProductAttributeController@index');
