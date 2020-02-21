@@ -16,9 +16,9 @@ class CreateImageCoordinatesTable extends Migration
         Schema::create('image_coordinates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('model_id');
+            $table->integer('row_id');
             $table->string('field_name');
             $table->string('field_type');
-            $table->integer('row_id');
             $table->decimal('x_coordinate');
             $table->decimal('y_coordinate');
             $table->decimal('scaleX');
@@ -27,6 +27,8 @@ class CreateImageCoordinatesTable extends Migration
             $table->decimal('height');
             $table->decimal('angle');
             $table->timestamps();
+
+ 
         });
 
     }
