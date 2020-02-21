@@ -85,6 +85,7 @@
     },
     "dependencies": {
         "element-ui": "^2.13.0",
+        "vue-free-transform": "^1.0.11",
         "vue-good-table": "^2.18.1",
         "vue-lodash": "^2.0.2",
         "vue-multiselect": "^2.1.6"
