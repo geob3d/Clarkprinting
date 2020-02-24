@@ -27,10 +27,16 @@
           <!-- Item Main Info -->
           <div class="product-details p-6">
             <div class="vx-row mt-6">
+                <img :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
+                <div v-else> No Image to Display</div>
+
+            </div>
+            <div class="vx-row mt-6">
               <div class="vx-col md:w-2/5 w-full flex items-center justify-center">
                 <div class="product-img-container w-3/5 mx-auto mb-10 md:mb-0">
-                    <img :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
-                    <div v-else> No Image to Display</div>
+                   <!-- <img :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
+                    <div v-else> No Image to Display</div> -->
+
 
                   <!--
                     UnComment Below line for true flow

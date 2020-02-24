@@ -139,11 +139,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -202,6 +197,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     update: function update(id, payload) {
+      this.imgRow = this.imgRow.map(function (item) {
+        if (item.id === imgRow.id) {
+          return _objectSpread({}, item, {}, payload);
+        }
+
+        return item;
+      });
       var uri = '/api/imageCordianate/3';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.imgRow).then(function (response) {
         console.log(response); //this.rows  = response.data;
@@ -389,9 +391,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                    " +
+                                      "\n                  " +
                                         _vm._s(row.field) +
-                                        "\n                  "
+                                        "\n                "
                                     )
                                   ]
                                 )
@@ -414,7 +416,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("vs-divider", { attrs: { position: "center" } }, [
-        _vm._v("\n        Add Fields    \n    ")
+        _vm._v("\n      Add Fields    \n  ")
       ]),
       _vm._v(" "),
       _c(
@@ -483,33 +485,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.imgRow, function(row, index) {
+                  _vm._l(_vm.imgCord, function(row, index) {
                     return _c(
                       "tr",
                       [
-                        _c("vs-td", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: row.id,
-                                expression: "row.id"
-                              }
-                            ],
-                            attrs: { type: "text" },
-                            domProps: { value: row.id },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(row, "id", $event.target.value)
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
                         _c("vs-td", [
                           _c("input", {
                             directives: [
@@ -910,13 +889,9 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.imgRow, function(tst) {
-        return _c("div", [_c("p", [_vm._v(_vm._s(tst.id))])])
-      })
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

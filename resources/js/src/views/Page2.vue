@@ -66,10 +66,10 @@
               </thead>
               <tbody>
                 
-                  <tr v-for="(row, index) in imgRow ">
+                  <tr v-for="(row, index) in imgCord ">
 
 
-                      <vs-td><input type="text" v-model="row.id"></vs-td>
+                      <!--<vs-td><input type="text" v-model="row.id"></vs-td>-->
                       <vs-td><input type="text" v-model="row.row_id"></vs-td>
                       <vs-td><input type="text" v-model="row.field_name"></vs-td>
 
@@ -112,11 +112,6 @@
 
       </vs-col>
     </vs-row>
-
-<div v-for="tst in imgRow">
-<p>{{tst.id}}</p>
-</div>
-
 
   </div>
 </template>
@@ -208,8 +203,15 @@ export default{
 
     update(id, payload) {
 
-
-
+      this.imgRow= this.imgRow.map(item =>{
+        if (item.id === imgRow.id) {
+          return {
+            ...item,
+            ...payload
+          };
+        }
+        return item;
+      })
 
       let uri = '/api/imageCordianate/3';
       axios

@@ -218,6 +218,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -398,6 +404,22 @@ var render = function() {
                 _c("div", { staticClass: "item-content" }, [
                   _c("div", { staticClass: "product-details p-6" }, [
                     _c("div", { staticClass: "vx-row mt-6" }, [
+                      _vm.product.media[0]
+                        ? _c("img", {
+                            staticClass: "responsive",
+                            attrs: {
+                              src:
+                                "/storage/" +
+                                _vm.product.media[0].id +
+                                "/" +
+                                _vm.product.media[0].file_name,
+                              alt: _vm.product.name
+                            }
+                          })
+                        : _c("div", [_vm._v(" No Image to Display")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "vx-row mt-6" }, [
                       _c(
                         "div",
                         {
@@ -405,28 +427,10 @@ var render = function() {
                             "vx-col md:w-2/5 w-full flex items-center justify-center"
                         },
                         [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "product-img-container w-3/5 mx-auto mb-10 md:mb-0"
-                            },
-                            [
-                              _vm.product.media[0]
-                                ? _c("img", {
-                                    staticClass: "responsive",
-                                    attrs: {
-                                      src:
-                                        "/storage/" +
-                                        _vm.product.media[0].id +
-                                        "/" +
-                                        _vm.product.media[0].file_name,
-                                      alt: _vm.product.name
-                                    }
-                                  })
-                                : _c("div", [_vm._v(" No Image to Display")])
-                            ]
-                          )
+                          _c("div", {
+                            staticClass:
+                              "product-img-container w-3/5 mx-auto mb-10 md:mb-0"
+                          })
                         ]
                       ),
                       _vm._v(" "),
