@@ -8,197 +8,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ProductAttributeForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAttributeForm */ "./resources/js/src/views/Product/ProductAttributeForm.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    ProductAttr: _ProductAttributeForm__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {
-      props: ['uploadurl'],
-      files: [],
-      fileIsUploading: false,
-      loading: false,
-      products: {},
-      buttontext: 'Add',
-      error: null,
-      product: {
-        sku: '',
-        name: '',
-        description: '',
-        price: '',
-        ordering_company_id_fk: '',
-        prod_cat_fk: '',
-        prodimage: ''
-      },
-      productform: {}
-    };
-  },
-  created: function created() {
-    var _this = this;
-
-    this.getProducts();
-    var uri = "/api/products/".concat(this.$route.params.id);
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
-      console.log(response);
-      _this.product = response.data.data;
-    });
-  },
-  watch: {},
-  mounted: function mounted() {
-    this.buttonvalue(), this.uploadFile();
-  },
-  methods: {
-    getProducts: function getProducts() {
-      var _this2 = this;
-
-      this.error = this.products = null;
-      this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/products').then(function (response) {
-        console.log(_this2.$route.params.id);
-        _this2.loading = false;
-        _this2.products = response.data;
-      });
-    },
-    addProduct: function addProduct() {
-      var _this3 = this;
-
-      this.error = this.products = null;
-      this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/product', this.product).then(function (response) {
-        _this3.getProducts();
-      }).then(function (data) {
-        _this3.getProducts();
-      }).catch(function (err) {
-        return console.log(err);
-      });
-    },
-    updateProduct: function updateProduct() {
-      var _this4 = this;
-
-      var uri = "/api/product/".concat(this.$route.params.id);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.product).then(function (response) {
-        _this4.$router.push({
-          name: 'ProductInfo'
-        });
-      });
-    },
-    productFormValue: function productFormValue() {
-      if ("id" in this.$route.params) {
-        this.buttontext = 'Update';
-        this.updateProduct();
-      } else {
-        this.addProduct();
-      }
-
-      ;
-    },
-    //For the Dynamic Button
-    buttonvalue: function buttonvalue() {
-      if ("id" in this.$route.params) {
-        this.buttontext = 'Update';
-      } else {
-        this.buttontext;
-      }
-
-      ;
-    },
-    uploadFile: function uploadFile(event) {
-      var _this5 = this;
-
-      this.fileIsUploading = true;
-      this.tableIsUploading = true; //let uploadurl = 'api/files/upload'
-
-      var data = new FormData();
-      data.append('file', event.file);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/files/upload/".concat(this.$route.params.id), data).then(function (response) {
-        var responseData = response.data.data; // send event back to parent file was uploaded and return file data
-
-        _this5.$emit('upload-success', {
-          'model_id': _this5.$route.params.id,
-          'created_at': responseData.created_at,
-          'name': responseData.name,
-          'mime_type': responseData.mime_type,
-          'size': responseData.size
-        });
-
-        _this5.fileIsUploading = false;
-      }).catch(function (error) {
-        _this5.fileIsUploading = false;
-        _this5.tableIsUploading = false;
-
-        _this5.$notify.error({
-          title: 'Error',
-          message: error.response.data.errors.message
-        });
-      });
-    }
-  }
-});
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ProductAttributeForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAttributeForm */ \"./resources/js/src/views/Product/ProductAttributeForm.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  components: {\n    ProductAttr: _ProductAttributeForm__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  data: function data() {\n    return {\n      props: ['uploadurl'],\n      files: [],\n      fileIsUploading: false,\n      loading: false,\n      products: {},\n      buttontext: 'Add',\n      error: null,\n      product: {\n        sku: '',\n        name: '',\n        description: '',\n        price: '',\n        ordering_company_id_fk: '',\n        prod_cat_fk: '',\n        prodimage: ''\n      },\n      productform: {}\n    };\n  },\n  created: function created() {\n    var _this = this;\n\n    this.getProducts();\n    var uri = \"/api/products/\".concat(this.$route.params.id);\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {\n      console.log(response);\n      _this.product = response.data.data;\n    });\n  },\n  watch: {},\n  mounted: function mounted() {\n    this.buttonvalue(), this.uploadFile();\n  },\n  methods: {\n    getProducts: function getProducts() {\n      var _this2 = this;\n\n      this.error = this.products = null;\n      this.loading = true;\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/products').then(function (response) {\n        console.log(_this2.$route.params.id);\n        _this2.loading = false;\n        _this2.products = response.data;\n      });\n    },\n    addProduct: function addProduct() {\n      var _this3 = this;\n\n      this.error = this.products = null;\n      this.loading = true;\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/product', this.product).then(function (response) {\n        _this3.getProducts();\n      }).then(function (data) {\n        _this3.getProducts();\n      }).catch(function (err) {\n        return console.log(err);\n      });\n    },\n    updateProduct: function updateProduct() {\n      var _this4 = this;\n\n      var uri = \"/api/product/\".concat(this.$route.params.id);\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.product).then(function (response) {\n        _this4.$router.push({\n          name: 'ProductInfo'\n        });\n      });\n    },\n    productFormValue: function productFormValue() {\n      if (\"id\" in this.$route.params) {\n        this.buttontext = 'Update';\n        this.updateProduct();\n      } else {\n        this.addProduct();\n      }\n\n      ;\n    },\n    //For the Dynamic Button\n    buttonvalue: function buttonvalue() {\n      if (\"id\" in this.$route.params) {\n        this.buttontext = 'Update';\n      } else {\n        this.buttontext;\n      }\n\n      ;\n    },\n    uploadFile: function uploadFile(event) {\n      var _this5 = this;\n\n      this.fileIsUploading = true;\n      this.tableIsUploading = true; //let uploadurl = 'api/files/upload'\n\n      var data = new FormData();\n      data.append('file', event.file);\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(\"/api/files/upload/\".concat(this.$route.params.id), data).then(function (response) {\n        var responseData = response.data.data; // send event back to parent file was uploaded and return file data\n\n        _this5.$emit('upload-success', {\n          'model_id': _this5.$route.params.id,\n          'created_at': responseData.created_at,\n          'name': responseData.name,\n          'mime_type': responseData.mime_type,\n          'size': responseData.size\n        });\n\n        _this5.fileIsUploading = false;\n      }).catch(function (error) {\n        _this5.fileIsUploading = false;\n        _this5.tableIsUploading = false;\n\n        _this5.$notify.error({\n          title: 'Error',\n          message: error.response.data.errors.message\n        });\n      });\n    }\n  }\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBZGRTaWRlQmFyLnZ1ZT9kMjlhIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQTREQTtBQUNBO0FBRUE7QUFFQTtBQUVBO0FBRkEsR0FGQTtBQU9BLE1BUEEsa0JBT0E7QUFFQTtBQUNBLDBCQURBO0FBRUEsZUFGQTtBQUdBLDRCQUhBO0FBSUEsb0JBSkE7QUFLQSxrQkFMQTtBQU1BLHVCQU5BO0FBT0EsaUJBUEE7QUFRQTtBQUVBLGVBRkE7QUFHQSxnQkFIQTtBQUlBLHVCQUpBO0FBS0EsaUJBTEE7QUFNQSxrQ0FOQTtBQU9BLHVCQVBBO0FBUUE7QUFSQSxPQVJBO0FBa0JBO0FBbEJBO0FBdUJBLEdBaENBO0FBaUNBLFNBakNBLHFCQWlDQTtBQUFBOztBQUNBO0FBQ0E7QUFDQSxpREFDQSxHQURBLENBQ0EsR0FEQSxFQUNBLElBREEsQ0FDQTtBQUNBO0FBQ0E7QUFDQSxLQUpBO0FBTUEsR0ExQ0E7QUE0Q0EsV0E1Q0E7QUFrREEsU0FsREEscUJBa0RBO0FBQ0Esd0JBQ0EsaUJBREE7QUFHQSxHQXREQTtBQXlEQTtBQUVBLGVBRkEseUJBRUE7QUFBQTs7QUFDQTtBQUNBO0FBQ0EsbURBQ0EsR0FEQSxDQUNBLGVBREEsRUFFQSxJQUZBLENBRUE7QUFDQTtBQUNBO0FBQ0E7QUFFQSxPQVBBO0FBUUEsS0FiQTtBQWVBLGNBZkEsd0JBZUE7QUFBQTs7QUFDQTtBQUNBO0FBQ0EsbURBQ0EsSUFEQSxDQUNBLGNBREEsRUFDQSxZQURBLEVBRUEsSUFGQSxDQUVBO0FBRUE7QUFFQSxPQU5BLEVBT0EsSUFQQSxDQU9BO0FBQ0E7QUFDQSxPQVRBLEVBV0EsS0FYQSxDQVdBO0FBQUE7QUFBQSxPQVhBO0FBYUEsS0EvQkE7QUFpQ0EsaUJBakNBLDJCQWlDQTtBQUFBOztBQUNBO0FBQ0EsbURBQ0EsR0FEQSxDQUNBLEdBREEsRUFDQSxZQURBLEVBRUEsSUFGQSxDQUVBO0FBQ0E7QUFBQTtBQUFBO0FBQ0EsT0FKQTtBQU1BLEtBekNBO0FBMkNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsT0FIQSxNQUdBO0FBQ0E7QUFDQTs7QUFBQTtBQUNBLEtBbERBO0FBb0RBO0FBQ0EsZUFyREEseUJBcURBO0FBQ0E7QUFDQTtBQUNBLE9BRkEsTUFFQTtBQUNBO0FBQ0E7O0FBQUE7QUFFQSxLQTVEQTtBQTZEQSxjQTdEQSxzQkE2REEsS0E3REEsRUE2REE7QUFBQTs7QUFDQTtBQUNBLG1DQUZBLENBR0E7O0FBQ0E7QUFDQTtBQUNBLGtIQUNBLElBREEsQ0FDQTtBQUNBLDhDQURBLENBRUE7O0FBQ0E7QUFDQSw2Q0FEQTtBQUVBLCtDQUZBO0FBR0EsbUNBSEE7QUFJQSw2Q0FKQTtBQUtBO0FBTEE7O0FBT0E7QUFDQSxPQVpBLEVBYUEsS0FiQSxDQWFBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBLHdCQURBO0FBRUE7QUFGQTtBQUlBLE9BckJBO0FBc0JBO0FBekZBO0FBekRBIiwiZmlsZSI6Ii4vbm9kZV9tb2R1bGVzL2JhYmVsLWxvYWRlci9saWIvaW5kZXguanM/IS4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2luZGV4LmpzPyEuL3Jlc291cmNlcy9qcy9zcmMvdmlld3MvUHJvZHVjdC9Qcm9kdWN0QWRkU2lkZUJhci52dWU/dnVlJnR5cGU9c2NyaXB0Jmxhbmc9anMmLmpzIiwic291cmNlc0NvbnRlbnQiOlsiPHRlbXBsYXRlPlxuXG4gIDxkaXYgY2xhc3M9XCJjZW50ZXJ4IGxhYmVseFwiPlxuICAgICAgPHZzLXRhYnM+XG5cbiAgICAgICAgPHZzLXRhYiBsYWJlbD1cIlByb2R1Y3QgSW5mb3JtYXRpb25cIj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwiY29uLXRhYi1lamVtcGxvXCI+XG4gICAgICAgICAgICAgICA8Zm9ybSBAc3VibWl0LnByZXZlbnQ9XCJwcm9kdWN0Rm9ybVZhbHVlXCI+XG5cblxuICAgICAgICAgICAgICAgIDx2cy1pbnB1dCBsYWJlbD1cIlNLVVwiIHBsYWNlaG9sZGVyPVwiU0tVXCIgdi1tb2RlbD1cInByb2R1Y3Quc2t1XCIvPlxuICAgICAgICAgICAgICAgIDx2cy1pbnB1dCBsYWJlbD1cIlByb2R1Y3QgTmFtZVwiIHBsYWNlaG9sZGVyPVwiUHJvZHVjdCBOYW1lXCIgdi1tb2RlbD1cInByb2R1Y3QubmFtZVwiLz5cbiAgICAgICAgICAgICAgICA8YnI+XG4gICAgICAgICAgICAgICAgPHZzLWlucHV0IGxhYmVsPVwiUHJvZHVjdCBEZXNjcmlwdGlvblwiICB2LW1vZGVsPVwicHJvZHVjdC5kZXNjcmlwdGlvblwiLz5cbiAgICAgICAgICAgICAgICA8dnMtaW5wdXQgbGFiZWw9XCJQcmljZVwiIHBsYWNlaG9sZGVyPVwiUHJpY2VcIiB2LW1vZGVsPVwicHJvZHVjdC5wcmljZVwiLz5cbiAgICAgICAgICAgICAgICA8dnMtaW5wdXQgbGFiZWw9XCJPcmRlcmluZyBDb21wYW55XCIgcGxhY2Vob2xkZXI9XCJPcmRlcmluZyBDb21wYW55XCIgdi1tb2RlbD1cInByb2R1Y3Qub3JkZXJpbmdfY29tcGFueV9pZF9ma1wiLz4gIFxuICAgICAgICAgICAgICAgIDx2cy1pbnB1dCBsYWJlbD1cIlByb2R1Y3QgQ2F0ZWdvcnlcIiBwbGFjZWhvbGRlcj1cIlByb2R1Y3QgQ2F0ZWdvcnlcIiB2LW1vZGVsPVwicHJvZHVjdC5wcm9kX2NhdF9ma1wiLz5cblxuICAgICAgICAgICAgICAgIDxicj5cbiAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJyb3dcIj5cbiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPVwiY29sLXhzLTEyXCI+XG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxlbC11cGxvYWRcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkcmFnXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9XCJ1cGxvYWQtZGVtb1wiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYWN0aW9uPVwidXBsb2FkdXJsXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6ZmlsZS1saXN0PVwiZmlsZXNcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDpzaG93LWZpbGUtbGlzdD1cImZhbHNlXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6bXVsdGlwbGU9XCJ0cnVlXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6aHR0cC1yZXF1ZXN0PVwidXBsb2FkRmlsZVwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOmxvYWRpbmc9XCJmaWxlSXNVcGxvYWRpbmdcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0eWxlPVwiZGlzcGxheTogaW5saW5lLWJsb2NrOyBtYXJnaW4tcmlnaHQ6IDEwcHg7XCI+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGkgY2xhc3M9XCJlbC1pY29uLXVwbG9hZFwiIHYtc2hvdz1cIiFmaWxlSXNVcGxvYWRpbmdcIj48L2k+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGkgY2xhc3M9XCJlbC1pY29uLWxvYWRpbmdcIiB2LXNob3c9XCJmaWxlSXNVcGxvYWRpbmdcIiBzdHlsZT1cImZvbnQtc2l6ZTogNjdweDtjb2xvcjogI2MwYzRjYzttYXJnaW46IDQwcHggMCAxNnB4O2xpbmUtaGVpZ2h0OiA1MHB4O1wiPjwvaT5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPVwiZWwtdXBsb2FkX190ZXh0XCIgdi1zaG93PVwiIWZpbGVJc1VwbG9hZGluZ1wiPlVwbG9hZCBJbWFnZSBIZXJlIDwvZGl2PlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9lbC11cGxvYWQ+XG4gICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgICA8L2Rpdj4gICAgXG5cbiAgICAgICAgICAgICAgICAgIDxicj5cbiAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgY2xhc3M9XCJidG4gYnRuLXByaW1hcnkgYnRuLWFkZC1uZXcgcC0zIG1iLTQgbXItNCByb3VuZGVkLWxnIGN1cnNvci1wb2ludGVyIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRleHQtbGcgZm9udC1tZWRpdW0gdGV4dC1iYXNlIHRleHQtcHJpbWFyeSBib3JkZXIgYm9yZGVyLXNvbGlkIGJvcmRlci1wcmltYXJ5XCI+e3sgYnV0dG9udGV4dCB9fSBQcm9kdWN0IDwvYnV0dG9uPlxuXG4gICAgICAgICAgICAgICA8L2Zvcm0+XG5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC92cy10YWI+XG5cbiAgICAgICAgPHZzLXRhYiBsYWJlbD1cIlByb2R1Y3QgQXR0cmlidXRlXCI+XG5cbiAgICAgICAgICA8cHJvZHVjdC1hdHRyIC8+XG4gIFxuICAgICAgICA8L3ZzLXRhYj5cblxuICAgICAgPC92cy10YWJzPlxuXG4gIDwvZGl2PlxuPC90ZW1wbGF0ZT5cblxuPHNjcmlwdD5cbmltcG9ydCBheGlvcyBmcm9tICdheGlvcyc7XG5pbXBvcnQgUHJvZHVjdEF0dHIgZnJvbSAnLi9Qcm9kdWN0QXR0cmlidXRlRm9ybSdcblxuZXhwb3J0IGRlZmF1bHQge1xuXG4gICAgY29tcG9uZW50czoge1xuICAgICAgICBcbiAgICAgICAgUHJvZHVjdEF0dHIsXG4gICAgfSxcblxuICAgIGRhdGEoKSB7XG5cbiAgICAgICAgcmV0dXJuIHtcbiAgICAgICAgICAgIHByb3BzOiBbJ3VwbG9hZHVybCddLFxuICAgICAgICAgICAgZmlsZXM6IFtdLFxuXHRcdFx0XHQgICAgZmlsZUlzVXBsb2FkaW5nOiBmYWxzZSxcbiAgICAgICAgICAgIGxvYWRpbmc6IGZhbHNlLFxuICAgICAgICAgICAgcHJvZHVjdHM6IHt9LFxuICAgICAgICAgICAgYnV0dG9udGV4dCA6ICdBZGQnLFxuICAgICAgICAgICAgZXJyb3I6IG51bGwsXG4gICAgICAgICAgICBwcm9kdWN0OiB7XG4gICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICBza3U6ICcnLFxuICAgICAgICAgICAgICAgICAgICBuYW1lOiAnJyxcbiAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb246ICcnLFxuICAgICAgICAgICAgICAgICAgICBwcmljZTogJycsXG4gICAgICAgICAgICAgICAgICAgIG9yZGVyaW5nX2NvbXBhbnlfaWRfZms6ICcnLFxuICAgICAgICAgICAgICAgICAgICBwcm9kX2NhdF9mazogJycsXG4gICAgICAgICAgICAgICAgICAgIHByb2RpbWFnZTonJyxcbiAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgcHJvZHVjdGZvcm0gOiB7fSxcblxuICAgICAgICAgICAgXG4gICAgICAgICAgIFxuICAgICAgICB9O1xuICAgIH0sXG4gICAgY3JlYXRlZCgpIHtcbiAgICAgICB0aGlzLmdldFByb2R1Y3RzKCk7XG4gICAgICAgbGV0IHVyaSA9IGAvYXBpL3Byb2R1Y3RzLyR7dGhpcy4kcm91dGUucGFyYW1zLmlkfWA7XG4gICAgICAgYXhpb3NcbiAgICAgICAgLmdldCh1cmkpLnRoZW4oKHJlc3BvbnNlKSA9PiB7XG4gICAgICAgIGNvbnNvbGUubG9nKHJlc3BvbnNlKVxuICAgICAgICAgIHRoaXMucHJvZHVjdCA9IHJlc3BvbnNlLmRhdGEuZGF0YTtcbiAgICAgICAgfSk7XG5cbiAgICB9LFxuXG4gICAgd2F0Y2g6IHtcblxuXG5cbiAgICB9LFxuXG4gICAgbW91bnRlZCgpe1xuICAgICAgdGhpcy5idXR0b252YWx1ZSgpLFxuICAgICAgdGhpcy51cGxvYWRGaWxlKClcblxuICAgIH0sXG5cblxuICAgIG1ldGhvZHM6IHtcbiAgICAgICAgICAgIFxuICAgICAgICAgZ2V0UHJvZHVjdHMoKSB7XG4gICAgICAgICAgICB0aGlzLmVycm9yID0gdGhpcy5wcm9kdWN0cyA9IG51bGw7XG4gICAgICAgICAgICB0aGlzLmxvYWRpbmcgPSB0cnVlO1xuICAgICAgICAgICAgYXhpb3NcbiAgICAgICAgICAgICAgICAuZ2V0KCcvYXBpL3Byb2R1Y3RzJylcbiAgICAgICAgICAgICAgICAudGhlbihyZXNwb25zZSA9PiB7XG4gICAgICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKHRoaXMuJHJvdXRlLnBhcmFtcy5pZClcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5sb2FkaW5nID0gZmFsc2U7XG4gICAgICAgICAgICAgICAgICAgIHRoaXMucHJvZHVjdHMgPSByZXNwb25zZS5kYXRhO1xuICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICB9KTtcbiAgICAgICAgfSxcblxuICAgICAgICBhZGRQcm9kdWN0KCkge1xuICAgICAgICAgICAgdGhpcy5lcnJvciA9IHRoaXMucHJvZHVjdHMgPSBudWxsO1xuICAgICAgICAgICAgdGhpcy5sb2FkaW5nID0gdHJ1ZTtcbiAgICAgICAgICAgIGF4aW9zXG4gICAgICAgICAgICAgICAgLnBvc3QoJy9hcGkvcHJvZHVjdCcsdGhpcy5wcm9kdWN0KVxuICAgICAgICAgICAgICAgIC50aGVuKHJlc3BvbnNlID0+IHtcblxuICAgICAgICAgICAgICAgICAgICB0aGlzLmdldFByb2R1Y3RzKCk7XG5cbiAgICAgICAgICAgICAgICB9KVxuICAgICAgICAgICAgICAgIC50aGVuKGRhdGEgPT4ge1xuICAgICAgICAgICAgICAgICAgICB0aGlzLmdldFByb2R1Y3RzKCk7XG4gICAgICAgICAgICAgICAgfSlcblxuICAgICAgICAgICAgICAgICAuY2F0Y2goZXJyID0+IGNvbnNvbGUubG9nKGVycikpO1xuXG4gICAgICAgIH0sXG5cbiAgICAgICAgdXBkYXRlUHJvZHVjdCgpIHtcbiAgICAgICAgICAgIGxldCB1cmkgPSBgL2FwaS9wcm9kdWN0LyR7dGhpcy4kcm91dGUucGFyYW1zLmlkfWA7XG4gICAgICAgICAgICBheGlvc1xuICAgICAgICAgICAgLnB1dCh1cmksIHRoaXMucHJvZHVjdClcbiAgICAgICAgICAgIC50aGVuKChyZXNwb25zZSkgPT4ge1xuICAgICAgICAgICAgdGhpcy4kcm91dGVyLnB1c2goe25hbWU6J1Byb2R1Y3RJbmZvJ30pO1xuICAgICAgICAgICAgfSk7XG4gICAgICAgICAgICBcbiAgICAgICAgfSxcblxuICAgICAgICBwcm9kdWN0Rm9ybVZhbHVlOiBmdW5jdGlvbigpe1xuICAgICAgICAgIGlmIChcImlkXCIgaW4gdGhpcy4kcm91dGUucGFyYW1zKSB7XG4gICAgICAgICAgICB0aGlzLmJ1dHRvbnRleHQgPSAnVXBkYXRlJztcbiAgICAgICAgICAgIHRoaXMudXBkYXRlUHJvZHVjdCgpO1xuICAgICAgICAgIH0gZWxzZSB7XG4gICAgICAgICAgICB0aGlzLmFkZFByb2R1Y3QoKTtcbiAgICAgICAgICB9O1xuICAgICAgICB9LFxuXG4gICAgICAgICAvL0ZvciB0aGUgRHluYW1pYyBCdXR0b25cbiAgICAgICAgYnV0dG9udmFsdWUgKCl7XG4gICAgICAgICAgaWYgKFwiaWRcIiBpbiB0aGlzLiRyb3V0ZS5wYXJhbXMpIHtcbiAgICAgICAgICAgIHRoaXMuYnV0dG9udGV4dCA9ICdVcGRhdGUnXG4gICAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICAgIHRoaXMuYnV0dG9udGV4dFxuICAgICAgICAgIH07XG5cbiAgICAgICAgfSxcbiB1cGxvYWRGaWxlKGV2ZW50KSB7XG4gICAgICAgICAgICAgICAgdGhpcy5maWxlSXNVcGxvYWRpbmcgPSB0cnVlO1xuICAgICAgICAgICAgICAgIHRoaXMudGFibGVJc1VwbG9hZGluZyA9IHRydWU7XG5cdFx0XHRcdC8vbGV0IHVwbG9hZHVybCA9ICdhcGkvZmlsZXMvdXBsb2FkJ1xuICAgICAgICAgICAgICAgIGNvbnN0IGRhdGEgPSBuZXcgRm9ybURhdGEoKTtcbiAgICAgICAgICAgICAgICBkYXRhLmFwcGVuZCgnZmlsZScsIGV2ZW50LmZpbGUpO1xuXHRcdFx0XHRheGlvcy5wb3N0KGAvYXBpL2ZpbGVzL3VwbG9hZC8ke3RoaXMuJHJvdXRlLnBhcmFtcy5pZH1gLCBkYXRhKVxuICAgICAgICAgICAgICAgIC50aGVuKChyZXNwb25zZSkgPT4ge1xuICAgICAgICAgICAgICAgICAgICB2YXIgcmVzcG9uc2VEYXRhID0gcmVzcG9uc2UuZGF0YS5kYXRhO1xuICAgICAgICAgICAgICAgICAgICAvLyBzZW5kIGV2ZW50IGJhY2sgdG8gcGFyZW50IGZpbGUgd2FzIHVwbG9hZGVkIGFuZCByZXR1cm4gZmlsZSBkYXRhXG4gICAgICAgICAgICAgICAgICAgIHRoaXMuJGVtaXQoJ3VwbG9hZC1zdWNjZXNzJywge1xuICAgICAgICAgICAgICAgICAgICAgICAgJ21vZGVsX2lkJzp0aGlzLiRyb3V0ZS5wYXJhbXMuaWQsXG4gICAgICAgICAgICAgICAgICAgICAgICAnY3JlYXRlZF9hdCc6IHJlc3BvbnNlRGF0YS5jcmVhdGVkX2F0LFxuICAgICAgICAgICAgICAgICAgICAgICAgJ25hbWUnOiByZXNwb25zZURhdGEubmFtZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICdtaW1lX3R5cGUnOiByZXNwb25zZURhdGEubWltZV90eXBlLFxuICAgICAgICAgICAgICAgICAgICAgICAgJ3NpemUnOiByZXNwb25zZURhdGEuc2l6ZVxuICAgICAgICAgICAgICAgICAgICB9KTtcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5maWxlSXNVcGxvYWRpbmcgPSBmYWxzZTtcbiAgICAgICAgICAgICAgICB9KVxuICAgICAgICAgICAgICAgIC5jYXRjaCgoZXJyb3IpID0+IHtcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5maWxlSXNVcGxvYWRpbmcgPSBmYWxzZTtcbiAgICAgICAgICAgICAgICAgICAgdGhpcy50YWJsZUlzVXBsb2FkaW5nID0gZmFsc2U7XG5cbiAgICAgICAgICAgICAgICAgICAgdGhpcy4kbm90aWZ5LmVycm9yKHtcbiAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiAnRXJyb3InLFxuICAgICAgICAgICAgICAgICAgICAgICAgbWVzc2FnZTogZXJyb3IucmVzcG9uc2UuZGF0YS5lcnJvcnMubWVzc2FnZSxcbiAgICAgICAgICAgICAgICAgICAgfSk7XG4gICAgICAgICAgICAgICAgfSk7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbn1cbjwvc2NyaXB0PlxuXG5cblxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=script&lang=js&\n");
 
 /***/ }),
 
@@ -210,169 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
-/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_good_table_dist_vue_good_table_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-good-table/dist/vue-good-table.css */ "./node_modules/vue-good-table/dist/vue-good-table.css");
-/* harmony import */ var vue_good_table_dist_vue_good_table_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_good_table_dist_vue_good_table_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_good_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-good-table */ "./node_modules/vue-good-table/dist/vue-good-table.esm.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    VueGoodTable: vue_good_table__WEBPACK_IMPORTED_MODULE_3__["VueGoodTable"]
-  },
-  data: function data() {
-    return {
-      loading: false,
-      productattrs: {},
-      buttontext: 'Add',
-      error: null,
-      companies: {},
-      singleProdAttr: {},
-      attrClick: {
-        edit: true,
-        save: false
-      }
-    };
-  },
-  watch: {},
-  mounted: function mounted() {},
-  computed: {},
-  methods: {
-    getProductAttrs: function getProductAttrs() {
-      var _this = this;
-
-      //let uri = `/api/product/${this.$route.params.id}`;
-      this.error = this.productattrs = null;
-      var prodId = this.$route.params.id;
-      this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/product/attributes').then(function (response) {
-        console.log('The id is: ' + _this.$route.params.id); //   console.log(uri);
-        //this.loading = false;s
-
-        _this.productattrs = response.data.data;
-        var product = response.data.data;
-        _this.productattrs = product.filter(function (product) {
-          return product.Prod_ID_fk == prodId;
-        });
-        console.log(product);
-      });
-    },
-    getSingleProdAttr: function getSingleProdAttr() {
-      var _this2 = this;
-
-      var uri = "product/attribute/";
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.singleProdAttr).then(function (response) {
-        _this2.singleProdAttr = response.data;
-      });
-    },
-    //For the Company Dropdown
-    companylist: function companylist() {
-      var _this3 = this;
-
-      this.error = this.companies = null;
-      this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/companies').then(function (response) {
-        _this3.loading = false;
-        _this3.companies = response.data.data; /// the data.data fixed the issue
-
-        console.log(response);
-      });
-    },
-    edit: function edit(obj) {
-      this.$set(obj, 'editmode', true); //this.$set(obj, this.edit, this.attrClick);
-    },
-    save: function save(obj) {
-      this.$set(obj, 'editmode', false); //this.$set(obj,this.save, this.attrClick);
-    },
-    updateProductAttr: function updateProductAttr(id) {}
-  },
-  created: function created() {
-    this.getProductAttrs();
-    this.getSingleProdAttr();
-    this.companylist(); //this.edit();
-    //this.save();
-  }
-});
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! querystring */ \"./node_modules/querystring-es3/index.js\");\n/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var vue_good_table_dist_vue_good_table_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-good-table/dist/vue-good-table.css */ \"./node_modules/vue-good-table/dist/vue-good-table.css\");\n/* harmony import */ var vue_good_table_dist_vue_good_table_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_good_table_dist_vue_good_table_css__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var vue_good_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-good-table */ \"./node_modules/vue-good-table/dist/vue-good-table.esm.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  components: {\n    VueGoodTable: vue_good_table__WEBPACK_IMPORTED_MODULE_3__[\"VueGoodTable\"]\n  },\n  data: function data() {\n    return {\n      loading: false,\n      productattrs: {},\n      buttontext: 'Add',\n      error: null,\n      companies: {},\n      singleProdAttr: {},\n      attrClick: {\n        edit: true,\n        save: false\n      }\n    };\n  },\n  watch: {},\n  mounted: function mounted() {},\n  computed: {},\n  methods: {\n    getProductAttrs: function getProductAttrs() {\n      var _this = this;\n\n      //let uri = `/api/product/${this.$route.params.id}`;\n      this.error = this.productattrs = null;\n      var prodId = this.$route.params.id;\n      this.loading = true;\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/product/attributes').then(function (response) {\n        console.log('The id is: ' + _this.$route.params.id); //   console.log(uri);\n        //this.loading = false;s\n\n        _this.productattrs = response.data.data;\n        var product = response.data.data;\n        _this.productattrs = product.filter(function (product) {\n          return product.Prod_ID_fk == prodId;\n        });\n        console.log(product);\n      });\n    },\n    getSingleProdAttr: function getSingleProdAttr() {\n      var _this2 = this;\n\n      var uri = \"product/attribute/\";\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.singleProdAttr).then(function (response) {\n        _this2.singleProdAttr = response.data;\n      });\n    },\n    //For the Company Dropdown\n    companylist: function companylist() {\n      var _this3 = this;\n\n      this.error = this.companies = null;\n      this.loading = true;\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/companies').then(function (response) {\n        _this3.loading = false;\n        _this3.companies = response.data.data; /// the data.data fixed the issue\n\n        console.log(response);\n      });\n    },\n    edit: function edit(obj) {\n      this.$set(obj, 'editmode', true); //this.$set(obj, this.edit, this.attrClick);\n    },\n    save: function save(obj) {\n      this.$set(obj, 'editmode', false); //this.$set(obj,this.save, this.attrClick);\n    },\n    updateProductAttr: function updateProductAttr(id) {}\n  },\n  created: function created() {\n    this.getProductAttrs();\n    this.getSingleProdAttr();\n    this.companylist(); //this.edit();\n    //this.save();\n  }\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT9kODIwIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQXdFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBSUE7QUFFQTtBQUVBO0FBRkEsR0FGQTtBQVFBLE1BUkEsa0JBUUE7QUFFQTtBQUNBLG9CQURBO0FBRUEsc0JBRkE7QUFHQSx1QkFIQTtBQUlBLGlCQUpBO0FBS0EsbUJBTEE7QUFPQSx3QkFQQTtBQVVBO0FBQ0Esa0JBREE7QUFFQTtBQUZBO0FBVkE7QUFnQkEsR0ExQkE7QUE0QkEsV0E1QkE7QUFrQ0EsU0FsQ0EscUJBa0NBLENBSUEsQ0F0Q0E7QUF3Q0EsY0F4Q0E7QUE4Q0E7QUFFQSxtQkFGQSw2QkFFQTtBQUFBOztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsbURBQ0EsR0FEQSxDQUNBLHlCQURBLEVBRUEsSUFGQSxDQUVBO0FBQ0EsNERBREEsQ0FFQTtBQUNBOztBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFFQTtBQUdBLE9BYkE7QUFjQSxLQXJCQTtBQXVCQSxxQkF2QkEsK0JBdUJBO0FBQUE7O0FBQ0E7QUFDQSxtREFDQSxHQURBLENBQ0EsR0FEQSxFQUNBLG1CQURBLEVBRUEsSUFGQSxDQUVBO0FBQ0E7QUFFQSxPQUxBO0FBUUEsS0FqQ0E7QUFvQ0E7QUFDQSxlQXJDQSx5QkFxQ0E7QUFBQTs7QUFDQTtBQUNBO0FBQ0EsbURBQ0EsR0FEQSxDQUNBLGdCQURBLEVBRUEsSUFGQSxDQUVBO0FBRUE7QUFDQSw4Q0FIQSxDQUdBOztBQUNBO0FBRUEsT0FSQTtBQVVBLEtBbERBO0FBb0RBO0FBQ0EsdUNBREEsQ0FFQTtBQUVBLEtBeERBO0FBeURBO0FBQ0Esd0NBREEsQ0FFQTtBQUlBLEtBL0RBO0FBaUVBLHFCQWpFQSw2QkFpRUEsRUFqRUEsRUFpRUEsQ0FFQTtBQW5FQSxHQTlDQTtBQXFIQSxTQXJIQSxxQkFxSEE7QUFDQTtBQUNBO0FBQ0EsdUJBSEEsQ0FJQTtBQUNBO0FBRUE7QUE1SEEiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvYmFiZWwtbG9hZGVyL2xpYi9pbmRleC5qcz8hLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/IS4vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbjx0ZW1wbGF0ZT5cbjxkaXYgPlxuXG48dnMtdGFibGUgPlxuXG48dGVtcGxhdGUgPlxuXG48dnMtdHIgOmtleT1cImluZGV4dHJcIiB2LWZvcj1cIihjb21wLCBpbmRleHRyKSBpbiBjb21wYW5pZXNcIj5cblxuICAgIDx0ZW1wbGF0ZSBzbG90PVwidGhlYWRcIj5cbiAgICAgICAgPHZzLXRoPklEPC92cy10aD5cbiAgICAgICAgICBcblxuICAgIDwvdGVtcGxhdGU+XG4gICAgPHZzLXRkPlxuICAgICAgICB7e2NvbXAubmFtZX19IDoge3tjb21wLmlkfX1cbiAgICA8L3ZzLXRkPlxuXG4gICAgICAgICAgPHRlbXBsYXRlIGNsYXNzPVwiZXhwYW5kLXVzZXJcIiBzbG90PVwiZXhwYW5kXCI+XG4gICAgICAgICAgICA8ZGl2IGNsYXNzPVwiY29uLWV4cGFuZC11c2VycyB3LWZ1bGxcIj5cblxuICAgICAgICAgICAgICA8dnMtbGlzdCA6a2V5PVwiaW5kZXh0clwiIHYtZm9yPVwiKGl0ZW0sIGluZGV4dHIpIGluIHByb2R1Y3RhdHRyc1wiID5cblxuICAgICAgICAgICAgICAgIDx2cy1saXN0LWl0ZW0gPiBcbiAgICAgICAgICAgICAgICAgICAgPGRpdiA+XG4gICAgICAgICAgICAgICAgICAgICAgPHZzLXRyIHYtaWY9XCJpdGVtLm9yZGVyaW5nX2NvbXBhbnlfaWRfZmsgPT0gY29tcC5pZFwiPiAgICAgIFxuXG4gICAgICAgICAgICAgICAgICAgICAgICA8dnMtdGQgPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIHYtaWY9XCJpdGVtLmVkaXRtb2RlXCI+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dnMtaW5wdXQgbGFiZWw9XCJDb21wYW55IE5hbWVcIiBwbGFjZWhvbGRlcj1cIkNvbXBhbnkgTmFtZVwiIHYtbW9kZWw9XCJpdGVtLm9yZGVyaW5nX2NvbXBhbnlfaWRfZmtcIi8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIHYtZWxzZT57eyBpdGVtLm9yZGVyaW5nX2NvbXBhbnlfaWRfZmsgfX08L3NwYW4+XG4gICAgICAgICAgICAgICAgICAgICAgICA8L3ZzLXRkPlxuXG4gICAgICAgICAgICAgICAgICAgICAgICA8dnMtdGQgPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIHYtaWY9XCJpdGVtLmVkaXRtb2RlXCI+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dnMtaW5wdXQgbGFiZWw9XCJDb21wYW55IE5hbWVcIiBwbGFjZWhvbGRlcj1cIkNvbXBhbnkgTmFtZVwiIHYtbW9kZWw9XCJpdGVtLkJhbm5lcl9JRF9ma1wiLz5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3NwYW4+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gdi1lbHNlPnt7IGl0ZW0uQmFubmVyX0lEX2ZrIH19PC9zcGFuPlxuICAgICAgICAgICAgICAgICAgICAgICAgPC92cy10ZD5cblxuICAgICAgICAgICAgICAgICAgICAgICAgPHZzLXRkID5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiB2LWlmPVwiaXRlbS5lZGl0bW9kZVwiPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHZzLWlucHV0IGxhYmVsPVwiQ29tcGFueSBOYW1lXCIgcGxhY2Vob2xkZXI9XCJDb21wYW55IE5hbWVcIiB2LW1vZGVsPVwiaXRlbS5EZXB0X0lEX2ZrXCIvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiB2LWVsc2U+e3sgaXRlbS5EZXB0X0lEX2ZrIH19PC9zcGFuPlxuICAgICAgICAgICAgICAgICAgICAgICAgPC92cy10ZD5cblxuICAgICAgICAgICAgICAgICAgICAgICAgPHZzLXRkID5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gdi1pZj1cIiFpdGVtLmVkaXRtb2RlXCI+PGJ1dHRvbiBAY2xpY2s9XCJlZGl0KGl0ZW0pXCI+RWRpdDwvYnV0dG9uPjwvc3Bhbj5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gdi1lbHNlPjxidXR0b24gQGNsaWNrPVwic2F2ZShpdGVtKVwiPlNhdmU8L2J1dHRvbj48L3NwYW4+XG4gICAgICAgICAgICAgICAgICAgICAgICA8L3ZzLXRkPlxuXG4gICAgICAgICAgICAgICAgICAgICAgPC92cy10cj5cbiAgICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgPC92cy1saXN0LWl0ZW0+XG5cbiAgICAgICAgICAgICAgPC92cy1saXN0PlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPC90ZW1wbGF0ZT5cblxuICA8L3ZzLXRyPlxuXG48L3RlbXBsYXRlPlxuXG48L3ZzLXRhYmxlPlxue3sgcHJvZHVjdGF0dHJzIH19XG4gPC9kaXY+XG48L3RlbXBsYXRlPlxuXG48c2NyaXB0PlxuaW1wb3J0IGF4aW9zIGZyb20gJ2F4aW9zJztcbmltcG9ydCB7IHN0cmluZ2lmeSB9IGZyb20gJ3F1ZXJ5c3RyaW5nJztcbmltcG9ydCAndnVlLWdvb2QtdGFibGUvZGlzdC92dWUtZ29vZC10YWJsZS5jc3MnO1xuaW1wb3J0IHsgVnVlR29vZFRhYmxlIH0gZnJvbSAndnVlLWdvb2QtdGFibGUnO1xuaW1wb3J0IF8gZnJvbSAnbG9kYXNoJ1xuXG5cblxuZXhwb3J0IGRlZmF1bHQge1xuXG4gICAgY29tcG9uZW50czoge1xuXG4gICAgICBWdWVHb29kVGFibGUsXG4gXG4gICAgICB9LFxuXG4gICAgZGF0YSgpIHtcblxuICAgICAgICByZXR1cm4ge1xuICAgICAgICAgICAgbG9hZGluZzogZmFsc2UsXG4gICAgICAgICAgICBwcm9kdWN0YXR0cnM6IHt9LFxuICAgICAgICAgICAgYnV0dG9udGV4dCA6ICdBZGQnLFxuICAgICAgICAgICAgZXJyb3I6IG51bGwsXG4gICAgICAgICAgICBjb21wYW5pZXM6IHt9LFxuXG4gICAgICAgICAgICBzaW5nbGVQcm9kQXR0cjp7XG5cbiAgICAgICAgICAgIH0sXG4gICAgICAgICAgICBhdHRyQ2xpY2s6IHtcbiAgICAgICAgICAgICAgICBlZGl0OiB0cnVlLFxuICAgICAgICAgICAgICAgIHNhdmU6ZmFsc2UsXG4gICAgICAgICAgICB9LFxuICAgICAgXG4gICAgICAgIH07XG4gICAgfSxcblxuICAgIHdhdGNoOiB7XG5cblxuXG4gICAgfSxcblxuICAgIG1vdW50ZWQoKXtcbiAgICAgIFxuICAgICAgXG5cbiAgICB9LFxuXG4gICAgY29tcHV0ZWQ6e1xuXG5cblxuICAgIH0sXG5cbiAgICBtZXRob2RzOiB7XG5cbiAgICAgICAgZ2V0UHJvZHVjdEF0dHJzKCkge1xuICAgICAgICAgICAvL2xldCB1cmkgPSBgL2FwaS9wcm9kdWN0LyR7dGhpcy4kcm91dGUucGFyYW1zLmlkfWA7XG4gICAgICAgICAgICB0aGlzLmVycm9yID0gdGhpcy5wcm9kdWN0YXR0cnMgPSBudWxsO1xuICAgICAgICAgICAgbGV0IHByb2RJZCA9IHRoaXMuJHJvdXRlLnBhcmFtcy5pZDtcbiAgICAgICAgICAgIHRoaXMubG9hZGluZyA9IHRydWU7XG4gICAgICAgICAgICBheGlvc1xuICAgICAgICAgICAgICAgIC5nZXQoJy9hcGkvcHJvZHVjdC9hdHRyaWJ1dGVzJylcbiAgICAgICAgICAgICAgICAudGhlbihyZXNwb25zZSA9PiB7XG4gICAgICAgICAgICAgICAgICAgY29uc29sZS5sb2coJ1RoZSBpZCBpczogJyArIHRoaXMuJHJvdXRlLnBhcmFtcy5pZCk7XG4gICAgICAgICAgICAgICAgIC8vICAgY29uc29sZS5sb2codXJpKTtcbiAgICAgICAgICAgICAgICAgICAgLy90aGlzLmxvYWRpbmcgPSBmYWxzZTtzXG4gICAgICAgICAgICAgICAgICAgIHRoaXMucHJvZHVjdGF0dHJzID0gcmVzcG9uc2UuZGF0YS5kYXRhO1xuICAgICAgICAgICAgICAgICAgICBsZXQgcHJvZHVjdCA9IHJlc3BvbnNlLmRhdGEuZGF0YVxuICAgICAgICAgICAgICAgICAgICB0aGlzLnByb2R1Y3RhdHRycyA9IHByb2R1Y3QuZmlsdGVyKHByb2R1Y3QgPT4gcHJvZHVjdC5Qcm9kX0lEX2ZrID09IHByb2RJZClcblxuICAgICAgICAgICAgICAgICAgICAgY29uc29sZS5sb2cocHJvZHVjdClcblxuICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgIH0pO1xuICAgICAgICB9LFxuXG4gICAgICAgIGdldFNpbmdsZVByb2RBdHRyKCkge1xuICAgICAgICAgIGxldCB1cmkgPSBgcHJvZHVjdC9hdHRyaWJ1dGUvYDtcbiAgICAgICAgICAgIGF4aW9zXG4gICAgICAgICAgICAucHV0KHVyaSwgdGhpcy5zaW5nbGVQcm9kQXR0cilcbiAgICAgICAgICAgIC50aGVuKChyZXNwb25zZSkgPT4ge1xuICAgICAgICAgICAgICB0aGlzLnNpbmdsZVByb2RBdHRyID0gcmVzcG9uc2UuZGF0YVxuICAgICAgICAgIFxuICAgICAgICAgIH0pO1xuXG5cbiAgICAgICAgfSxcbiAgICAgICAgXG4gICAgICAgIFxuICAgICAgICAvL0ZvciB0aGUgQ29tcGFueSBEcm9wZG93blxuICAgICAgICBjb21wYW55bGlzdCgpIHtcbiAgICAgICAgICAgIHRoaXMuZXJyb3IgPSB0aGlzLmNvbXBhbmllcyA9IG51bGw7XG4gICAgICAgICAgICB0aGlzLmxvYWRpbmcgPSB0cnVlO1xuICAgICAgICAgICAgYXhpb3NcbiAgICAgICAgICAgICAgICAuZ2V0KCcvYXBpL2NvbXBhbmllcycpXG4gICAgICAgICAgICAgICAgLnRoZW4ocmVzcG9uc2UgPT4ge1xuICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5sb2FkaW5nID0gZmFsc2U7XG4gICAgICAgICAgICAgICAgICAgIHRoaXMuY29tcGFuaWVzID0gcmVzcG9uc2UuZGF0YS5kYXRhOyAvLy8gdGhlIGRhdGEuZGF0YSBmaXhlZCB0aGUgaXNzdWVcbiAgICAgICAgICAgICAgICAgICAgY29uc29sZS5sb2cocmVzcG9uc2UpO1xuICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgfSk7XG5cbiAgICAgICAgfSxcblxuICAgICAgICBlZGl0IDpmdW5jdGlvbihvYmope1xuICAgICAgICAgIHRoaXMuJHNldChvYmosICdlZGl0bW9kZScsIHRydWUpO1xuICAgICAgICAgIC8vdGhpcy4kc2V0KG9iaiwgdGhpcy5lZGl0LCB0aGlzLmF0dHJDbGljayk7XG4gICAgICAgICAgXG4gICAgICAgIH0sXG4gICAgICBzYXZlIDogZnVuY3Rpb24ob2JqKXtcbiAgICAgICAgdGhpcy4kc2V0KG9iaiwgJ2VkaXRtb2RlJywgZmFsc2UpO1xuICAgICAgICAvL3RoaXMuJHNldChvYmosdGhpcy5zYXZlLCB0aGlzLmF0dHJDbGljayk7XG4gICAgICAgIFxuXG5cbiAgICAgIH0sXG5cbiAgICAgICAgdXBkYXRlUHJvZHVjdEF0dHIoaWQpIHtcblxuICAgICAgICB9LFxuXG4gICAgfSxcblxuICAgIGNyZWF0ZWQoKSB7XG4gICAgICB0aGlzLmdldFByb2R1Y3RBdHRycygpO1xuICAgICAgdGhpcy5nZXRTaW5nbGVQcm9kQXR0cigpO1xuICAgICAgdGhpcy5jb21wYW55bGlzdCgpO1xuICAgICAgLy90aGlzLmVkaXQoKTtcbiAgICAgIC8vdGhpcy5zYXZlKCk7XG5cbiAgICB9LFxuXG5cblxuICAgIFxufVxuPC9zY3JpcHQ+XG5cblxuPHN0eWxlIGxhbmc9XCJzY3NzXCI+XG4jZGF0YS1saXN0LWxpc3QtdmlldyB7XG4gIC52cy1jb24tdGFibGUge1xuXG4gICAgLypcbiAgICAgIEJlbG93IG1lZGlhLXF1ZXJpZXMgaXMgZml4IGZvciByZXNwb25zaXZlbmVzcyBvZiBhY3Rpb24gYnV0dG9uc1xuICAgICAgTm90ZTogSWYgeW91IGNoYW5nZSBhY3Rpb24gYnV0dG9ucyBvciBsYXlvdXQgb2YgdGhpcyBwYWdlLCBQbGVhc2UgcmVtb3ZlIGJlbG93IHN0eWxlXG4gICAgKi9cbiAgICBAbWVkaWEgKG1heC13aWR0aDogNjg5cHgpIHtcbiAgICAgIC52cy10YWJsZS0tc2VhcmNoIHtcbiAgICAgICAgbWFyZ2luLWxlZnQ6IDA7XG4gICAgICAgIG1heC13aWR0aDogdW5zZXQ7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuXG4gICAgICAgIC52cy10YWJsZS0tc2VhcmNoLWlucHV0IHtcbiAgICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cblxuICAgIEBtZWRpYSAobWF4LXdpZHRoOiA0NjFweCkge1xuICAgICAgLml0ZW1zLXBlci1wYWdlLWhhbmRsZXIge1xuICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgfVxuICAgIH1cblxuICAgIEBtZWRpYSAobWF4LXdpZHRoOiAzNDFweCkge1xuICAgICAgLmRhdGEtbGlzdC1idG4tY29udGFpbmVyIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG5cbiAgICAgICAgLmRkLWFjdGlvbnMsXG4gICAgICAgIC5idG4tYWRkLW5ldyB7XG4gICAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgICAgbWFyZ2luLXJpZ2h0OiAwICFpbXBvcnRhbnQ7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG5cbiAgICAucHJvZHVjdC1uYW1lIHtcbiAgICAgIG1heC13aWR0aDogMjNyZW07XG4gICAgfVxuXG4gICAgLnZzLXRhYmxlLS1oZWFkZXIge1xuICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgICAgIG1hcmdpbi1sZWZ0OiAxLjVyZW07XG4gICAgICBtYXJnaW4tcmlnaHQ6IDEuNXJlbTtcbiAgICAgID4gc3BhbiB7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXgtZ3JvdzogMTtcbiAgICAgIH1cblxuICAgICAgLnZzLXRhYmxlLS1zZWFyY2h7XG4gICAgICAgIHBhZGRpbmctdG9wOiAwO1xuXG4gICAgICAgIC52cy10YWJsZS0tc2VhcmNoLWlucHV0IHtcbiAgICAgICAgICBwYWRkaW5nOiAwLjlyZW0gMi41cmVtO1xuICAgICAgICAgIGZvbnQtc2l6ZTogMXJlbTtcblxuICAgICAgICAgICYraSB7XG4gICAgICAgICAgICBsZWZ0OiAxcmVtO1xuICAgICAgICAgIH1cblxuICAgICAgICAgICY6Zm9jdXMraSB7XG4gICAgICAgICAgICBsZWZ0OiAxcmVtO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cblxuICAgIC52cy10YWJsZSB7XG4gICAgICBib3JkZXItY29sbGFwc2U6IHNlcGFyYXRlO1xuICAgICAgYm9yZGVyLXNwYWNpbmc6IDAgMS4zcmVtO1xuICAgICAgcGFkZGluZzogMCAxcmVtO1xuXG4gICAgICB0cntcbiAgICAgICAgICBib3gtc2hhZG93OiAwIDRweCAyMHB4IDAgcmdiYSgwLDAsMCwuMDUpO1xuICAgICAgICAgIHRke1xuICAgICAgICAgICAgcGFkZGluZzogMjBweDtcbiAgICAgICAgICAgICY6Zmlyc3QtY2hpbGR7XG4gICAgICAgICAgICAgIGJvcmRlci10b3AtbGVmdC1yYWRpdXM6IC41cmVtO1xuICAgICAgICAgICAgICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiAuNXJlbTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgICY6bGFzdC1jaGlsZHtcbiAgICAgICAgICAgICAgYm9yZGVyLXRvcC1yaWdodC1yYWRpdXM6IC41cmVtO1xuICAgICAgICAgICAgICBib3JkZXItYm90dG9tLXJpZ2h0LXJhZGl1czogLjVyZW07XG4gICAgICAgICAgICB9XG4gICAgICAgICAgfVxuICAgICAgICAgIHRkLnRkLWNoZWNre1xuICAgICAgICAgICAgcGFkZGluZzogMjBweCAhaW1wb3J0YW50O1xuICAgICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG5cbiAgICAudnMtdGFibGUtLXRoZWFke1xuICAgICAgdGgge1xuICAgICAgICBwYWRkaW5nLXRvcDogMDtcbiAgICAgICAgcGFkZGluZy1ib3R0b206IDA7XG5cbiAgICAgICAgLnZzLXRhYmxlLXRleHR7XG4gICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgICAgICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgICB0aC50ZC1jaGVja3tcbiAgICAgICAgcGFkZGluZzogMCAxNXB4ICFpbXBvcnRhbnQ7XG4gICAgICB9XG4gICAgICB0cntcbiAgICAgICAgYmFja2dyb3VuZDogbm9uZTtcbiAgICAgICAgYm94LXNoYWRvdzogbm9uZTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICAudnMtdGFibGUtLXBhZ2luYXRpb24ge1xuICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgfVxuICB9XG59XG48L3N0eWxlPlxuXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=script&lang=js&\n");
 
 /***/ }),
 
@@ -383,15 +31,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "#data-list-list-view .vs-con-table {\n  /*\n    Below media-queries is fix for responsiveness of action buttons\n    Note: If you change action buttons or layout of this page, Please remove below style\n  */\n}\n@media (max-width: 689px) {\n#data-list-list-view .vs-con-table .vs-table--search {\n    max-width: unset;\n    width: 100%;\n}\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--search {\n    margin-left: 0;\n}\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--search {\n    margin-right: 0;\n}\n#data-list-list-view .vs-con-table .vs-table--search .vs-table--search-input {\n    width: 100%;\n}\n}\n@media (max-width: 461px) {\n#data-list-list-view .vs-con-table .items-per-page-handler {\n    display: none;\n}\n}\n@media (max-width: 341px) {\n#data-list-list-view .vs-con-table .data-list-btn-container {\n    width: 100%;\n}\n#data-list-list-view .vs-con-table .data-list-btn-container .dd-actions,\n#data-list-list-view .vs-con-table .data-list-btn-container .btn-add-new {\n    width: 100%;\n}\n[dir=ltr] #data-list-list-view .vs-con-table .data-list-btn-container .dd-actions, [dir=ltr] #data-list-list-view .vs-con-table .data-list-btn-container .btn-add-new {\n    margin-right: 0 !important;\n}\n[dir=rtl] #data-list-list-view .vs-con-table .data-list-btn-container .dd-actions, [dir=rtl] #data-list-list-view .vs-con-table .data-list-btn-container .btn-add-new {\n    margin-left: 0 !important;\n}\n}\n#data-list-list-view .vs-con-table .product-name {\n  max-width: 23rem;\n}\n#data-list-list-view .vs-con-table .vs-table--header {\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: wrap;\n}\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--header {\n  margin-left: 1.5rem;\n  margin-right: 1.5rem;\n}\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--header {\n  margin-right: 1.5rem;\n  margin-left: 1.5rem;\n}\n#data-list-list-view .vs-con-table .vs-table--header > span {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search {\n  padding-top: 0;\n}\n#data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input {\n  font-size: 1rem;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input {\n  padding: 0.9rem 2.5rem;\n}\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input + i {\n  left: 1rem;\n}\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input + i {\n  right: 1rem;\n}\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input:focus + i {\n  left: 1rem;\n}\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input:focus + i {\n  right: 1rem;\n}\n#data-list-list-view .vs-con-table .vs-table {\n  border-collapse: separate;\n  border-spacing: 0 1.3rem;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table {\n  padding: 0 1rem;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table tr {\n  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);\n}\n[dir] #data-list-list-view .vs-con-table .vs-table tr td {\n  padding: 20px;\n}\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table tr td:first-child {\n  border-top-left-radius: 0.5rem;\n  border-bottom-left-radius: 0.5rem;\n}\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table tr td:first-child {\n  border-top-right-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem;\n}\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table tr td:last-child {\n  border-top-right-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem;\n}\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table tr td:last-child {\n  border-top-left-radius: 0.5rem;\n  border-bottom-left-radius: 0.5rem;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table tr td.td-check {\n  padding: 20px !important;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table--thead th {\n  padding-top: 0;\n  padding-bottom: 0;\n}\n#data-list-list-view .vs-con-table .vs-table--thead th .vs-table-text {\n  text-transform: uppercase;\n  font-weight: 600;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table--thead th.td-check {\n  padding: 0 15px !important;\n}\n[dir] #data-list-list-view .vs-con-table .vs-table--thead tr {\n  background: none;\n  box-shadow: none;\n}\n#data-list-list-view .vs-con-table .vs-table--pagination {\n  -webkit-box-pack: center;\n          justify-content: center;\n}", ""]);
-
-// exports
-
+eval("exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \"#data-list-list-view .vs-con-table {\\n  /*\\n    Below media-queries is fix for responsiveness of action buttons\\n    Note: If you change action buttons or layout of this page, Please remove below style\\n  */\\n}\\n@media (max-width: 689px) {\\n#data-list-list-view .vs-con-table .vs-table--search {\\n    max-width: unset;\\n    width: 100%;\\n}\\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--search {\\n    margin-left: 0;\\n}\\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--search {\\n    margin-right: 0;\\n}\\n#data-list-list-view .vs-con-table .vs-table--search .vs-table--search-input {\\n    width: 100%;\\n}\\n}\\n@media (max-width: 461px) {\\n#data-list-list-view .vs-con-table .items-per-page-handler {\\n    display: none;\\n}\\n}\\n@media (max-width: 341px) {\\n#data-list-list-view .vs-con-table .data-list-btn-container {\\n    width: 100%;\\n}\\n#data-list-list-view .vs-con-table .data-list-btn-container .dd-actions,\\n#data-list-list-view .vs-con-table .data-list-btn-container .btn-add-new {\\n    width: 100%;\\n}\\n[dir=ltr] #data-list-list-view .vs-con-table .data-list-btn-container .dd-actions, [dir=ltr] #data-list-list-view .vs-con-table .data-list-btn-container .btn-add-new {\\n    margin-right: 0 !important;\\n}\\n[dir=rtl] #data-list-list-view .vs-con-table .data-list-btn-container .dd-actions, [dir=rtl] #data-list-list-view .vs-con-table .data-list-btn-container .btn-add-new {\\n    margin-left: 0 !important;\\n}\\n}\\n#data-list-list-view .vs-con-table .product-name {\\n  max-width: 23rem;\\n}\\n#data-list-list-view .vs-con-table .vs-table--header {\\n  display: -webkit-box;\\n  display: flex;\\n  flex-wrap: wrap;\\n}\\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--header {\\n  margin-left: 1.5rem;\\n  margin-right: 1.5rem;\\n}\\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--header {\\n  margin-right: 1.5rem;\\n  margin-left: 1.5rem;\\n}\\n#data-list-list-view .vs-con-table .vs-table--header > span {\\n  display: -webkit-box;\\n  display: flex;\\n  -webkit-box-flex: 1;\\n          flex-grow: 1;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search {\\n  padding-top: 0;\\n}\\n#data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input {\\n  font-size: 1rem;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input {\\n  padding: 0.9rem 2.5rem;\\n}\\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input + i {\\n  left: 1rem;\\n}\\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input + i {\\n  right: 1rem;\\n}\\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input:focus + i {\\n  left: 1rem;\\n}\\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table--header .vs-table--search .vs-table--search-input:focus + i {\\n  right: 1rem;\\n}\\n#data-list-list-view .vs-con-table .vs-table {\\n  border-collapse: separate;\\n  border-spacing: 0 1.3rem;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table {\\n  padding: 0 1rem;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table tr {\\n  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table tr td {\\n  padding: 20px;\\n}\\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table tr td:first-child {\\n  border-top-left-radius: 0.5rem;\\n  border-bottom-left-radius: 0.5rem;\\n}\\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table tr td:first-child {\\n  border-top-right-radius: 0.5rem;\\n  border-bottom-right-radius: 0.5rem;\\n}\\n[dir=ltr] #data-list-list-view .vs-con-table .vs-table tr td:last-child {\\n  border-top-right-radius: 0.5rem;\\n  border-bottom-right-radius: 0.5rem;\\n}\\n[dir=rtl] #data-list-list-view .vs-con-table .vs-table tr td:last-child {\\n  border-top-left-radius: 0.5rem;\\n  border-bottom-left-radius: 0.5rem;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table tr td.td-check {\\n  padding: 20px !important;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table--thead th {\\n  padding-top: 0;\\n  padding-bottom: 0;\\n}\\n#data-list-list-view .vs-con-table .vs-table--thead th .vs-table-text {\\n  text-transform: uppercase;\\n  font-weight: 600;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table--thead th.td-check {\\n  padding: 0 15px !important;\\n}\\n[dir] #data-list-list-view .vs-con-table .vs-table--thead tr {\\n  background: none;\\n  box-shadow: none;\\n}\\n#data-list-list-view .vs-con-table .vs-table--pagination {\\n  -webkit-box-pack: center;\\n          justify-content: center;\\n}\", \"\"]);\n\n// exports\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP2NjMjIiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkJBQTJCLG1CQUFPLENBQUMseUdBQXdEO0FBQzNGOzs7QUFHQTtBQUNBLGNBQWMsUUFBUyx1Q0FBdUMsOEtBQThLLDZCQUE2Qix3REFBd0QsdUJBQXVCLGtCQUFrQixHQUFHLGtFQUFrRSxxQkFBcUIsR0FBRyxrRUFBa0Usc0JBQXNCLEdBQUcsZ0ZBQWdGLGtCQUFrQixHQUFHLEdBQUcsNkJBQTZCLDhEQUE4RCxvQkFBb0IsR0FBRyxHQUFHLDZCQUE2QiwrREFBK0Qsa0JBQWtCLEdBQUcsc0pBQXNKLGtCQUFrQixHQUFHLHlLQUF5SyxpQ0FBaUMsR0FBRyx5S0FBeUssZ0NBQWdDLEdBQUcsR0FBRyxvREFBb0QscUJBQXFCLEdBQUcsd0RBQXdELHlCQUF5QixrQkFBa0Isb0JBQW9CLEdBQUcsa0VBQWtFLHdCQUF3Qix5QkFBeUIsR0FBRyxrRUFBa0UseUJBQXlCLHdCQUF3QixHQUFHLCtEQUErRCx5QkFBeUIsa0JBQWtCLHdCQUF3Qix5QkFBeUIsR0FBRyxnRkFBZ0YsbUJBQW1CLEdBQUcsa0dBQWtHLG9CQUFvQixHQUFHLHdHQUF3RywyQkFBMkIsR0FBRyxnSEFBZ0gsZUFBZSxHQUFHLGdIQUFnSCxnQkFBZ0IsR0FBRyxzSEFBc0gsZUFBZSxHQUFHLHNIQUFzSCxnQkFBZ0IsR0FBRyxnREFBZ0QsOEJBQThCLDZCQUE2QixHQUFHLHNEQUFzRCxvQkFBb0IsR0FBRyx5REFBeUQsaURBQWlELEdBQUcsNERBQTRELGtCQUFrQixHQUFHLDRFQUE0RSxtQ0FBbUMsc0NBQXNDLEdBQUcsNEVBQTRFLG9DQUFvQyx1Q0FBdUMsR0FBRywyRUFBMkUsb0NBQW9DLHVDQUF1QyxHQUFHLDJFQUEyRSxtQ0FBbUMsc0NBQXNDLEdBQUcscUVBQXFFLDZCQUE2QixHQUFHLGdFQUFnRSxtQkFBbUIsc0JBQXNCLEdBQUcseUVBQXlFLDhCQUE4QixxQkFBcUIsR0FBRyx5RUFBeUUsK0JBQStCLEdBQUcsZ0VBQWdFLHFCQUFxQixxQkFBcUIsR0FBRyw0REFBNEQsNkJBQTZCLG9DQUFvQyxHQUFHOztBQUVyZ0oiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvY3NzLWxvYWRlci9pbmRleC5qcyEuL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9sb2FkZXJzL3N0eWxlUG9zdExvYWRlci5qcyEuL25vZGVfbW9kdWxlcy9wb3N0Y3NzLWxvYWRlci9zcmMvaW5kZXguanM/IS4vbm9kZV9tb2R1bGVzL3Nhc3MtbG9hZGVyL2Rpc3QvY2pzLmpzPyEuL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8hLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXN0eWxlJmluZGV4PTAmbGFuZz1zY3NzJi5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydHMgPSBtb2R1bGUuZXhwb3J0cyA9IHJlcXVpcmUoXCIuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvY3NzLWxvYWRlci9saWIvY3NzLWJhc2UuanNcIikoZmFsc2UpO1xuLy8gaW1wb3J0c1xuXG5cbi8vIG1vZHVsZVxuZXhwb3J0cy5wdXNoKFttb2R1bGUuaWQsIFwiI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSB7XFxuICAvKlxcbiAgICBCZWxvdyBtZWRpYS1xdWVyaWVzIGlzIGZpeCBmb3IgcmVzcG9uc2l2ZW5lc3Mgb2YgYWN0aW9uIGJ1dHRvbnNcXG4gICAgTm90ZTogSWYgeW91IGNoYW5nZSBhY3Rpb24gYnV0dG9ucyBvciBsYXlvdXQgb2YgdGhpcyBwYWdlLCBQbGVhc2UgcmVtb3ZlIGJlbG93IHN0eWxlXFxuICAqL1xcbn1cXG5AbWVkaWEgKG1heC13aWR0aDogNjg5cHgpIHtcXG4jZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0tc2VhcmNoIHtcXG4gICAgbWF4LXdpZHRoOiB1bnNldDtcXG4gICAgd2lkdGg6IDEwMCU7XFxufVxcbltkaXI9bHRyXSAjZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0tc2VhcmNoIHtcXG4gICAgbWFyZ2luLWxlZnQ6IDA7XFxufVxcbltkaXI9cnRsXSAjZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0tc2VhcmNoIHtcXG4gICAgbWFyZ2luLXJpZ2h0OiAwO1xcbn1cXG4jZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0tc2VhcmNoIC52cy10YWJsZS0tc2VhcmNoLWlucHV0IHtcXG4gICAgd2lkdGg6IDEwMCU7XFxufVxcbn1cXG5AbWVkaWEgKG1heC13aWR0aDogNDYxcHgpIHtcXG4jZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC5pdGVtcy1wZXItcGFnZS1oYW5kbGVyIHtcXG4gICAgZGlzcGxheTogbm9uZTtcXG59XFxufVxcbkBtZWRpYSAobWF4LXdpZHRoOiAzNDFweCkge1xcbiNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLmRhdGEtbGlzdC1idG4tY29udGFpbmVyIHtcXG4gICAgd2lkdGg6IDEwMCU7XFxufVxcbiNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLmRhdGEtbGlzdC1idG4tY29udGFpbmVyIC5kZC1hY3Rpb25zLFxcbiNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLmRhdGEtbGlzdC1idG4tY29udGFpbmVyIC5idG4tYWRkLW5ldyB7XFxuICAgIHdpZHRoOiAxMDAlO1xcbn1cXG5bZGlyPWx0cl0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAuZGF0YS1saXN0LWJ0bi1jb250YWluZXIgLmRkLWFjdGlvbnMsIFtkaXI9bHRyXSAjZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC5kYXRhLWxpc3QtYnRuLWNvbnRhaW5lciAuYnRuLWFkZC1uZXcge1xcbiAgICBtYXJnaW4tcmlnaHQ6IDAgIWltcG9ydGFudDtcXG59XFxuW2Rpcj1ydGxdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLmRhdGEtbGlzdC1idG4tY29udGFpbmVyIC5kZC1hY3Rpb25zLCBbZGlyPXJ0bF0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAuZGF0YS1saXN0LWJ0bi1jb250YWluZXIgLmJ0bi1hZGQtbmV3IHtcXG4gICAgbWFyZ2luLWxlZnQ6IDAgIWltcG9ydGFudDtcXG59XFxufVxcbiNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnByb2R1Y3QtbmFtZSB7XFxuICBtYXgtd2lkdGg6IDIzcmVtO1xcbn1cXG4jZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0taGVhZGVyIHtcXG4gIGRpc3BsYXk6IC13ZWJraXQtYm94O1xcbiAgZGlzcGxheTogZmxleDtcXG4gIGZsZXgtd3JhcDogd3JhcDtcXG59XFxuW2Rpcj1sdHJdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlLS1oZWFkZXIge1xcbiAgbWFyZ2luLWxlZnQ6IDEuNXJlbTtcXG4gIG1hcmdpbi1yaWdodDogMS41cmVtO1xcbn1cXG5bZGlyPXJ0bF0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUtLWhlYWRlciB7XFxuICBtYXJnaW4tcmlnaHQ6IDEuNXJlbTtcXG4gIG1hcmdpbi1sZWZ0OiAxLjVyZW07XFxufVxcbiNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlLS1oZWFkZXIgPiBzcGFuIHtcXG4gIGRpc3BsYXk6IC13ZWJraXQtYm94O1xcbiAgZGlzcGxheTogZmxleDtcXG4gIC13ZWJraXQtYm94LWZsZXg6IDE7XFxuICAgICAgICAgIGZsZXgtZ3JvdzogMTtcXG59XFxuW2Rpcl0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUtLWhlYWRlciAudnMtdGFibGUtLXNlYXJjaCB7XFxuICBwYWRkaW5nLXRvcDogMDtcXG59XFxuI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUtLWhlYWRlciAudnMtdGFibGUtLXNlYXJjaCAudnMtdGFibGUtLXNlYXJjaC1pbnB1dCB7XFxuICBmb250LXNpemU6IDFyZW07XFxufVxcbltkaXJdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlLS1oZWFkZXIgLnZzLXRhYmxlLS1zZWFyY2ggLnZzLXRhYmxlLS1zZWFyY2gtaW5wdXQge1xcbiAgcGFkZGluZzogMC45cmVtIDIuNXJlbTtcXG59XFxuW2Rpcj1sdHJdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlLS1oZWFkZXIgLnZzLXRhYmxlLS1zZWFyY2ggLnZzLXRhYmxlLS1zZWFyY2gtaW5wdXQgKyBpIHtcXG4gIGxlZnQ6IDFyZW07XFxufVxcbltkaXI9cnRsXSAjZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0taGVhZGVyIC52cy10YWJsZS0tc2VhcmNoIC52cy10YWJsZS0tc2VhcmNoLWlucHV0ICsgaSB7XFxuICByaWdodDogMXJlbTtcXG59XFxuW2Rpcj1sdHJdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlLS1oZWFkZXIgLnZzLXRhYmxlLS1zZWFyY2ggLnZzLXRhYmxlLS1zZWFyY2gtaW5wdXQ6Zm9jdXMgKyBpIHtcXG4gIGxlZnQ6IDFyZW07XFxufVxcbltkaXI9cnRsXSAjZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0taGVhZGVyIC52cy10YWJsZS0tc2VhcmNoIC52cy10YWJsZS0tc2VhcmNoLWlucHV0OmZvY3VzICsgaSB7XFxuICByaWdodDogMXJlbTtcXG59XFxuI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUge1xcbiAgYm9yZGVyLWNvbGxhcHNlOiBzZXBhcmF0ZTtcXG4gIGJvcmRlci1zcGFjaW5nOiAwIDEuM3JlbTtcXG59XFxuW2Rpcl0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUge1xcbiAgcGFkZGluZzogMCAxcmVtO1xcbn1cXG5bZGlyXSAjZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZSB0ciB7XFxuICBib3gtc2hhZG93OiAwIDRweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjA1KTtcXG59XFxuW2Rpcl0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUgdHIgdGQge1xcbiAgcGFkZGluZzogMjBweDtcXG59XFxuW2Rpcj1sdHJdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlIHRyIHRkOmZpcnN0LWNoaWxkIHtcXG4gIGJvcmRlci10b3AtbGVmdC1yYWRpdXM6IDAuNXJlbTtcXG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDAuNXJlbTtcXG59XFxuW2Rpcj1ydGxdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlIHRyIHRkOmZpcnN0LWNoaWxkIHtcXG4gIGJvcmRlci10b3AtcmlnaHQtcmFkaXVzOiAwLjVyZW07XFxuICBib3JkZXItYm90dG9tLXJpZ2h0LXJhZGl1czogMC41cmVtO1xcbn1cXG5bZGlyPWx0cl0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUgdHIgdGQ6bGFzdC1jaGlsZCB7XFxuICBib3JkZXItdG9wLXJpZ2h0LXJhZGl1czogMC41cmVtO1xcbiAgYm9yZGVyLWJvdHRvbS1yaWdodC1yYWRpdXM6IDAuNXJlbTtcXG59XFxuW2Rpcj1ydGxdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlIHRyIHRkOmxhc3QtY2hpbGQge1xcbiAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogMC41cmVtO1xcbiAgYm9yZGVyLWJvdHRvbS1sZWZ0LXJhZGl1czogMC41cmVtO1xcbn1cXG5bZGlyXSAjZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZSB0ciB0ZC50ZC1jaGVjayB7XFxuICBwYWRkaW5nOiAyMHB4ICFpbXBvcnRhbnQ7XFxufVxcbltkaXJdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlLS10aGVhZCB0aCB7XFxuICBwYWRkaW5nLXRvcDogMDtcXG4gIHBhZGRpbmctYm90dG9tOiAwO1xcbn1cXG4jZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0tdGhlYWQgdGggLnZzLXRhYmxlLXRleHQge1xcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcXG4gIGZvbnQtd2VpZ2h0OiA2MDA7XFxufVxcbltkaXJdICNkYXRhLWxpc3QtbGlzdC12aWV3IC52cy1jb24tdGFibGUgLnZzLXRhYmxlLS10aGVhZCB0aC50ZC1jaGVjayB7XFxuICBwYWRkaW5nOiAwIDE1cHggIWltcG9ydGFudDtcXG59XFxuW2Rpcl0gI2RhdGEtbGlzdC1saXN0LXZpZXcgLnZzLWNvbi10YWJsZSAudnMtdGFibGUtLXRoZWFkIHRyIHtcXG4gIGJhY2tncm91bmQ6IG5vbmU7XFxuICBib3gtc2hhZG93OiBub25lO1xcbn1cXG4jZGF0YS1saXN0LWxpc3QtdmlldyAudnMtY29uLXRhYmxlIC52cy10YWJsZS0tcGFnaW5hdGlvbiB7XFxuICAtd2Via2l0LWJveC1wYWNrOiBjZW50ZXI7XFxuICAgICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xcbn1cIiwgXCJcIl0pO1xuXG4vLyBleHBvcnRzXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&\n");
 
 /***/ }),
 
@@ -402,26 +42,7 @@ exports.push([module.i, "#data-list-list-view .vs-con-table {\n  /*\n    Below m
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
+eval("\nvar content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=style&index=0&lang=scss& */ \"./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(false) {}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlPzRjMWIiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLGNBQWMsbUJBQU8sQ0FBQyw2cEJBQThYOztBQUVwWiw0Q0FBNEMsUUFBUzs7QUFFckQ7QUFDQTs7OztBQUlBLGVBQWU7O0FBRWY7QUFDQTs7QUFFQSxhQUFhLG1CQUFPLENBQUMsK0dBQTREOztBQUVqRjs7QUFFQSxHQUFHLEtBQVUsRUFBRSIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy9zdHlsZS1sb2FkZXIvaW5kZXguanMhLi9ub2RlX21vZHVsZXMvY3NzLWxvYWRlci9pbmRleC5qcyEuL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9sb2FkZXJzL3N0eWxlUG9zdExvYWRlci5qcyEuL25vZGVfbW9kdWxlcy9wb3N0Y3NzLWxvYWRlci9zcmMvaW5kZXguanM/IS4vbm9kZV9tb2R1bGVzL3Nhc3MtbG9hZGVyL2Rpc3QvY2pzLmpzPyEuL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8hLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXN0eWxlJmluZGV4PTAmbGFuZz1zY3NzJi5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxudmFyIGNvbnRlbnQgPSByZXF1aXJlKFwiISEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvY3NzLWxvYWRlci9pbmRleC5qcyEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvbG9hZGVycy9zdHlsZVBvc3RMb2FkZXIuanMhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Bvc3Rjc3MtbG9hZGVyL3NyYy9pbmRleC5qcz8/cmVmLS04LTIhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Nhc3MtbG9hZGVyL2Rpc3QvY2pzLmpzPz9yZWYtLTgtMyEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/P3Z1ZS1sb2FkZXItb3B0aW9ucyEuL1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT1zdHlsZSZpbmRleD0wJmxhbmc9c2NzcyZcIik7XG5cbmlmKHR5cGVvZiBjb250ZW50ID09PSAnc3RyaW5nJykgY29udGVudCA9IFtbbW9kdWxlLmlkLCBjb250ZW50LCAnJ11dO1xuXG52YXIgdHJhbnNmb3JtO1xudmFyIGluc2VydEludG87XG5cblxuXG52YXIgb3B0aW9ucyA9IHtcImhtclwiOnRydWV9XG5cbm9wdGlvbnMudHJhbnNmb3JtID0gdHJhbnNmb3JtXG5vcHRpb25zLmluc2VydEludG8gPSB1bmRlZmluZWQ7XG5cbnZhciB1cGRhdGUgPSByZXF1aXJlKFwiIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9zdHlsZS1sb2FkZXIvbGliL2FkZFN0eWxlcy5qc1wiKShjb250ZW50LCBvcHRpb25zKTtcblxuaWYoY29udGVudC5sb2NhbHMpIG1vZHVsZS5leHBvcnRzID0gY29udGVudC5sb2NhbHM7XG5cbmlmKG1vZHVsZS5ob3QpIHtcblx0bW9kdWxlLmhvdC5hY2NlcHQoXCIhIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9jc3MtbG9hZGVyL2luZGV4LmpzIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9sb2FkZXJzL3N0eWxlUG9zdExvYWRlci5qcyEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvcG9zdGNzcy1sb2FkZXIvc3JjL2luZGV4LmpzPz9yZWYtLTgtMiEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvc2Fzcy1sb2FkZXIvZGlzdC9janMuanM/P3JlZi0tOC0zIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4vUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXN0eWxlJmluZGV4PTAmbGFuZz1zY3NzJlwiLCBmdW5jdGlvbigpIHtcblx0XHR2YXIgbmV3Q29udGVudCA9IHJlcXVpcmUoXCIhIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9jc3MtbG9hZGVyL2luZGV4LmpzIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9sb2FkZXJzL3N0eWxlUG9zdExvYWRlci5qcyEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvcG9zdGNzcy1sb2FkZXIvc3JjL2luZGV4LmpzPz9yZWYtLTgtMiEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvc2Fzcy1sb2FkZXIvZGlzdC9janMuanM/P3JlZi0tOC0zIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4vUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXN0eWxlJmluZGV4PTAmbGFuZz1zY3NzJlwiKTtcblxuXHRcdGlmKHR5cGVvZiBuZXdDb250ZW50ID09PSAnc3RyaW5nJykgbmV3Q29udGVudCA9IFtbbW9kdWxlLmlkLCBuZXdDb250ZW50LCAnJ11dO1xuXG5cdFx0dmFyIGxvY2FscyA9IChmdW5jdGlvbihhLCBiKSB7XG5cdFx0XHR2YXIga2V5LCBpZHggPSAwO1xuXG5cdFx0XHRmb3Ioa2V5IGluIGEpIHtcblx0XHRcdFx0aWYoIWIgfHwgYVtrZXldICE9PSBiW2tleV0pIHJldHVybiBmYWxzZTtcblx0XHRcdFx0aWR4Kys7XG5cdFx0XHR9XG5cblx0XHRcdGZvcihrZXkgaW4gYikgaWR4LS07XG5cblx0XHRcdHJldHVybiBpZHggPT09IDA7XG5cdFx0fShjb250ZW50LmxvY2FscywgbmV3Q29udGVudC5sb2NhbHMpKTtcblxuXHRcdGlmKCFsb2NhbHMpIHRocm93IG5ldyBFcnJvcignQWJvcnRpbmcgQ1NTIEhNUiBkdWUgdG8gY2hhbmdlZCBjc3MtbW9kdWxlcyBsb2NhbHMuJyk7XG5cblx0XHR1cGRhdGUobmV3Q29udGVudCk7XG5cdH0pO1xuXG5cdG1vZHVsZS5ob3QuZGlzcG9zZShmdW5jdGlvbigpIHsgdXBkYXRlKCk7IH0pO1xufSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&\n");
 
 /***/ }),
 
@@ -433,222 +54,7 @@ if(false) {}
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "centerx labelx" },
-    [
-      _c(
-        "vs-tabs",
-        [
-          _c("vs-tab", { attrs: { label: "Product Information" } }, [
-            _c("div", { staticClass: "con-tab-ejemplo" }, [
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.productFormValue($event)
-                    }
-                  }
-                },
-                [
-                  _c("vs-input", {
-                    attrs: { label: "SKU", placeholder: "SKU" },
-                    model: {
-                      value: _vm.product.sku,
-                      callback: function($$v) {
-                        _vm.$set(_vm.product, "sku", $$v)
-                      },
-                      expression: "product.sku"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("vs-input", {
-                    attrs: {
-                      label: "Product Name",
-                      placeholder: "Product Name"
-                    },
-                    model: {
-                      value: _vm.product.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.product, "name", $$v)
-                      },
-                      expression: "product.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("vs-input", {
-                    attrs: { label: "Product Description" },
-                    model: {
-                      value: _vm.product.description,
-                      callback: function($$v) {
-                        _vm.$set(_vm.product, "description", $$v)
-                      },
-                      expression: "product.description"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("vs-input", {
-                    attrs: { label: "Price", placeholder: "Price" },
-                    model: {
-                      value: _vm.product.price,
-                      callback: function($$v) {
-                        _vm.$set(_vm.product, "price", $$v)
-                      },
-                      expression: "product.price"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("vs-input", {
-                    attrs: {
-                      label: "Ordering Company",
-                      placeholder: "Ordering Company"
-                    },
-                    model: {
-                      value: _vm.product.ordering_company_id_fk,
-                      callback: function($$v) {
-                        _vm.$set(_vm.product, "ordering_company_id_fk", $$v)
-                      },
-                      expression: "product.ordering_company_id_fk"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("vs-input", {
-                    attrs: {
-                      label: "Product Category",
-                      placeholder: "Product Category"
-                    },
-                    model: {
-                      value: _vm.product.prod_cat_fk,
-                      callback: function($$v) {
-                        _vm.$set(_vm.product, "prod_cat_fk", $$v)
-                      },
-                      expression: "product.prod_cat_fk"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-xs-12" },
-                      [
-                        _c(
-                          "el-upload",
-                          {
-                            staticClass: "upload-demo",
-                            staticStyle: {
-                              display: "inline-block",
-                              "margin-right": "10px"
-                            },
-                            attrs: {
-                              drag: "",
-                              action: "uploadurl",
-                              "file-list": _vm.files,
-                              "show-file-list": false,
-                              multiple: true,
-                              "http-request": _vm.uploadFile,
-                              loading: _vm.fileIsUploading
-                            }
-                          },
-                          [
-                            _c("i", {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: !_vm.fileIsUploading,
-                                  expression: "!fileIsUploading"
-                                }
-                              ],
-                              staticClass: "el-icon-upload"
-                            }),
-                            _vm._v(" "),
-                            _c("i", {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.fileIsUploading,
-                                  expression: "fileIsUploading"
-                                }
-                              ],
-                              staticClass: "el-icon-loading",
-                              staticStyle: {
-                                "font-size": "67px",
-                                color: "#c0c4cc",
-                                margin: "40px 0 16px",
-                                "line-height": "50px"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: !_vm.fileIsUploading,
-                                    expression: "!fileIsUploading"
-                                  }
-                                ],
-                                staticClass: "el-upload__text"
-                              },
-                              [_vm._v("Upload Image Here ")]
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v(_vm._s(_vm.buttontext) + " Product ")]
-                  )
-                ],
-                1
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "vs-tab",
-            { attrs: { label: "Product Attribute" } },
-            [_c("product-attr")],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"centerx labelx\" },\n    [\n      _c(\n        \"vs-tabs\",\n        [\n          _c(\"vs-tab\", { attrs: { label: \"Product Information\" } }, [\n            _c(\"div\", { staticClass: \"con-tab-ejemplo\" }, [\n              _c(\n                \"form\",\n                {\n                  on: {\n                    submit: function($event) {\n                      $event.preventDefault()\n                      return _vm.productFormValue($event)\n                    }\n                  }\n                },\n                [\n                  _c(\"vs-input\", {\n                    attrs: { label: \"SKU\", placeholder: \"SKU\" },\n                    model: {\n                      value: _vm.product.sku,\n                      callback: function($$v) {\n                        _vm.$set(_vm.product, \"sku\", $$v)\n                      },\n                      expression: \"product.sku\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"vs-input\", {\n                    attrs: {\n                      label: \"Product Name\",\n                      placeholder: \"Product Name\"\n                    },\n                    model: {\n                      value: _vm.product.name,\n                      callback: function($$v) {\n                        _vm.$set(_vm.product, \"name\", $$v)\n                      },\n                      expression: \"product.name\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"br\"),\n                  _vm._v(\" \"),\n                  _c(\"vs-input\", {\n                    attrs: { label: \"Product Description\" },\n                    model: {\n                      value: _vm.product.description,\n                      callback: function($$v) {\n                        _vm.$set(_vm.product, \"description\", $$v)\n                      },\n                      expression: \"product.description\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"vs-input\", {\n                    attrs: { label: \"Price\", placeholder: \"Price\" },\n                    model: {\n                      value: _vm.product.price,\n                      callback: function($$v) {\n                        _vm.$set(_vm.product, \"price\", $$v)\n                      },\n                      expression: \"product.price\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"vs-input\", {\n                    attrs: {\n                      label: \"Ordering Company\",\n                      placeholder: \"Ordering Company\"\n                    },\n                    model: {\n                      value: _vm.product.ordering_company_id_fk,\n                      callback: function($$v) {\n                        _vm.$set(_vm.product, \"ordering_company_id_fk\", $$v)\n                      },\n                      expression: \"product.ordering_company_id_fk\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"vs-input\", {\n                    attrs: {\n                      label: \"Product Category\",\n                      placeholder: \"Product Category\"\n                    },\n                    model: {\n                      value: _vm.product.prod_cat_fk,\n                      callback: function($$v) {\n                        _vm.$set(_vm.product, \"prod_cat_fk\", $$v)\n                      },\n                      expression: \"product.prod_cat_fk\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"br\"),\n                  _vm._v(\" \"),\n                  _c(\"div\", { staticClass: \"row\" }, [\n                    _c(\n                      \"div\",\n                      { staticClass: \"col-xs-12\" },\n                      [\n                        _c(\n                          \"el-upload\",\n                          {\n                            staticClass: \"upload-demo\",\n                            staticStyle: {\n                              display: \"inline-block\",\n                              \"margin-right\": \"10px\"\n                            },\n                            attrs: {\n                              drag: \"\",\n                              action: \"uploadurl\",\n                              \"file-list\": _vm.files,\n                              \"show-file-list\": false,\n                              multiple: true,\n                              \"http-request\": _vm.uploadFile,\n                              loading: _vm.fileIsUploading\n                            }\n                          },\n                          [\n                            _c(\"i\", {\n                              directives: [\n                                {\n                                  name: \"show\",\n                                  rawName: \"v-show\",\n                                  value: !_vm.fileIsUploading,\n                                  expression: \"!fileIsUploading\"\n                                }\n                              ],\n                              staticClass: \"el-icon-upload\"\n                            }),\n                            _vm._v(\" \"),\n                            _c(\"i\", {\n                              directives: [\n                                {\n                                  name: \"show\",\n                                  rawName: \"v-show\",\n                                  value: _vm.fileIsUploading,\n                                  expression: \"fileIsUploading\"\n                                }\n                              ],\n                              staticClass: \"el-icon-loading\",\n                              staticStyle: {\n                                \"font-size\": \"67px\",\n                                color: \"#c0c4cc\",\n                                margin: \"40px 0 16px\",\n                                \"line-height\": \"50px\"\n                              }\n                            }),\n                            _vm._v(\" \"),\n                            _c(\n                              \"div\",\n                              {\n                                directives: [\n                                  {\n                                    name: \"show\",\n                                    rawName: \"v-show\",\n                                    value: !_vm.fileIsUploading,\n                                    expression: \"!fileIsUploading\"\n                                  }\n                                ],\n                                staticClass: \"el-upload__text\"\n                              },\n                              [_vm._v(\"Upload Image Here \")]\n                            )\n                          ]\n                        )\n                      ],\n                      1\n                    )\n                  ]),\n                  _vm._v(\" \"),\n                  _c(\"br\"),\n                  _vm._v(\" \"),\n                  _c(\n                    \"button\",\n                    {\n                      staticClass:\n                        \"btn btn-primary btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary\",\n                      attrs: { type: \"submit\" }\n                    },\n                    [_vm._v(_vm._s(_vm.buttontext) + \" Product \")]\n                  )\n                ],\n                1\n              )\n            ])\n          ]),\n          _vm._v(\" \"),\n          _c(\n            \"vs-tab\",\n            { attrs: { label: \"Product Attribute\" } },\n            [_c(\"product-attr\")],\n            1\n          )\n        ],\n        1\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEFkZFNpZGVCYXIudnVlP2FhMzciXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsS0FBSyxnQ0FBZ0M7QUFDckM7QUFDQTtBQUNBO0FBQ0E7QUFDQSx3QkFBd0IsU0FBUywrQkFBK0IsRUFBRTtBQUNsRSx1QkFBdUIsaUNBQWlDO0FBQ3hEO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLGlCQUFpQjtBQUNqQjtBQUNBO0FBQ0EsNEJBQTRCLG1DQUFtQztBQUMvRDtBQUNBO0FBQ0E7QUFDQTtBQUNBLHVCQUF1QjtBQUN2QjtBQUNBO0FBQ0EsbUJBQW1CO0FBQ25CO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxxQkFBcUI7QUFDckI7QUFDQTtBQUNBO0FBQ0E7QUFDQSx1QkFBdUI7QUFDdkI7QUFDQTtBQUNBLG1CQUFtQjtBQUNuQjtBQUNBO0FBQ0E7QUFDQTtBQUNBLDRCQUE0QiwrQkFBK0I7QUFDM0Q7QUFDQTtBQUNBO0FBQ0E7QUFDQSx1QkFBdUI7QUFDdkI7QUFDQTtBQUNBLG1CQUFtQjtBQUNuQjtBQUNBO0FBQ0EsNEJBQTRCLHVDQUF1QztBQUNuRTtBQUNBO0FBQ0E7QUFDQTtBQUNBLHVCQUF1QjtBQUN2QjtBQUNBO0FBQ0EsbUJBQW1CO0FBQ25CO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxxQkFBcUI7QUFDckI7QUFDQTtBQUNBO0FBQ0E7QUFDQSx1QkFBdUI7QUFDdkI7QUFDQTtBQUNBLG1CQUFtQjtBQUNuQjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EscUJBQXFCO0FBQ3JCO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsdUJBQXVCO0FBQ3ZCO0FBQ0E7QUFDQSxtQkFBbUI7QUFDbkI7QUFDQTtBQUNBO0FBQ0EsNkJBQTZCLHFCQUFxQjtBQUNsRDtBQUNBO0FBQ0EsdUJBQXVCLDJCQUEyQjtBQUNsRDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsNkJBQTZCO0FBQzdCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLDJCQUEyQjtBQUMzQjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsNkJBQTZCO0FBQzdCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSw2QkFBNkI7QUFDN0I7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSwrQkFBK0I7QUFDL0I7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSw4QkFBOEI7QUFDOUIscUJBQXFCO0FBQ3JCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsYUFBYSxTQUFTLDZCQUE2QixFQUFFO0FBQ3JEO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9sb2FkZXJzL3RlbXBsYXRlTG9hZGVyLmpzPyEuL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8hLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEFkZFNpZGVCYXIudnVlP3Z1ZSZ0eXBlPXRlbXBsYXRlJmlkPTJiNTE3YmIwJi5qcyIsInNvdXJjZXNDb250ZW50IjpbInZhciByZW5kZXIgPSBmdW5jdGlvbigpIHtcbiAgdmFyIF92bSA9IHRoaXNcbiAgdmFyIF9oID0gX3ZtLiRjcmVhdGVFbGVtZW50XG4gIHZhciBfYyA9IF92bS5fc2VsZi5fYyB8fCBfaFxuICByZXR1cm4gX2MoXG4gICAgXCJkaXZcIixcbiAgICB7IHN0YXRpY0NsYXNzOiBcImNlbnRlcnggbGFiZWx4XCIgfSxcbiAgICBbXG4gICAgICBfYyhcbiAgICAgICAgXCJ2cy10YWJzXCIsXG4gICAgICAgIFtcbiAgICAgICAgICBfYyhcInZzLXRhYlwiLCB7IGF0dHJzOiB7IGxhYmVsOiBcIlByb2R1Y3QgSW5mb3JtYXRpb25cIiB9IH0sIFtcbiAgICAgICAgICAgIF9jKFwiZGl2XCIsIHsgc3RhdGljQ2xhc3M6IFwiY29uLXRhYi1lamVtcGxvXCIgfSwgW1xuICAgICAgICAgICAgICBfYyhcbiAgICAgICAgICAgICAgICBcImZvcm1cIixcbiAgICAgICAgICAgICAgICB7XG4gICAgICAgICAgICAgICAgICBvbjoge1xuICAgICAgICAgICAgICAgICAgICBzdWJtaXQ6IGZ1bmN0aW9uKCRldmVudCkge1xuICAgICAgICAgICAgICAgICAgICAgICRldmVudC5wcmV2ZW50RGVmYXVsdCgpXG4gICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIF92bS5wcm9kdWN0Rm9ybVZhbHVlKCRldmVudClcbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgW1xuICAgICAgICAgICAgICAgICAgX2MoXCJ2cy1pbnB1dFwiLCB7XG4gICAgICAgICAgICAgICAgICAgIGF0dHJzOiB7IGxhYmVsOiBcIlNLVVwiLCBwbGFjZWhvbGRlcjogXCJTS1VcIiB9LFxuICAgICAgICAgICAgICAgICAgICBtb2RlbDoge1xuICAgICAgICAgICAgICAgICAgICAgIHZhbHVlOiBfdm0ucHJvZHVjdC5za3UsXG4gICAgICAgICAgICAgICAgICAgICAgY2FsbGJhY2s6IGZ1bmN0aW9uKCQkdikge1xuICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLiRzZXQoX3ZtLnByb2R1Y3QsIFwic2t1XCIsICQkdilcbiAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgIGV4cHJlc3Npb246IFwicHJvZHVjdC5za3VcIlxuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICB9KSxcbiAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICBfYyhcInZzLWlucHV0XCIsIHtcbiAgICAgICAgICAgICAgICAgICAgYXR0cnM6IHtcbiAgICAgICAgICAgICAgICAgICAgICBsYWJlbDogXCJQcm9kdWN0IE5hbWVcIixcbiAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcjogXCJQcm9kdWN0IE5hbWVcIlxuICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICBtb2RlbDoge1xuICAgICAgICAgICAgICAgICAgICAgIHZhbHVlOiBfdm0ucHJvZHVjdC5uYW1lLFxuICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIF92bS4kc2V0KF92bS5wcm9kdWN0LCBcIm5hbWVcIiwgJCR2KVxuICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJwcm9kdWN0Lm5hbWVcIlxuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICB9KSxcbiAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICBfYyhcImJyXCIpLFxuICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgIF9jKFwidnMtaW5wdXRcIiwge1xuICAgICAgICAgICAgICAgICAgICBhdHRyczogeyBsYWJlbDogXCJQcm9kdWN0IERlc2NyaXB0aW9uXCIgfSxcbiAgICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgICB2YWx1ZTogX3ZtLnByb2R1Y3QuZGVzY3JpcHRpb24sXG4gICAgICAgICAgICAgICAgICAgICAgY2FsbGJhY2s6IGZ1bmN0aW9uKCQkdikge1xuICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLiRzZXQoX3ZtLnByb2R1Y3QsIFwiZGVzY3JpcHRpb25cIiwgJCR2KVxuICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJwcm9kdWN0LmRlc2NyaXB0aW9uXCJcbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgfSksXG4gICAgICAgICAgICAgICAgICBfdm0uX3YoXCIgXCIpLFxuICAgICAgICAgICAgICAgICAgX2MoXCJ2cy1pbnB1dFwiLCB7XG4gICAgICAgICAgICAgICAgICAgIGF0dHJzOiB7IGxhYmVsOiBcIlByaWNlXCIsIHBsYWNlaG9sZGVyOiBcIlByaWNlXCIgfSxcbiAgICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgICB2YWx1ZTogX3ZtLnByb2R1Y3QucHJpY2UsXG4gICAgICAgICAgICAgICAgICAgICAgY2FsbGJhY2s6IGZ1bmN0aW9uKCQkdikge1xuICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLiRzZXQoX3ZtLnByb2R1Y3QsIFwicHJpY2VcIiwgJCR2KVxuICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJwcm9kdWN0LnByaWNlXCJcbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgfSksXG4gICAgICAgICAgICAgICAgICBfdm0uX3YoXCIgXCIpLFxuICAgICAgICAgICAgICAgICAgX2MoXCJ2cy1pbnB1dFwiLCB7XG4gICAgICAgICAgICAgICAgICAgIGF0dHJzOiB7XG4gICAgICAgICAgICAgICAgICAgICAgbGFiZWw6IFwiT3JkZXJpbmcgQ29tcGFueVwiLFxuICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyOiBcIk9yZGVyaW5nIENvbXBhbnlcIlxuICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICBtb2RlbDoge1xuICAgICAgICAgICAgICAgICAgICAgIHZhbHVlOiBfdm0ucHJvZHVjdC5vcmRlcmluZ19jb21wYW55X2lkX2ZrLFxuICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIF92bS4kc2V0KF92bS5wcm9kdWN0LCBcIm9yZGVyaW5nX2NvbXBhbnlfaWRfZmtcIiwgJCR2KVxuICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJwcm9kdWN0Lm9yZGVyaW5nX2NvbXBhbnlfaWRfZmtcIlxuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICB9KSxcbiAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICBfYyhcInZzLWlucHV0XCIsIHtcbiAgICAgICAgICAgICAgICAgICAgYXR0cnM6IHtcbiAgICAgICAgICAgICAgICAgICAgICBsYWJlbDogXCJQcm9kdWN0IENhdGVnb3J5XCIsXG4gICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI6IFwiUHJvZHVjdCBDYXRlZ29yeVwiXG4gICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgIG1vZGVsOiB7XG4gICAgICAgICAgICAgICAgICAgICAgdmFsdWU6IF92bS5wcm9kdWN0LnByb2RfY2F0X2ZrLFxuICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIF92bS4kc2V0KF92bS5wcm9kdWN0LCBcInByb2RfY2F0X2ZrXCIsICQkdilcbiAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgIGV4cHJlc3Npb246IFwicHJvZHVjdC5wcm9kX2NhdF9ma1wiXG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgIH0pLFxuICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgIF9jKFwiYnJcIiksXG4gICAgICAgICAgICAgICAgICBfdm0uX3YoXCIgXCIpLFxuICAgICAgICAgICAgICAgICAgX2MoXCJkaXZcIiwgeyBzdGF0aWNDbGFzczogXCJyb3dcIiB9LCBbXG4gICAgICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgICAgIFwiZGl2XCIsXG4gICAgICAgICAgICAgICAgICAgICAgeyBzdGF0aWNDbGFzczogXCJjb2wteHMtMTJcIiB9LFxuICAgICAgICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgICAgICAgICBcImVsLXVwbG9hZFwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhdGljQ2xhc3M6IFwidXBsb2FkLWRlbW9cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdGF0aWNTdHlsZToge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGlzcGxheTogXCJpbmxpbmUtYmxvY2tcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwibWFyZ2luLXJpZ2h0XCI6IFwiMTBweFwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyczoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZHJhZzogXCJcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFjdGlvbjogXCJ1cGxvYWR1cmxcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiZmlsZS1saXN0XCI6IF92bS5maWxlcyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwic2hvdy1maWxlLWxpc3RcIjogZmFsc2UsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtdWx0aXBsZTogdHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiaHR0cC1yZXF1ZXN0XCI6IF92bS51cGxvYWRGaWxlLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbG9hZGluZzogX3ZtLmZpbGVJc1VwbG9hZGluZ1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgW1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIF9jKFwiaVwiLCB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXJlY3RpdmVzOiBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBuYW1lOiBcInNob3dcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXdOYW1lOiBcInYtc2hvd1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlOiAhX3ZtLmZpbGVJc1VwbG9hZGluZyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBleHByZXNzaW9uOiBcIiFmaWxlSXNVcGxvYWRpbmdcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhdGljQ2xhc3M6IFwiZWwtaWNvbi11cGxvYWRcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0pLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJpXCIsIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRpcmVjdGl2ZXM6IFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5hbWU6IFwic2hvd1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhd05hbWU6IFwidi1zaG93XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmFsdWU6IF92bS5maWxlSXNVcGxvYWRpbmcsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJmaWxlSXNVcGxvYWRpbmdcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhdGljQ2xhc3M6IFwiZWwtaWNvbi1sb2FkaW5nXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdGF0aWNTdHlsZToge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcImZvbnQtc2l6ZVwiOiBcIjY3cHhcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6IFwiI2MwYzRjY1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtYXJnaW46IFwiNDBweCAwIDE2cHhcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJsaW5lLWhlaWdodFwiOiBcIjUwcHhcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0pLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcImRpdlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXJlY3RpdmVzOiBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbmFtZTogXCJzaG93XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXdOYW1lOiBcInYtc2hvd1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmFsdWU6ICFfdm0uZmlsZUlzVXBsb2FkaW5nLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCIhZmlsZUlzVXBsb2FkaW5nXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0YXRpY0NsYXNzOiBcImVsLXVwbG9hZF9fdGV4dFwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW192bS5fdihcIlVwbG9hZCBJbWFnZSBIZXJlIFwiKV1cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgICAgICAgIF1cbiAgICAgICAgICAgICAgICAgICAgICAgIClcbiAgICAgICAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgXSksXG4gICAgICAgICAgICAgICAgICBfdm0uX3YoXCIgXCIpLFxuICAgICAgICAgICAgICAgICAgX2MoXCJiclwiKSxcbiAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICBfYyhcbiAgICAgICAgICAgICAgICAgICAgXCJidXR0b25cIixcbiAgICAgICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgICAgIHN0YXRpY0NsYXNzOlxuICAgICAgICAgICAgICAgICAgICAgICAgXCJidG4gYnRuLXByaW1hcnkgYnRuLWFkZC1uZXcgcC0zIG1iLTQgbXItNCByb3VuZGVkLWxnIGN1cnNvci1wb2ludGVyIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRleHQtbGcgZm9udC1tZWRpdW0gdGV4dC1iYXNlIHRleHQtcHJpbWFyeSBib3JkZXIgYm9yZGVyLXNvbGlkIGJvcmRlci1wcmltYXJ5XCIsXG4gICAgICAgICAgICAgICAgICAgICAgYXR0cnM6IHsgdHlwZTogXCJzdWJtaXRcIiB9XG4gICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgIFtfdm0uX3YoX3ZtLl9zKF92bS5idXR0b250ZXh0KSArIFwiIFByb2R1Y3QgXCIpXVxuICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgMVxuICAgICAgICAgICAgICApXG4gICAgICAgICAgICBdKVxuICAgICAgICAgIF0pLFxuICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgX2MoXG4gICAgICAgICAgICBcInZzLXRhYlwiLFxuICAgICAgICAgICAgeyBhdHRyczogeyBsYWJlbDogXCJQcm9kdWN0IEF0dHJpYnV0ZVwiIH0gfSxcbiAgICAgICAgICAgIFtfYyhcInByb2R1Y3QtYXR0clwiKV0sXG4gICAgICAgICAgICAxXG4gICAgICAgICAgKVxuICAgICAgICBdLFxuICAgICAgICAxXG4gICAgICApXG4gICAgXSxcbiAgICAxXG4gIClcbn1cbnZhciBzdGF0aWNSZW5kZXJGbnMgPSBbXVxucmVuZGVyLl93aXRoU3RyaXBwZWQgPSB0cnVlXG5cbmV4cG9ydCB7IHJlbmRlciwgc3RhdGljUmVuZGVyRm5zIH0iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=template&id=2b517bb0&\n");
 
 /***/ }),
 
@@ -660,221 +66,7 @@ render._withStripped = true
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "vs-table",
-        [
-          _vm._l(_vm.companies, function(comp, indextr) {
-            return _c(
-              "vs-tr",
-              { key: indextr },
-              [
-                _c(
-                  "template",
-                  { slot: "thead" },
-                  [_c("vs-th", [_vm._v("ID")])],
-                  1
-                ),
-                _vm._v(" "),
-                _c("vs-td", [
-                  _vm._v(
-                    "\n        " +
-                      _vm._s(comp.name) +
-                      " : " +
-                      _vm._s(comp.id) +
-                      "\n    "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("template", { staticClass: "expand-user", slot: "expand" }, [
-                  _c(
-                    "div",
-                    { staticClass: "con-expand-users w-full" },
-                    _vm._l(_vm.productattrs, function(item, indextr) {
-                      return _c(
-                        "vs-list",
-                        { key: indextr },
-                        [
-                          _c("vs-list-item", [
-                            _c(
-                              "div",
-                              [
-                                item.ordering_company_id_fk == comp.id
-                                  ? _c(
-                                      "vs-tr",
-                                      [
-                                        _c("vs-td", [
-                                          item.editmode
-                                            ? _c(
-                                                "span",
-                                                [
-                                                  _c("vs-input", {
-                                                    attrs: {
-                                                      label: "Company Name",
-                                                      placeholder:
-                                                        "Company Name"
-                                                    },
-                                                    model: {
-                                                      value:
-                                                        item.ordering_company_id_fk,
-                                                      callback: function($$v) {
-                                                        _vm.$set(
-                                                          item,
-                                                          "ordering_company_id_fk",
-                                                          $$v
-                                                        )
-                                                      },
-                                                      expression:
-                                                        "item.ordering_company_id_fk"
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              )
-                                            : _c("span", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    item.ordering_company_id_fk
-                                                  )
-                                                )
-                                              ])
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("vs-td", [
-                                          item.editmode
-                                            ? _c(
-                                                "span",
-                                                [
-                                                  _c("vs-input", {
-                                                    attrs: {
-                                                      label: "Company Name",
-                                                      placeholder:
-                                                        "Company Name"
-                                                    },
-                                                    model: {
-                                                      value: item.Banner_ID_fk,
-                                                      callback: function($$v) {
-                                                        _vm.$set(
-                                                          item,
-                                                          "Banner_ID_fk",
-                                                          $$v
-                                                        )
-                                                      },
-                                                      expression:
-                                                        "item.Banner_ID_fk"
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              )
-                                            : _c("span", [
-                                                _vm._v(
-                                                  _vm._s(item.Banner_ID_fk)
-                                                )
-                                              ])
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("vs-td", [
-                                          item.editmode
-                                            ? _c(
-                                                "span",
-                                                [
-                                                  _c("vs-input", {
-                                                    attrs: {
-                                                      label: "Company Name",
-                                                      placeholder:
-                                                        "Company Name"
-                                                    },
-                                                    model: {
-                                                      value: item.Dept_ID_fk,
-                                                      callback: function($$v) {
-                                                        _vm.$set(
-                                                          item,
-                                                          "Dept_ID_fk",
-                                                          $$v
-                                                        )
-                                                      },
-                                                      expression:
-                                                        "item.Dept_ID_fk"
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              )
-                                            : _c("span", [
-                                                _vm._v(_vm._s(item.Dept_ID_fk))
-                                              ])
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("vs-td", [
-                                          !item.editmode
-                                            ? _c("span", [
-                                                _c(
-                                                  "button",
-                                                  {
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.edit(item)
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v("Edit")]
-                                                )
-                                              ])
-                                            : _c("span", [
-                                                _c(
-                                                  "button",
-                                                  {
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.save(item)
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v("Save")]
-                                                )
-                                              ])
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e()
-                              ],
-                              1
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    }),
-                    1
-                  )
-                ])
-              ],
-              2
-            )
-          })
-        ],
-        2
-      ),
-      _vm._v("\n" + _vm._s(_vm.productattrs) + "\n ")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\n        \"vs-table\",\n        [\n          _vm._l(_vm.companies, function(comp, indextr) {\n            return _c(\n              \"vs-tr\",\n              { key: indextr },\n              [\n                _c(\n                  \"template\",\n                  { slot: \"thead\" },\n                  [_c(\"vs-th\", [_vm._v(\"ID\")])],\n                  1\n                ),\n                _vm._v(\" \"),\n                _c(\"vs-td\", [\n                  _vm._v(\n                    \"\\n        \" +\n                      _vm._s(comp.name) +\n                      \" : \" +\n                      _vm._s(comp.id) +\n                      \"\\n    \"\n                  )\n                ]),\n                _vm._v(\" \"),\n                _c(\"template\", { staticClass: \"expand-user\", slot: \"expand\" }, [\n                  _c(\n                    \"div\",\n                    { staticClass: \"con-expand-users w-full\" },\n                    _vm._l(_vm.productattrs, function(item, indextr) {\n                      return _c(\n                        \"vs-list\",\n                        { key: indextr },\n                        [\n                          _c(\"vs-list-item\", [\n                            _c(\n                              \"div\",\n                              [\n                                item.ordering_company_id_fk == comp.id\n                                  ? _c(\n                                      \"vs-tr\",\n                                      [\n                                        _c(\"vs-td\", [\n                                          item.editmode\n                                            ? _c(\n                                                \"span\",\n                                                [\n                                                  _c(\"vs-input\", {\n                                                    attrs: {\n                                                      label: \"Company Name\",\n                                                      placeholder:\n                                                        \"Company Name\"\n                                                    },\n                                                    model: {\n                                                      value:\n                                                        item.ordering_company_id_fk,\n                                                      callback: function($$v) {\n                                                        _vm.$set(\n                                                          item,\n                                                          \"ordering_company_id_fk\",\n                                                          $$v\n                                                        )\n                                                      },\n                                                      expression:\n                                                        \"item.ordering_company_id_fk\"\n                                                    }\n                                                  })\n                                                ],\n                                                1\n                                              )\n                                            : _c(\"span\", [\n                                                _vm._v(\n                                                  _vm._s(\n                                                    item.ordering_company_id_fk\n                                                  )\n                                                )\n                                              ])\n                                        ]),\n                                        _vm._v(\" \"),\n                                        _c(\"vs-td\", [\n                                          item.editmode\n                                            ? _c(\n                                                \"span\",\n                                                [\n                                                  _c(\"vs-input\", {\n                                                    attrs: {\n                                                      label: \"Company Name\",\n                                                      placeholder:\n                                                        \"Company Name\"\n                                                    },\n                                                    model: {\n                                                      value: item.Banner_ID_fk,\n                                                      callback: function($$v) {\n                                                        _vm.$set(\n                                                          item,\n                                                          \"Banner_ID_fk\",\n                                                          $$v\n                                                        )\n                                                      },\n                                                      expression:\n                                                        \"item.Banner_ID_fk\"\n                                                    }\n                                                  })\n                                                ],\n                                                1\n                                              )\n                                            : _c(\"span\", [\n                                                _vm._v(\n                                                  _vm._s(item.Banner_ID_fk)\n                                                )\n                                              ])\n                                        ]),\n                                        _vm._v(\" \"),\n                                        _c(\"vs-td\", [\n                                          item.editmode\n                                            ? _c(\n                                                \"span\",\n                                                [\n                                                  _c(\"vs-input\", {\n                                                    attrs: {\n                                                      label: \"Company Name\",\n                                                      placeholder:\n                                                        \"Company Name\"\n                                                    },\n                                                    model: {\n                                                      value: item.Dept_ID_fk,\n                                                      callback: function($$v) {\n                                                        _vm.$set(\n                                                          item,\n                                                          \"Dept_ID_fk\",\n                                                          $$v\n                                                        )\n                                                      },\n                                                      expression:\n                                                        \"item.Dept_ID_fk\"\n                                                    }\n                                                  })\n                                                ],\n                                                1\n                                              )\n                                            : _c(\"span\", [\n                                                _vm._v(_vm._s(item.Dept_ID_fk))\n                                              ])\n                                        ]),\n                                        _vm._v(\" \"),\n                                        _c(\"vs-td\", [\n                                          !item.editmode\n                                            ? _c(\"span\", [\n                                                _c(\n                                                  \"button\",\n                                                  {\n                                                    on: {\n                                                      click: function($event) {\n                                                        return _vm.edit(item)\n                                                      }\n                                                    }\n                                                  },\n                                                  [_vm._v(\"Edit\")]\n                                                )\n                                              ])\n                                            : _c(\"span\", [\n                                                _c(\n                                                  \"button\",\n                                                  {\n                                                    on: {\n                                                      click: function($event) {\n                                                        return _vm.save(item)\n                                                      }\n                                                    }\n                                                  },\n                                                  [_vm._v(\"Save\")]\n                                                )\n                                              ])\n                                        ])\n                                      ],\n                                      1\n                                    )\n                                  : _vm._e()\n                              ],\n                              1\n                            )\n                          ])\n                        ],\n                        1\n                      )\n                    }),\n                    1\n                  )\n                ])\n              ],\n              2\n            )\n          })\n        ],\n        2\n      ),\n      _vm._v(\"\\n\" + _vm._s(_vm.productattrs) + \"\\n \")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlPzMyYzciXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxlQUFlLGVBQWU7QUFDOUI7QUFDQTtBQUNBO0FBQ0EsbUJBQW1CLGdCQUFnQjtBQUNuQztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsZ0NBQWdDLDZDQUE2QztBQUM3RTtBQUNBO0FBQ0EscUJBQXFCLHlDQUF5QztBQUM5RDtBQUNBO0FBQ0E7QUFDQSx5QkFBeUIsZUFBZTtBQUN4QztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLHFEQUFxRDtBQUNyRDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSx1REFBdUQ7QUFDdkQ7QUFDQTtBQUNBO0FBQ0EsbURBQW1EO0FBQ25EO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EscURBQXFEO0FBQ3JEO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSx1REFBdUQ7QUFDdkQ7QUFDQTtBQUNBO0FBQ0EsbURBQW1EO0FBQ25EO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxxREFBcUQ7QUFDckQ7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLHVEQUF1RDtBQUN2RDtBQUNBO0FBQ0E7QUFDQSxtREFBbUQ7QUFDbkQ7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxtREFBbUQ7QUFDbkQ7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsbURBQW1EO0FBQ25EO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLHFCQUFxQjtBQUNyQjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxXQUFXO0FBQ1g7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvbG9hZGVycy90ZW1wbGF0ZUxvYWRlci5qcz8hLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/IS4vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD0zYTlmNzA4YSYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJ2YXIgcmVuZGVyID0gZnVuY3Rpb24oKSB7XG4gIHZhciBfdm0gPSB0aGlzXG4gIHZhciBfaCA9IF92bS4kY3JlYXRlRWxlbWVudFxuICB2YXIgX2MgPSBfdm0uX3NlbGYuX2MgfHwgX2hcbiAgcmV0dXJuIF9jKFxuICAgIFwiZGl2XCIsXG4gICAgW1xuICAgICAgX2MoXG4gICAgICAgIFwidnMtdGFibGVcIixcbiAgICAgICAgW1xuICAgICAgICAgIF92bS5fbChfdm0uY29tcGFuaWVzLCBmdW5jdGlvbihjb21wLCBpbmRleHRyKSB7XG4gICAgICAgICAgICByZXR1cm4gX2MoXG4gICAgICAgICAgICAgIFwidnMtdHJcIixcbiAgICAgICAgICAgICAgeyBrZXk6IGluZGV4dHIgfSxcbiAgICAgICAgICAgICAgW1xuICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgXCJ0ZW1wbGF0ZVwiLFxuICAgICAgICAgICAgICAgICAgeyBzbG90OiBcInRoZWFkXCIgfSxcbiAgICAgICAgICAgICAgICAgIFtfYyhcInZzLXRoXCIsIFtfdm0uX3YoXCJJRFwiKV0pXSxcbiAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICApLFxuICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgX2MoXCJ2cy10ZFwiLCBbXG4gICAgICAgICAgICAgICAgICBfdm0uX3YoXG4gICAgICAgICAgICAgICAgICAgIFwiXFxuICAgICAgICBcIiArXG4gICAgICAgICAgICAgICAgICAgICAgX3ZtLl9zKGNvbXAubmFtZSkgK1xuICAgICAgICAgICAgICAgICAgICAgIFwiIDogXCIgK1xuICAgICAgICAgICAgICAgICAgICAgIF92bS5fcyhjb21wLmlkKSArXG4gICAgICAgICAgICAgICAgICAgICAgXCJcXG4gICAgXCJcbiAgICAgICAgICAgICAgICAgIClcbiAgICAgICAgICAgICAgICBdKSxcbiAgICAgICAgICAgICAgICBfdm0uX3YoXCIgXCIpLFxuICAgICAgICAgICAgICAgIF9jKFwidGVtcGxhdGVcIiwgeyBzdGF0aWNDbGFzczogXCJleHBhbmQtdXNlclwiLCBzbG90OiBcImV4cGFuZFwiIH0sIFtcbiAgICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgICBcImRpdlwiLFxuICAgICAgICAgICAgICAgICAgICB7IHN0YXRpY0NsYXNzOiBcImNvbi1leHBhbmQtdXNlcnMgdy1mdWxsXCIgfSxcbiAgICAgICAgICAgICAgICAgICAgX3ZtLl9sKF92bS5wcm9kdWN0YXR0cnMsIGZ1bmN0aW9uKGl0ZW0sIGluZGV4dHIpIHtcbiAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gX2MoXG4gICAgICAgICAgICAgICAgICAgICAgICBcInZzLWxpc3RcIixcbiAgICAgICAgICAgICAgICAgICAgICAgIHsga2V5OiBpbmRleHRyIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgIF9jKFwidnMtbGlzdC1pdGVtXCIsIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiZGl2XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGl0ZW0ub3JkZXJpbmdfY29tcGFueV9pZF9mayA9PSBjb21wLmlkXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPyBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJ2cy10clwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJ2cy10ZFwiLCBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpdGVtLmVkaXRtb2RlXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgID8gX2MoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcInNwYW5cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJ2cy1pbnB1dFwiLCB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXR0cnM6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxhYmVsOiBcIkNvbXBhbnkgTmFtZVwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI6XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiQ29tcGFueSBOYW1lXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1vZGVsOiB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2YWx1ZTpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaXRlbS5vcmRlcmluZ19jb21wYW55X2lkX2ZrLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2FsbGJhY2s6IGZ1bmN0aW9uKCQkdikge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uJHNldChcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpdGVtLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwib3JkZXJpbmdfY29tcGFueV9pZF9ma1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICQkdlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJpdGVtLm9yZGVyaW5nX2NvbXBhbnlfaWRfZmtcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfSlcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IF9jKFwic3BhblwiLCBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uX3YoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fcyhcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpdGVtLm9yZGVyaW5nX2NvbXBhbnlfaWRfZmtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0pXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcInZzLXRkXCIsIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGl0ZW0uZWRpdG1vZGVcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPyBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwic3BhblwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcInZzLWlucHV0XCIsIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyczoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbGFiZWw6IFwiQ29tcGFueSBOYW1lXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcjpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJDb21wYW55IE5hbWVcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlOiBpdGVtLkJhbm5lcl9JRF9mayxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLiRzZXQoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaXRlbSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIkJhbm5lcl9JRF9ma1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICQkdlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJpdGVtLkJhbm5lcl9JRF9ma1wiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogX2MoXCJzcGFuXCIsIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLl9zKGl0ZW0uQmFubmVyX0lEX2ZrKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0pXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcInZzLXRkXCIsIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGl0ZW0uZWRpdG1vZGVcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPyBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwic3BhblwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcInZzLWlucHV0XCIsIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyczoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbGFiZWw6IFwiQ29tcGFueSBOYW1lXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcjpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJDb21wYW55IE5hbWVcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlOiBpdGVtLkRlcHRfSURfZmssXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjYWxsYmFjazogZnVuY3Rpb24oJCR2KSB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS4kc2V0KFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGl0ZW0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJEZXB0X0lEX2ZrXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJCR2XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIClcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBleHByZXNzaW9uOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIml0ZW0uRGVwdF9JRF9ma1wiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogX2MoXCJzcGFuXCIsIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihfdm0uX3MoaXRlbS5EZXB0X0lEX2ZrKSlcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBdKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0pLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJ2cy10ZFwiLCBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAhaXRlbS5lZGl0bW9kZVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA/IF9jKFwic3BhblwiLCBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJidXR0b25cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uOiB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGljazogZnVuY3Rpb24oJGV2ZW50KSB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBfdm0uZWRpdChpdGVtKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW192bS5fdihcIkVkaXRcIildXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXSlcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBfYyhcInNwYW5cIiwgW1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiYnV0dG9uXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvbjoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xpY2s6IGZ1bmN0aW9uKCRldmVudCkge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gX3ZtLnNhdmUoaXRlbSlcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFtfdm0uX3YoXCJTYXZlXCIpXVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0pXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXSlcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogX3ZtLl9lKClcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgICAgICAgICAgICAgICBdKVxuICAgICAgICAgICAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgIH0pLFxuICAgICAgICAgICAgICAgICAgICAxXG4gICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgXSlcbiAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgMlxuICAgICAgICAgICAgKVxuICAgICAgICAgIH0pXG4gICAgICAgIF0sXG4gICAgICAgIDJcbiAgICAgICksXG4gICAgICBfdm0uX3YoXCJcXG5cIiArIF92bS5fcyhfdm0ucHJvZHVjdGF0dHJzKSArIFwiXFxuIFwiKVxuICAgIF0sXG4gICAgMVxuICApXG59XG52YXIgc3RhdGljUmVuZGVyRm5zID0gW11cbnJlbmRlci5fd2l0aFN0cmlwcGVkID0gdHJ1ZVxuXG5leHBvcnQgeyByZW5kZXIsIHN0YXRpY1JlbmRlckZucyB9Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=template&id=3a9f708a&\n");
 
 /***/ }),
 
@@ -886,32 +78,7 @@ render._withStripped = true
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductAddSideBar.vue?vue&type=template&id=2b517bb0& */ "./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=template&id=2b517bb0&");
-/* harmony import */ var _ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAddSideBar.vue?vue&type=script&lang=js& */ "./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/src/views/Product/ProductAddSideBar.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductAddSideBar.vue?vue&type=template&id=2b517bb0& */ \"./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=template&id=2b517bb0&\");\n/* harmony import */ var _ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAddSideBar.vue?vue&type=script&lang=js& */ \"./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"resources/js/src/views/Product/ProductAddSideBar.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEFkZFNpZGVCYXIudnVlP2YxZmUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBZ0c7QUFDM0I7QUFDTDs7O0FBR2hFO0FBQ21HO0FBQ25HLGdCQUFnQiwyR0FBVTtBQUMxQixFQUFFLHVGQUFNO0FBQ1IsRUFBRSw0RkFBTTtBQUNSLEVBQUUscUdBQWU7QUFDakI7QUFDQTtBQUNBO0FBQ0E7O0FBRUE7O0FBRUE7QUFDQSxJQUFJLEtBQVUsRUFBRSxZQWlCZjtBQUNEO0FBQ2UsZ0YiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEFkZFNpZGVCYXIudnVlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgcmVuZGVyLCBzdGF0aWNSZW5kZXJGbnMgfSBmcm9tIFwiLi9Qcm9kdWN0QWRkU2lkZUJhci52dWU/dnVlJnR5cGU9dGVtcGxhdGUmaWQ9MmI1MTdiYjAmXCJcbmltcG9ydCBzY3JpcHQgZnJvbSBcIi4vUHJvZHVjdEFkZFNpZGVCYXIudnVlP3Z1ZSZ0eXBlPXNjcmlwdCZsYW5nPWpzJlwiXG5leHBvcnQgKiBmcm9tIFwiLi9Qcm9kdWN0QWRkU2lkZUJhci52dWU/dnVlJnR5cGU9c2NyaXB0Jmxhbmc9anMmXCJcblxuXG4vKiBub3JtYWxpemUgY29tcG9uZW50ICovXG5pbXBvcnQgbm9ybWFsaXplciBmcm9tIFwiIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9ydW50aW1lL2NvbXBvbmVudE5vcm1hbGl6ZXIuanNcIlxudmFyIGNvbXBvbmVudCA9IG5vcm1hbGl6ZXIoXG4gIHNjcmlwdCxcbiAgcmVuZGVyLFxuICBzdGF0aWNSZW5kZXJGbnMsXG4gIGZhbHNlLFxuICBudWxsLFxuICBudWxsLFxuICBudWxsXG4gIFxuKVxuXG4vKiBob3QgcmVsb2FkICovXG5pZiAobW9kdWxlLmhvdCkge1xuICB2YXIgYXBpID0gcmVxdWlyZShcIi9Vc2Vycy9HQi9TaXRlcy9DbGFya1ByaW50aW5nUG9ydGFsVjIvbm9kZV9tb2R1bGVzL3Z1ZS1ob3QtcmVsb2FkLWFwaS9kaXN0L2luZGV4LmpzXCIpXG4gIGFwaS5pbnN0YWxsKHJlcXVpcmUoJ3Z1ZScpKVxuICBpZiAoYXBpLmNvbXBhdGlibGUpIHtcbiAgICBtb2R1bGUuaG90LmFjY2VwdCgpXG4gICAgaWYgKCFhcGkuaXNSZWNvcmRlZCgnMmI1MTdiYjAnKSkge1xuICAgICAgYXBpLmNyZWF0ZVJlY29yZCgnMmI1MTdiYjAnLCBjb21wb25lbnQub3B0aW9ucylcbiAgICB9IGVsc2Uge1xuICAgICAgYXBpLnJlbG9hZCgnMmI1MTdiYjAnLCBjb21wb25lbnQub3B0aW9ucylcbiAgICB9XG4gICAgbW9kdWxlLmhvdC5hY2NlcHQoXCIuL1Byb2R1Y3RBZGRTaWRlQmFyLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD0yYjUxN2JiMCZcIiwgZnVuY3Rpb24gKCkge1xuICAgICAgYXBpLnJlcmVuZGVyKCcyYjUxN2JiMCcsIHtcbiAgICAgICAgcmVuZGVyOiByZW5kZXIsXG4gICAgICAgIHN0YXRpY1JlbmRlckZuczogc3RhdGljUmVuZGVyRm5zXG4gICAgICB9KVxuICAgIH0pXG4gIH1cbn1cbmNvbXBvbmVudC5vcHRpb25zLl9fZmlsZSA9IFwicmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBZGRTaWRlQmFyLnZ1ZVwiXG5leHBvcnQgZGVmYXVsdCBjb21wb25lbnQuZXhwb3J0cyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/src/views/Product/ProductAddSideBar.vue\n");
 
 /***/ }),
 
@@ -923,9 +90,7 @@ component.options.__file = "resources/js/src/views/Product/ProductAddSideBar.vue
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAddSideBar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAddSideBar.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); //# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEFkZFNpZGVCYXIudnVlP2Y1ZTMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBLHdDQUE2TSxDQUFnQiw2UEFBRyxFQUFDIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBZGRTaWRlQmFyLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgbW9kIGZyb20gXCItIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9iYWJlbC1sb2FkZXIvbGliL2luZGV4LmpzPz9yZWYtLTQtMCEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/P3Z1ZS1sb2FkZXItb3B0aW9ucyEuL1Byb2R1Y3RBZGRTaWRlQmFyLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyZcIjsgZXhwb3J0IGRlZmF1bHQgbW9kOyBleHBvcnQgKiBmcm9tIFwiLSEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvYmFiZWwtbG9hZGVyL2xpYi9pbmRleC5qcz8/cmVmLS00LTAhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2luZGV4LmpzPz92dWUtbG9hZGVyLW9wdGlvbnMhLi9Qcm9kdWN0QWRkU2lkZUJhci52dWU/dnVlJnR5cGU9c2NyaXB0Jmxhbmc9anMmXCIiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=script&lang=js&\n");
 
 /***/ }),
 
@@ -937,13 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAddSideBar.vue?vue&type=template&id=2b517bb0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=template&id=2b517bb0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAddSideBar.vue?vue&type=template&id=2b517bb0& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=template&id=2b517bb0&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAddSideBar_vue_vue_type_template_id_2b517bb0___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEFkZFNpZGVCYXIudnVlP2FlMWEiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBZGRTaWRlQmFyLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD0yYjUxN2JiMCYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tIFwiLSEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvbG9hZGVycy90ZW1wbGF0ZUxvYWRlci5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4vUHJvZHVjdEFkZFNpZGVCYXIudnVlP3Z1ZSZ0eXBlPXRlbXBsYXRlJmlkPTJiNTE3YmIwJlwiIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/src/views/Product/ProductAddSideBar.vue?vue&type=template&id=2b517bb0&\n");
 
 /***/ }),
 
@@ -955,34 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductAttributeForm.vue?vue&type=template&id=3a9f708a& */ "./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=template&id=3a9f708a&");
-/* harmony import */ var _ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAttributeForm.vue?vue&type=script&lang=js& */ "./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductAttributeForm.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/src/views/Product/ProductAttributeForm.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductAttributeForm.vue?vue&type=template&id=3a9f708a& */ \"./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=template&id=3a9f708a&\");\n/* harmony import */ var _ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAttributeForm.vue?vue&type=script&lang=js& */ \"./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductAttributeForm.vue?vue&type=style&index=0&lang=scss& */ \"./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&\");\n/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(\n  _ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"resources/js/src/views/Product/ProductAttributeForm.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlPzg0NTMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFtRztBQUMzQjtBQUNMO0FBQ2M7OztBQUdqRjtBQUNtRztBQUNuRyxnQkFBZ0IsMkdBQVU7QUFDMUIsRUFBRSwwRkFBTTtBQUNSLEVBQUUsK0ZBQU07QUFDUixFQUFFLHdHQUFlO0FBQ2pCO0FBQ0E7QUFDQTtBQUNBOztBQUVBOztBQUVBO0FBQ0EsSUFBSSxLQUFVLEVBQUUsWUFpQmY7QUFDRDtBQUNlLGdGIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IHJlbmRlciwgc3RhdGljUmVuZGVyRm5zIH0gZnJvbSBcIi4vUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXRlbXBsYXRlJmlkPTNhOWY3MDhhJlwiXG5pbXBvcnQgc2NyaXB0IGZyb20gXCIuL1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyZcIlxuZXhwb3J0ICogZnJvbSBcIi4vUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXNjcmlwdCZsYW5nPWpzJlwiXG5pbXBvcnQgc3R5bGUwIGZyb20gXCIuL1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT1zdHlsZSZpbmRleD0wJmxhbmc9c2NzcyZcIlxuXG5cbi8qIG5vcm1hbGl6ZSBjb21wb25lbnQgKi9cbmltcG9ydCBub3JtYWxpemVyIGZyb20gXCIhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL3J1bnRpbWUvY29tcG9uZW50Tm9ybWFsaXplci5qc1wiXG52YXIgY29tcG9uZW50ID0gbm9ybWFsaXplcihcbiAgc2NyaXB0LFxuICByZW5kZXIsXG4gIHN0YXRpY1JlbmRlckZucyxcbiAgZmFsc2UsXG4gIG51bGwsXG4gIG51bGwsXG4gIG51bGxcbiAgXG4pXG5cbi8qIGhvdCByZWxvYWQgKi9cbmlmIChtb2R1bGUuaG90KSB7XG4gIHZhciBhcGkgPSByZXF1aXJlKFwiL1VzZXJzL0dCL1NpdGVzL0NsYXJrUHJpbnRpbmdQb3J0YWxWMi9ub2RlX21vZHVsZXMvdnVlLWhvdC1yZWxvYWQtYXBpL2Rpc3QvaW5kZXguanNcIilcbiAgYXBpLmluc3RhbGwocmVxdWlyZSgndnVlJykpXG4gIGlmIChhcGkuY29tcGF0aWJsZSkge1xuICAgIG1vZHVsZS5ob3QuYWNjZXB0KClcbiAgICBpZiAoIWFwaS5pc1JlY29yZGVkKCczYTlmNzA4YScpKSB7XG4gICAgICBhcGkuY3JlYXRlUmVjb3JkKCczYTlmNzA4YScsIGNvbXBvbmVudC5vcHRpb25zKVxuICAgIH0gZWxzZSB7XG4gICAgICBhcGkucmVsb2FkKCczYTlmNzA4YScsIGNvbXBvbmVudC5vcHRpb25zKVxuICAgIH1cbiAgICBtb2R1bGUuaG90LmFjY2VwdChcIi4vUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXRlbXBsYXRlJmlkPTNhOWY3MDhhJlwiLCBmdW5jdGlvbiAoKSB7XG4gICAgICBhcGkucmVyZW5kZXIoJzNhOWY3MDhhJywge1xuICAgICAgICByZW5kZXI6IHJlbmRlcixcbiAgICAgICAgc3RhdGljUmVuZGVyRm5zOiBzdGF0aWNSZW5kZXJGbnNcbiAgICAgIH0pXG4gICAgfSlcbiAgfVxufVxuY29tcG9uZW50Lm9wdGlvbnMuX19maWxlID0gXCJyZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlXCJcbmV4cG9ydCBkZWZhdWx0IGNvbXBvbmVudC5leHBvcnRzIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/src/views/Product/ProductAttributeForm.vue\n");
 
 /***/ }),
 
@@ -994,9 +126,7 @@ component.options.__file = "resources/js/src/views/Product/ProductAttributeForm.
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); //# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlPzU3YWYiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBLHdDQUFnTixDQUFnQixnUUFBRyxFQUFDIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgbW9kIGZyb20gXCItIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9iYWJlbC1sb2FkZXIvbGliL2luZGV4LmpzPz9yZWYtLTQtMCEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/P3Z1ZS1sb2FkZXItb3B0aW9ucyEuL1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyZcIjsgZXhwb3J0IGRlZmF1bHQgbW9kOyBleHBvcnQgKiBmcm9tIFwiLSEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvYmFiZWwtbG9hZGVyL2xpYi9pbmRleC5qcz8/cmVmLS00LTAhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2luZGV4LmpzPz92dWUtbG9hZGVyLW9wdGlvbnMhLi9Qcm9kdWN0QXR0cmlidXRlRm9ybS52dWU/dnVlJnR5cGU9c2NyaXB0Jmxhbmc9anMmXCIiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=script&lang=js&\n");
 
 /***/ }),
 
@@ -1008,11 +138,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=style&index=0&lang=scss& */ \"./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&\");\n/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);\n/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));\n /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); //# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlPzc4NGYiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBaWMsQ0FBZ0Isa2JBQUcsRUFBQyIsImZpbGUiOiIuL3Jlc291cmNlcy9qcy9zcmMvdmlld3MvUHJvZHVjdC9Qcm9kdWN0QXR0cmlidXRlRm9ybS52dWU/dnVlJnR5cGU9c3R5bGUmaW5kZXg9MCZsYW5nPXNjc3MmLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IG1vZCBmcm9tIFwiLSEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvc3R5bGUtbG9hZGVyL2luZGV4LmpzIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9jc3MtbG9hZGVyL2luZGV4LmpzIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9sb2FkZXJzL3N0eWxlUG9zdExvYWRlci5qcyEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvcG9zdGNzcy1sb2FkZXIvc3JjL2luZGV4LmpzPz9yZWYtLTgtMiEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvc2Fzcy1sb2FkZXIvZGlzdC9janMuanM/P3JlZi0tOC0zIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4vUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXN0eWxlJmluZGV4PTAmbGFuZz1zY3NzJlwiOyBleHBvcnQgZGVmYXVsdCBtb2Q7IGV4cG9ydCAqIGZyb20gXCItIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9zdHlsZS1sb2FkZXIvaW5kZXguanMhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL2Nzcy1sb2FkZXIvaW5kZXguanMhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2xvYWRlcnMvc3R5bGVQb3N0TG9hZGVyLmpzIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9wb3N0Y3NzLWxvYWRlci9zcmMvaW5kZXguanM/P3JlZi0tOC0yIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9zYXNzLWxvYWRlci9kaXN0L2Nqcy5qcz8/cmVmLS04LTMhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2luZGV4LmpzPz92dWUtbG9hZGVyLW9wdGlvbnMhLi9Qcm9kdWN0QXR0cmlidXRlRm9ybS52dWU/dnVlJnR5cGU9c3R5bGUmaW5kZXg9MCZsYW5nPXNjc3MmXCIiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=style&index=0&lang=scss&\n");
 
 /***/ }),
 
@@ -1024,13 +150,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=template&id=3a9f708a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=template&id=3a9f708a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAttributeForm.vue?vue&type=template&id=3a9f708a& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=template&id=3a9f708a&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAttributeForm_vue_vue_type_template_id_3a9f708a___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvc3JjL3ZpZXdzL1Byb2R1Y3QvUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlPzM2ZmUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3NyYy92aWV3cy9Qcm9kdWN0L1Byb2R1Y3RBdHRyaWJ1dGVGb3JtLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD0zYTlmNzA4YSYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tIFwiLSEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvbG9hZGVycy90ZW1wbGF0ZUxvYWRlci5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4vUHJvZHVjdEF0dHJpYnV0ZUZvcm0udnVlP3Z1ZSZ0eXBlPXRlbXBsYXRlJmlkPTNhOWY3MDhhJlwiIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/src/views/Product/ProductAttributeForm.vue?vue&type=template&id=3a9f708a&\n");
 
 /***/ })
 

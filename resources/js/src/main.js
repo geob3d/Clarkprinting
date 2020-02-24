@@ -14,6 +14,9 @@ import App from './App.vue'
 
 // Vuesax Component Framework
 
+import VueDraggable from 'vue-draggable';
+Vue.use(VueDraggable)
+
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';

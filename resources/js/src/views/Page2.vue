@@ -8,7 +8,7 @@
           <div class="App">
             <div class="wrapper">
               <div class="workspace" ref="workspace">
-                <div v-for="row in imgCord ">
+                <div v-for="row in imgRow ">
                 <FreeTransform
                   
                   :key="row.id"
@@ -22,7 +22,7 @@
                   :offset-x="offsetX"
                   :offset-y="offsetY"
                   :disable-scale="row.disableScale === true"
-                  @update="update(row.id, $event);"
+                  @update="update(imgRow.id, $event);"
                 >
                   <div class="element" :style="getElementStyles(row)">
                     {{ row.field }}
@@ -66,7 +66,7 @@
               </thead>
               <tbody>
                 
-                  <tr v-for="(row, index) in imgCord ">
+                  <tr v-for="(row, index) in imgRow ">
 
 
                       <!--<vs-td><input type="text" v-model="row.id"></vs-td>-->
@@ -131,7 +131,7 @@ export default{
     data() {
         return {
           rows: [],
-          imgRow: [],
+          imgRow: {},
 
           imgCord:[],
 
@@ -162,6 +162,8 @@ export default{
   mounted() {
     this.offsetX = this.$refs.workspace.offsetLeft;
     this.offsetY = this.$refs.workspace.offsetTop;
+    this.update();
+
   },
 
     methods:{
@@ -179,7 +181,7 @@ export default{
     
     getSingleImgCord(){
       
-       let uri = '/api/imageCordianates/2';
+       let uri = '/api/imageCordianates/3';
        axios
         .get(uri)
         .then((response) => {
@@ -203,7 +205,7 @@ export default{
 
     update(id, payload) {
 
-      this.imgRow= this.imgRow.map(item =>{
+      this.row= this.row.map(item =>{
         if (item.id === imgRow.id) {
           return {
             ...item,
@@ -213,14 +215,14 @@ export default{
         return item;
       })
 
-      let uri = '/api/imageCordianate/3';
-      axios
-      .put(uri,this.imgRow)
-      .then((response) => {
-        console.log(response)
-          //this.rows  = response.data;
+      // let uri = '/api/imageCordianate/3';
+      // axios
+      // .put(uri,this.imgRow)
+      // .then((response) => {
+      //   console.log(response)
+      //     //this.rows  = response.data;
 
-        });
+      //   });
 
      //this.rows= this.rows.map(item => {
        // if (item.id === imgRow.id) {
@@ -277,7 +279,6 @@ export default{
       this.getallImgCord();
       //this.updateImgCord();
       this.getSingleImgCord();
-      this.update();
     }
 
 }

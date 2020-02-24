@@ -20,7 +20,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = products::with('prodCategories')->get();
+        $products = products::with('prodCategories','imgco')->get();
 
 
         foreach ($products as $p) {

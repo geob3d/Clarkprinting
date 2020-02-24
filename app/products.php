@@ -19,4 +19,10 @@ class products extends Model implements HasMedia
         return $this->hasOne('App\ProductCategories','id','prod_cat_fk');
     }
 
+    public function imgco()
+    {
+ 
+        return $this->hasMany('App\ImageCoordinates','model_id','id');
+    }
+
 }

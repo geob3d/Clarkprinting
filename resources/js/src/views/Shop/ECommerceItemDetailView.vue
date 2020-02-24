@@ -53,7 +53,6 @@
                 <h3>{{ product.name }}</h3>
 
                 <p class="my-2">
-                  <span class="mr-2">by</span>
                 <!--  <span>{{ item_data.brand }}</span>-->
                 </p>
                 <p class="flex items-center flex-wrap">

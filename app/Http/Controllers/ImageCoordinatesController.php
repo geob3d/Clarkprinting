@@ -73,7 +73,10 @@ class ImageCoordinatesController extends Controller
     public function show(ImageCoordinates $imageCoordinates,$cordid)
     {
         // Get a single Companies
-        $imageCoordinates = ImageCoordinates::findOrFail($cordid);
+        $imageCoordinates = ImageCoordinates::where('model_id',$cordid)->get();
+        
+        
+        //findOrFail($cordid);
 
         // Return a single Companies as a resource
         return new IOResource($imageCoordinates);
