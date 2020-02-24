@@ -8,24 +8,24 @@
           <div class="App">
             <div class="wrapper">
               <div class="workspace" ref="workspace">
-                <div v-for="row in imgCord">
+                <div v-for="row in imgCord ">
                 <FreeTransform
                   
                   :key="row.id"
-                  :x="row.x_coordinate"
-                  :y="row.y_coordinate"
-                  :scale-x="row.scaleX"
-                  :scale-y="row.scaleY"
-                  :width="row.width"
-                  :height="row.height"
-                  :angle="row.angle"
+                  :x="Number(row.x_coordinate)"
+                  :y="Number(row.y_coordinate)"
+                  :scale-x="Number(row.scaleX)"
+                  :scale-y="Number(row.scaleY)"
+                  :width="Number(row.width)"
+                  :height="Number(row.height)"
+                  :angle="Number(row.angle)"
                   :offset-x="offsetX"
                   :offset-y="offsetY"
                   :disable-scale="row.disableScale === true"
                   @update="update(row.id, $event);"
                 >
-                  <div class="element" :style="getElementStyles(imgCord)">
-                    {{ row.field_name }}
+                  <div class="element" :style="getElementStyles(row)">
+                    {{ row.field }}
                   </div>
                 </FreeTransform>
                 </div>
@@ -49,7 +49,8 @@
           <vs-table class="table">
               <thead>
                   <vs-tr>
-                      <vs-th><strong>ProductID</strong></vs-th>
+                   
+                     <!--  <vs-th><strong>ProductID</strong></vs-th>-->
                       <vs-th><strong>Row ID</strong></vs-th>
                       <vs-th><strong>Field Name</strong></vs-th>
                       <vs-th><strong>Field Type</strong></vs-th>
@@ -64,7 +65,9 @@
                   </vs-tr>
               </thead>
               <tbody>
-                  <tr v-for="(row, index) in imgCord">
+                
+                  <tr v-for="(row, index) in imgRow ">
+
 
                       <vs-td><input type="text" v-model="row.id"></vs-td>
                       <vs-td><input type="text" v-model="row.row_id"></vs-td>
@@ -83,7 +86,7 @@
 
                       <vs-td>
                       <input v-if="row.field_type" 
-                      :type="row.fieldType" :name="name" 
+                      :type="row.fieldType" :name="row.field_name" 
                       :placeholder="label" 
                       v-model="row.field"
                       :key="`field-${label}`" >
@@ -96,13 +99,12 @@
                       <vs-td><input type="text" v-model.number="row.scaleY"></vs-td>
                       <vs-td><input type="text" v-model.number="row.width"></vs-td>
                       <vs-td><input type="text" v-model.number="row.height"></vs-td>
-                      <vs-td><input type="text" v-model.number="row.angle"></vs-td>
+                     <!-- <vs-td><input type="text" v-model.number="row.angle"></vs-td>-->
                       
       
                       <vs-td>
                           <a color="primary" vs-align="center" type="border" class=" items-center btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" v-on:click="removeElement(index);" style="cursor: pointer">Remove</a>
                       </vs-td>
-
 
                   </tr>
               </tbody>
@@ -110,6 +112,12 @@
 
       </vs-col>
     </vs-row>
+
+<div v-for="tst in imgRow">
+<p>{{tst.id}}</p>
+</div>
+
+
   </div>
 </template>
 
@@ -128,8 +136,9 @@ export default{
     data() {
         return {
           rows: [],
+          imgRow: [],
 
-          imgCord:{},
+          imgCord:[],
 
           "fields": [
           {
@@ -169,23 +178,57 @@ export default{
         .then(response => {
             this.loading = false;
             this.imgCord = response.data.data;
-            console.log(thi.imgCord.id)
         });
 
-
+    },
+    
+    getSingleImgCord(){
+      
+       let uri = '/api/imageCordianates/2';
+       axios
+        .get(uri)
+        .then((response) => {
+        //console.log(response)
+          this.imgRow  = response.data;
+        });
 
     },
 
+
+    updateImgCord() {
+        let uri = `/api/imageCordianate/1`;
+        axios
+        .put(uri, this.rows)
+        .then((response) => {
+          //console.log(response)
+          //this.rows = response.data.data
+       // this.$router.push({name:'CompanyInfo'});
+        });
+      },
+
     update(id, payload) {
-      this.rows = this.rows.map(item => {
-        if (item.id === id) {
-          return {
-            ...item,
-            ...payload
-          };
-        }
-        return item;
-      });
+
+
+
+
+      let uri = '/api/imageCordianate/3';
+      axios
+      .put(uri,this.imgRow)
+      .then((response) => {
+        console.log(response)
+          //this.rows  = response.data;
+
+        });
+
+     //this.rows= this.rows.map(item => {
+       // if (item.id === imgRow.id) {
+         // return {
+           // ...item,
+           // ...payload
+          //};
+        //}
+        //return item;
+      //});
     },
 
     getElementStyles(row) {
@@ -199,14 +242,14 @@ export default{
 
         addRow() {
             var elem = document.createElement('tr');
-            this.imgCord.push({
+            this.imgCord .push({
                 id: "", //!model id
                 prodID:"", // user this. param
-                Name: "",
-                fieldType:"",
+                field_name: "",
+                fieldType:"text",
                 field:" ",
-                x: 225,
-                y: 225,
+                x_coordinate: 225,
+                y_coordinate: 225,
                 scaleX: 1,
                 scaleY: 1,
                 width: 80,
@@ -230,6 +273,9 @@ export default{
 
     created(){
       this.getallImgCord();
+      //this.updateImgCord();
+      this.getSingleImgCord();
+      this.update();
     }
 
 }

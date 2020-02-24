@@ -136,6 +136,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -146,7 +154,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       rows: [],
-      imgCord: {},
+      imgRow: [],
+      imgCord: [],
       "fields": [{
         "label": "Input",
         "name": "fulllName",
@@ -174,17 +183,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/imageCordianates').then(function (response) {
         _this.loading = false;
         _this.imgCord = response.data.data;
-        console.log(thi.imgCord.id);
+      });
+    },
+    getSingleImgCord: function getSingleImgCord() {
+      var _this2 = this;
+
+      var uri = '/api/imageCordianates/2';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
+        //console.log(response)
+        _this2.imgRow = response.data;
+      });
+    },
+    updateImgCord: function updateImgCord() {
+      var uri = "/api/imageCordianate/1";
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.rows).then(function (response) {//console.log(response)
+        //this.rows = response.data.data
+        // this.$router.push({name:'CompanyInfo'});
       });
     },
     update: function update(id, payload) {
-      this.rows = this.rows.map(function (item) {
-        if (item.id === id) {
-          return _objectSpread({}, item, {}, payload);
-        }
-
-        return item;
-      });
+      var uri = '/api/imageCordianate/3';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.imgRow).then(function (response) {
+        console.log(response); //this.rows  = response.data;
+      }); //this.rows= this.rows.map(item => {
+      // if (item.id === imgRow.id) {
+      // return {
+      // ...item,
+      // ...payload
+      //};
+      //}
+      //return item;
+      //});
     },
     getElementStyles: function getElementStyles(row) {
       var styles = row.styles ? row.styles : {};
@@ -200,11 +229,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         //!model id
         prodID: "",
         // user this. param
-        Name: "",
-        fieldType: "",
+        field_name: "",
+        fieldType: "text",
         field: " ",
-        x: 225,
-        y: 225,
+        x_coordinate: 225,
+        y_coordinate: 225,
         scaleX: 1,
         scaleY: 1,
         width: 80,
@@ -225,7 +254,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    this.getallImgCord();
+    this.getallImgCord(); //this.updateImgCord();
+
+    this.getSingleImgCord();
+    this.update();
   }
 });
 
@@ -331,13 +363,13 @@ var render = function() {
                               {
                                 key: row.id,
                                 attrs: {
-                                  x: row.x_coordinate,
-                                  y: row.y_coordinate,
-                                  "scale-x": row.scaleX,
-                                  "scale-y": row.scaleY,
-                                  width: row.width,
-                                  height: row.height,
-                                  angle: row.angle,
+                                  x: Number(row.x_coordinate),
+                                  y: Number(row.y_coordinate),
+                                  "scale-x": Number(row.scaleX),
+                                  "scale-y": Number(row.scaleY),
+                                  width: Number(row.width),
+                                  height: Number(row.height),
+                                  angle: Number(row.angle),
                                   "offset-x": _vm.offsetX,
                                   "offset-y": _vm.offsetY,
                                   "disable-scale": row.disableScale === true
@@ -353,13 +385,13 @@ var render = function() {
                                   "div",
                                   {
                                     staticClass: "element",
-                                    style: _vm.getElementStyles(_vm.imgCord)
+                                    style: _vm.getElementStyles(row)
                                   },
                                   [
                                     _vm._v(
-                                      "\n                  " +
-                                        _vm._s(row.field_name) +
-                                        "\n                "
+                                      "\n                    " +
+                                        _vm._s(row.field) +
+                                        "\n                  "
                                     )
                                   ]
                                 )
@@ -382,7 +414,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("vs-divider", { attrs: { position: "center" } }, [
-        _vm._v("\n      Add Fields    \n  ")
+        _vm._v("\n        Add Fields    \n    ")
       ]),
       _vm._v(" "),
       _c(
@@ -423,8 +455,6 @@ var render = function() {
                     _c(
                       "vs-tr",
                       [
-                        _c("vs-th", [_c("strong", [_vm._v("ProductID")])]),
-                        _vm._v(" "),
                         _c("vs-th", [_c("strong", [_vm._v("Row ID")])]),
                         _vm._v(" "),
                         _c("vs-th", [_c("strong", [_vm._v("Field Name")])]),
@@ -453,7 +483,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.imgCord, function(row, index) {
+                  _vm._l(_vm.imgRow, function(row, index) {
                     return _c(
                       "tr",
                       [
@@ -569,7 +599,7 @@ var render = function() {
                                 ],
                                 key: "field-" + _vm.label,
                                 attrs: {
-                                  name: _vm.name,
+                                  name: row.field_name,
                                   placeholder: _vm.label,
                                   type: "checkbox"
                                 },
@@ -621,7 +651,7 @@ var render = function() {
                                 ],
                                 key: "field-" + _vm.label,
                                 attrs: {
-                                  name: _vm.name,
+                                  name: row.field_name,
                                   placeholder: _vm.label,
                                   type: "radio"
                                 },
@@ -644,7 +674,7 @@ var render = function() {
                                 ],
                                 key: "field-" + _vm.label,
                                 attrs: {
-                                  name: _vm.name,
+                                  name: row.field_name,
                                   placeholder: _vm.label,
                                   type: row.fieldType
                                 },
@@ -848,37 +878,6 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("vs-td", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model.number",
-                                value: row.angle,
-                                expression: "row.angle",
-                                modifiers: { number: true }
-                              }
-                            ],
-                            attrs: { type: "text" },
-                            domProps: { value: row.angle },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  row,
-                                  "angle",
-                                  _vm._n($event.target.value)
-                                )
-                              },
-                              blur: function($event) {
-                                return _vm.$forceUpdate()
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("vs-td", [
                           _c(
                             "a",
                             {
@@ -911,9 +910,13 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.imgRow, function(tst) {
+        return _c("div", [_c("p", [_vm._v(_vm._s(tst.id))])])
+      })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
