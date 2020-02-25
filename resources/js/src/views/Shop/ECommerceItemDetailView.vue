@@ -23,40 +23,41 @@
       <template slot="no-body">
 
         <div class="item-content">
+          
 
           <!-- Item Main Info -->
 
-              <div  class="product-details p-6"  >
-                <div id="capture" class="vx-row mt-6" style="position:relative; max-width:100%;height:auto" >
-                
-                    <img style="border: none;position: absolute;max-width:100%;height:auto" :src="`/public/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name"  v-if="product.media[0]"/>
-                    <div v-else> No Image to Display</div>
+          <div  class="product-details p-6" style="border: none"  >
+            <div id="capture" class="vx-row mt-6" style="position:relative;height:100;width:100" >
+            
+                <img style="border: none;max-width:100%;height:auto position:absolute" :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name"  v-if="product.media[0]"/>
+                <div v-else> No Image to Display</div>
 
-                    <div  style="height: 500px; position: relative;">
-                      <vue-draggable-resizable 
-                      v-for="element in elements"
-                      :key="element.id"
-                      :parent="true" 
-                      :resizable="true" 
-                      :x="Number(element.x_coordinate)" 
-                      :y="Number(element.y_coordinate)" 
-                      :h="Number(element.height)"
-                      :draggable="false"                  
-                      
-                      v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}"
-                      style="border: none; max-height:100%; min-width:100px; display: inline-block">
-                        <p>{{ element.field }}</p>
-                      </vue-draggable-resizable>
+                <div  style="height: 500px; position: absolute;">
+                  <vue-draggable-resizable 
+                  v-for="element in elements"
+                  :key="element.id"
+                  :parent="true" 
+                  :resizable="true" 
+                  :x="Number(element.x_coordinate)" 
+                  :y="Number(element.y_coordinate)" 
+                  :h="Number(element.height)"
+                  :draggable="false"                  
+                  
+                  v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}"
+                  style="border: none; max-height:100%; min-width:100px; display: inline-block">
+                    <p>{{ element.field }}</p>
+                  </vue-draggable-resizable>
 
-                    </div>
+                </div>
 
-              </div>
+          </div>
 
 
 
-            <div class="vx-row mt-6">
+          <div class="vx-row mt-6" style="" >
               
-              <div class="vx-col md:w-2/5 w-full flex items-center justify-center">
+              <div class="vx-col md:w-2/5 w-full ">
                 <vs-divider />
                     <vs-table class="table">
                       <tbody>
@@ -226,6 +227,8 @@
 
     
         </div>
+
+
 
 
       </template>
