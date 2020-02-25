@@ -2,7 +2,7 @@
 
 <div>
 
-  <div style="position:relative; width:100%">
+  <div style="position:relative; width:100%;height:100%">
     <img style="height: 500px; width:inherit;  border: 1px solid red;position: absolute;" :src="`/storage/10/7x3_5_Shelf_LincolnMarket_GDF_RBG_72dpi.jpg`"/>
 
     <div  style="height: 500px; position: relative;">
@@ -13,9 +13,15 @@
       :resizable="true" 
       :x="Number(element.x_coordinate)" 
       :y="Number(element.y_coordinate)" 
+      :h="Number(element.height)"
+      
+      @change="updatelement();"
+      
+      
       style="border: 1px solid; max-height:100%; min-width:100px; display: inline-block">
         <p>{{ element.field }}</p>
       </vue-draggable-resizable>
+
     </div>
 
   </div>
@@ -37,6 +43,9 @@
 
   <div>
 
+      <div>
+          <vs-button color="primary"  type="border" class=" items-center btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" icon="add" @click="addRow"> Add Row</vs-button>
+      </div>
 
     <vs-table class="table">
               <thead>
@@ -49,8 +58,8 @@
                       <vs-th><strong>Field Value</strong></vs-th>
                       <td><strong>X-Cordinate</strong></td>
                       <td><strong>Y-Cordinate</strong></td>
-                      <td><strong>ScaleX</strong></td>
-                      <td><strong>ScaleY</strong></td>
+                    <!--  <td><strong>ScaleX</strong></td>
+                      <td><strong>ScaleY</strong></td> -->
                       <vs-th><strong>Width</strong></vs-th>
                       <vs-th><strong>Height</strong></vs-th>
                       <!-- <td><strong>Angle</strong></td>-->
@@ -86,12 +95,11 @@
 
                       <vs-td><input type="text" v-model.number="element.x_coordinate"></vs-td>
                       <vs-td><input type="text" v-model.number="element.y_coordinate"></vs-td>
-                      <vs-td><input type="text" v-model.number="element.scaleX"></vs-td>
-                      <vs-td><input type="text" v-model.number="element.scaleY"></vs-td>
+                     <!-- <vs-td><input type="text" v-model.number="element.scaleX"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.scaleY"></vs-td>-->
                       <vs-td><input type="text" v-model.number="element.width"></vs-td>
                       <vs-td><input type="text" v-model.number="element.height"></vs-td>
                      <!-- <vs-td><input type="text" v-model.number="row.angle"></vs-td>-->
-                      
       
                       <vs-td>
                           <a color="primary" vs-align="center" type="border" class=" items-center btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" v-on:click="removeElement(index);" style="cursor: pointer">Remove</a>
@@ -117,6 +125,7 @@ export default {
   data: function () {
     return {
       
+      output: null,
       elements:[],
       elementa: {
         model_id: '',
@@ -161,6 +170,8 @@ export default {
 
   methods: {
 
+ 
+
     element() {
       this.error = this.elements = null;
       axios
@@ -173,13 +184,33 @@ export default {
     },
 
     updatelement() {
-        let uri = `/api/imageCordianate/${this.$route.params.id}`;
+        let uri = `/api/imageCordianate/1`;
         axios
         .put(uri, this.elementa)
         .then((response) => {
         //this.$router.push({name:'Product'});
         });
     },
+    addRow() {
+    var elem = document.createElement('tr');
+    this.elements.push({
+        id: "", //!model id
+        prodID:"", // user this. param
+        field_name: "",
+        fieldType:"text",
+        field:" ",
+        x_coordinate: 225,
+        y_coordinate: 225,
+        //scaleX: 1,
+        //scaleY: 1,
+        width: 80,
+        height: 50,
+        //angle: 0,
+
+
+    });
+
+},
 
 
     onResize: function (x, y, width, height) {

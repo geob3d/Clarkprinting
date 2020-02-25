@@ -12,6 +12,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 
+//html2canvas
 
 
 import VueDraggableResizable from 'vue-draggable-resizable'
@@ -21,7 +22,7 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
  
 Vue.component('vue-draggable-resizable', VueDraggableResizable)
 
-// Vuesax Component Framework
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);

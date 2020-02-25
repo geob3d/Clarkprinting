@@ -85,10 +85,12 @@
     },
     "dependencies": {
         "element-ui": "^2.13.0",
+        "html2canvas": "^1.0.0-rc.5",
         "vue-draggable": "^2.0.6",
         "vue-draggable-resizable": "^2.1.0",
         "vue-free-transform": "^1.0.11",
         "vue-good-table": "^2.19.0",
+        "vue-html2canvas": "0.0.4",
         "vue-lodash": "^2.1.1",
         "vue-multiselect": "^2.1.6"
     }

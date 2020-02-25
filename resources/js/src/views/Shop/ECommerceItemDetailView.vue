@@ -26,14 +26,54 @@
 
           <!-- Item Main Info -->
           <div class="product-details p-6">
-            <div class="vx-row mt-6">
-                <img :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
+            <div class="vx-row mt-6" style="position:relative; width:100%;height:100%">
+                <img  style="height: 500px; width:inherit;  border: 1px solid red;position: absolute;" :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
                 <div v-else> No Image to Display</div>
+
+                <div  style="height: 500px; position: relative;">
+                  <vue-draggable-resizable 
+                  v-for="element in elements"
+                  :key="element.id"
+                  :parent="true" 
+                  :resizable="true" 
+                  :x="Number(element.x_coordinate)" 
+                  :y="Number(element.y_coordinate)" 
+                  :h="Number(element.height)"
+                  :draggable="false"                  
+                  
+                  style="border:none; max-height:100%; min-width:100px; display: inline-block">
+                    <p>{{ element.field }}</p>
+                  </vue-draggable-resizable>
+
+                </div>
 
             </div>
             <div class="vx-row mt-6">
+              
               <div class="vx-col md:w-2/5 w-full flex items-center justify-center">
-                <div class="product-img-container w-3/5 mx-auto mb-10 md:mb-0">
+                <vs-divider />
+                    <vs-table class="table">
+                      <tbody>
+                      
+                        <tr v-for="(element, index) in elements ">
+
+
+                            <!--<vs-td><input type="text" v-model="row.id"></vs-td>-->
+                            <vs-td>{{element.field_name}}:</vs-td>
+
+                            <vs-td>
+                            <input v-if="element.field_type" 
+                            :type="element.field_type" :name="element.field_name" 
+                            :placeholder="element.field_name" 
+                            v-model="element.field"
+                            :key="`field-${label}`" >
+                            </vs-td>
+
+                          </tr>
+                        </tbody>
+                    </vs-table>
+
+                
                    <!-- <img :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
                     <div v-else> No Image to Display</div> -->
 
@@ -44,7 +84,6 @@
 
                     Remove above img tag which is for demo purpose in actual flow
                   -->
-                </div>
               </div>
 
               <!-- Item Content -->
@@ -201,6 +240,7 @@
 
 <script>
 import axios from 'axios'
+import VueDraggableResizable from 'vue-draggable-resizable'
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import algoliasearch from 'algoliasearch/lite'
@@ -218,6 +258,7 @@ export default{
   },
   data() {
     return {
+    elements:[],
     product: {},
     products: {},
       algolia_index: algoliasearch(
@@ -260,7 +301,24 @@ export default{
       return (itemId) => this.$store.getters['eCommerce/isInCart'](itemId)
     },
   },
+
+  mounted() {
+    this.element();
+
+  },
   methods: {
+
+    
+    element() {
+      this.error = this.elements = null;
+      axios
+        .get(`/api/imageCordianates/${this.$route.params.item_id}`) 
+        .then(response => {
+            console.log(response);
+            this.loading = false;
+            this.elements = response.data.data;
+        });
+    },
       
     getProducts() {
         this.error = this.products = null;
@@ -284,6 +342,17 @@ export default{
                 this.product = response.data.data;
         });
       },
+
+    onResize: function (x, y, width, height) {
+      this.x = x
+      this.y = y
+      this.width = width
+      this.height = height
+    },
+    onDrag: function (x, y) {
+      this.x = x
+      this.y = y
+    },
 
 
     toggleItemInWishList(item) {
