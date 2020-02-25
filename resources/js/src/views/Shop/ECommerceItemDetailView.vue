@@ -28,7 +28,7 @@
           <div  class="product-details p-6"  >
             <div id="capture" class="vx-row mt-6" style="position:relative; width:100%;height:100%" >
              
-                <img  style="height: 500px; width:inherit;  border: none;position: absolute;" :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
+                <img  style="height: 500px; width:inherit;  border: none;position: absolute;" :src="`/public/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
                 <div v-else> No Image to Display</div>
 
                 <div  style="height: 500px; position: relative;">

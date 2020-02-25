@@ -45,7 +45,7 @@ export default {
       downloadVisualReport () {
         html2canvas(document.querySelector("#capture")).then(canvas => {
         //document.body.appendChild(canvas)
-        var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream00");
+        var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream");
         console.log(image)
         window.location.href =image;
         });
