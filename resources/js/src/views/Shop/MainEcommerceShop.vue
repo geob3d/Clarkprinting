@@ -24,7 +24,7 @@
                         icon="MenuIcon"
                         @click.stop="toggleFilterSidebar" />
 
-                    <p class="lg:inline-flex hidden font-semibold algolia-filters-label">Filters</p>
+                    <!--<p class="lg:inline-flex hidden font-semibold algolia-filters-label">Filters</p> -->
 
                     <div class="flex justify-between items-end flex-grow">
                         <!-- Stats -->
@@ -70,12 +70,12 @@
             </div>
 
             <div id="algolia-content-container" class="relative clearfix">
-                <vs-sidebar
+               <!-- <vs-sidebar
                     class="items-no-padding vs-sidebar-rounded background-absolute"
                     parent="#algolia-content-container"
                     :click-not-close="clickNotClose"
                     :hidden-background="clickNotClose"
-                    v-model="isFilterSidebarActive">
+                    v-model="isFilterSidebarActive"> 
 
                     <div class="p-6 filter-container">
 
@@ -97,7 +97,7 @@
 
                        
 
-                        <!-- Brands -->
+                        <!-- Brands 
                         <h6 class="font-bold mb-4">Product Category</h6>
                         <ais-refinement-list attribute="brand">
                             <div slot-scope="{
@@ -114,15 +114,15 @@
                                     </li>
                                 </ul>
                             </div>
-                        </ais-refinement-list>
+                        </ais-refinement-list> 
                         
                         <vs-divider />
 
                         <ais-clear-refinements class="flex justify-center">
                             <vs-button class="w-full" slot-scope="{ canRefine, refine, createURL }" @click.prevent="refine" :disabled="!canRefine">Remove Filters</vs-button>
-                        </ais-clear-refinements>
-                    </div>
-                </vs-sidebar>
+                        </ais-clear-refinements>-->
+               <!--      </div>-->
+               <!-- </vs-sidebar>-->
 
                 <!-- RIGHT COL -->
                 <div :class="{'sidebar-spacer-with-margin': clickNotClose}">
