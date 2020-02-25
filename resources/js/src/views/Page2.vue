@@ -151,11 +151,7 @@ export default{
             "label": "Time",
             "name": "Time",
             "type": "time"
-          },
-
-        ]
-
-
+          },]
         };
         
     },

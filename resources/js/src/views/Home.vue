@@ -1,75 +1,162 @@
 <template>
-  <div id="app">
 
+<div>
 
-    <vs-row>
-      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <template>
-    
-      <div class="App">
-        <div class="wrapper">
-          <div class="workspace" ref="workspace">
-            <FreeTransform
-              v-for="element in elements"
-              :key="element.id"
-              :x="Number(element.x_coordinate)"
-              :y="Number(element.y_coordinate)"
-              :scale-x="Number(element.scaleX)"
-              :scale-y="Number(element.scaleY)"
-              :width="Number(element.width)"
-              :height="Number(element.height)"
-              :angle="Number(element.angle)"
-              :offset-x="offsetX"
-              :offset-y="offsetY"
-              
+  <div style="position:relative; width:100%">
+    <img style="height: 500px; width:inherit;  border: 1px solid red;position: absolute;" :src="`/storage/10/7x3_5_Shelf_LincolnMarket_GDF_RBG_72dpi.jpg`"/>
 
-              :disable-scale="element.disableScale === true"
-              v-on:click="update(element.id, $event);"
-            >
-              <div class="element" :style="getElementStyles(element)">
-                {{ element.id }}
-              </div>
-            </FreeTransform>
-          </div>
-        </div>
-      </div>
-
-        </template>
-      </vs-col>
-    </vs-row>
-
+    <div  style="height: 500px; position: relative;">
+      <vue-draggable-resizable 
+      v-for="element in elements"
+      :key="element.id"
+      :parent="true" 
+      :resizable="true" 
+      :x="Number(element.x_coordinate)" 
+      :y="Number(element.y_coordinate)" 
+      style="border: 1px solid; max-height:100%; min-width:100px; display: inline-block">
+        <p>{{ element.field }}</p>
+      </vue-draggable-resizable>
+    </div>
 
   </div>
+  
+ <!-- <img style="height: 500px; width: 100%; border: 1px solid red; position: absolute;" :src="`/storage/10/7x3_5_Shelf_LincolnMarket_GDF_RBG_72dpi.jpg`"/>
+
+  <div  style="height: 500px; width: 100%; border: 1px solid red; position: relative;">
+    <vue-draggable-resizable 
+    v-for="element in elements"
+    :key="element.id"
+    :parent="true" 
+    :resizable="true" 
+    :x="Number(element.x_coordinate)" 
+    :y="Number(element.y_coordinate)" 
+    style="border: 1px solid">
+      <p>{{ element.id }}</p>
+    </vue-draggable-resizable>
+  </div> -->
+
+  <div>
+
+
+    <vs-table class="table">
+              <thead>
+                  <vs-tr>
+                   
+                     <!--  <vs-th><strong>ProductID</strong></vs-th>-->
+                      <vs-th><strong>Row ID</strong></vs-th>
+                      <vs-th><strong>Field Name</strong></vs-th>
+                      <vs-th><strong>Field Type</strong></vs-th>
+                      <vs-th><strong>Field Value</strong></vs-th>
+                      <td><strong>X-Cordinate</strong></td>
+                      <td><strong>Y-Cordinate</strong></td>
+                      <td><strong>ScaleX</strong></td>
+                      <td><strong>ScaleY</strong></td>
+                      <vs-th><strong>Width</strong></vs-th>
+                      <vs-th><strong>Height</strong></vs-th>
+                      <!-- <td><strong>Angle</strong></td>-->
+                  </vs-tr>
+              </thead>
+              <tbody>
+                
+                  <tr v-for="(element, index) in elements ">
+
+
+                      <!--<vs-td><input type="text" v-model="row.id"></vs-td>-->
+                      <vs-td><input type="text" v-model="element.row_id"></vs-td>
+                      <vs-td><input type="text" v-model="element.field_name"></vs-td>
+
+                      <vs-td>
+                      <el-select v-model="element.field_Type" filterable placeholder="Select">
+                        <el-option
+                          v-for="item in fields"
+                          :key="item.id"
+                          :value="item.type">
+                        </el-option>
+                      </el-select>
+                      </vs-td>
+
+
+                      <vs-td>
+                      <input v-if="element.field_type" 
+                      :type="element.field_type" :name="element.field_name" 
+                      :placeholder="label" 
+                      v-model="element.field"
+                      :key="`field-${label}`" >
+                      </vs-td>
+
+                      <vs-td><input type="text" v-model.number="element.x_coordinate"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.y_coordinate"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.scaleX"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.scaleY"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.width"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.height"></vs-td>
+                     <!-- <vs-td><input type="text" v-model.number="row.angle"></vs-td>-->
+                      
+      
+                      <vs-td>
+                          <a color="primary" vs-align="center" type="border" class=" items-center btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" v-on:click="removeElement(index);" style="cursor: pointer">Remove</a>
+                      </vs-td>
+
+                  </tr>
+              </tbody>
+          </vs-table>
+
+  </div>
+
+</div>
+
+
 </template>
-
+ 
 <script>
+import VueDraggableResizable from 'vue-draggable-resizable'
 import axios from 'axios'
-import Prism from 'vue-prism-component'
-import FreeTransform from "vue-free-transform";
 
+ 
 export default {
-  name: "app",
-  components: {
-    FreeTransform
-  },
-  data() {
+  data: function () {
     return {
-      elements: [],
-      offsetX: 0,
-      offsetY: 0
-    };
+      
+      elements:[],
+      elementa: {
+        model_id: '',
+        row_id: '',
+        field_name: '',
+        field_type: '',
+        x_coordinate: '',
+        y_coordinate: '',
+        width: '',
+        height: '',
+    },
+        "fields": [
+          {
+            "label": "Input",
+            "name": "fulllName",
+            "type": "text"
+          },
+  
+          {
+            "label": "Date",
+            "name": "Date",
+            "type": "date"
+          },
+          {
+            "label": "Time",
+            "name": "Time",
+            "type": "time"
+          },]
+        
+
+
+      
+    }
+    
+    
   },
   mounted() {
-    this.offsetX = this.$refs.workspace.offsetLeft;
-    this.offsetY = this.$refs.workspace.offsetTop;
-   //this.relements.push(this.relement);
-  },
+    this.element();
 
-  created(){
-   this.element();
-   // this.getallImgCord();
-    //this.updateImgCord();
-    //this.getSingleImgCord();
+
   },
 
   methods: {
@@ -83,126 +170,36 @@ export default {
             this.loading = false;
             this.elements = response.data.data;
         });
-
     },
 
-    update(id, payload) {
-      this.elements = this.elements.map(item => {
-        if (item.id === id) {
-          return {
-            ...item,
-            ...payload
-          };
-        }
-        return item;
-      });
+    updatelement() {
+        let uri = `/api/imageCordianate/${this.$route.params.id}`;
+        axios
+        .put(uri, this.elementa)
+        .then((response) => {
+        //this.$router.push({name:'Product'});
+        });
     },
-    getElementStyles(element) {
-      const styles = element.styles ? element.styles : {};
-      return {
-        width: `${element.width}px`,
-        height: `${element.height}px`,
-        ...styles
-      };
+
+
+    onResize: function (x, y, width, height) {
+      this.x = x
+      this.y = y
+      this.width = width
+      this.height = height
+    },
+    onDrag: function (x, y) {
+      this.x = x
+      this.y = y
     }
   }
-};
+}
 </script>
 
-<style>
-#app {
-  display: flex;
-  background: #f8fafc;
-}
 
-.wrapper {
-  flex: 1;
-}
+<style lang="stylus">
 
-.workspace {
-  width: 800px;
-  height: 800px;
-  margin: 25px auto;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: #fff;
-}
 
-* {
-  box-sizing: border-box;
-}
 
-.tr-transform__content {
-  user-select: none;
-}
 
-.tr-transform__rotator {
-  top: -45px;
-  left: calc(50% - 7px);
-}
-
-.tr-transform__rotator,
-.tr-transform__scale-point {
-  background: #fff;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  position: absolute;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-.tr-transform__rotator:hover,
-.tr-transform__scale-point:hover {
-  background: #f1f5f8;
-}
-
-.tr-transform__rotator:active,
-.tr-transform__scale-point:active {
-  background: #dae1e7;
-}
-
-.tr-transform__scale-point {
-}
-
-.tr-transform__scale-point--tl {
-  top: -7px;
-  left: -7px;
-}
-
-.tr-transform__scale-point--ml {
-  top: calc(50% - 7px);
-  left: -7px;
-}
-
-.tr-transform__scale-point--tr {
-  left: calc(100% - 7px);
-  top: -7px;
-}
-
-.tr-transform__scale-point--tm {
-  left: calc(50% - 7px);
-  top: -7px;
-}
-
-.tr-transform__scale-point--mr {
-  left: calc(100% - 7px);
-  top: calc(50% - 7px);
-}
-
-.tr-transform__scale-point--bl {
-  left: -7px;
-  top: calc(100% - 7px);
-}
-
-.tr-transform__scale-point--bm {
-  left: calc(50% - 7px);
-  top: calc(100% - 7px);
-}
-
-.tr-transform__scale-point--br {
-  left: calc(100% - 7px);
-  top: calc(100% - 7px);
-}
 </style>

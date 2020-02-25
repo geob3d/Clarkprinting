@@ -86,6 +86,7 @@
     "dependencies": {
         "element-ui": "^2.13.0",
         "vue-draggable": "^2.0.6",
+        "vue-draggable-resizable": "^2.1.0",
         "vue-free-transform": "^1.0.11",
         "vue-good-table": "^2.19.0",
         "vue-lodash": "^2.1.1",

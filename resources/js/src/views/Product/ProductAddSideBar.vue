@@ -52,6 +52,13 @@
   
         </vs-tab>
 
+        <vs-tab label="Image Coordinates">
+
+          <img-co />
+
+  
+        </vs-tab>
+
       </vs-tabs>
 
   </div>
@@ -59,13 +66,15 @@
 
 <script>
 import axios from 'axios';
-import ProductAttr from './ProductAttributeForm'
+import ProductAttr from './ProductAttributeForm';
+import ImgCo from './ProdImageCo'
 
 export default {
 
     components: {
         
         ProductAttr,
+        ImgCo
     },
 
     data() {

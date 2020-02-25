@@ -21,11 +21,11 @@ class CreateImageCoordinatesTable extends Migration
             $table->string('field_type');
             $table->decimal('x_coordinate');
             $table->decimal('y_coordinate');
-            $table->decimal('scaleX');
-            $table->decimal('scaleY');
+            $table->decimal('scaleX')->nullable();
+            $table->decimal('scaleY')->nullable();
             $table->decimal('width');
             $table->decimal('height');
-            $table->decimal('angle');
+            $table->decimal('angle')->nullable();
             $table->timestamps();
 
  
