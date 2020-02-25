@@ -346,7 +346,7 @@ export default{
             width: 1200,
             height: 1200
           }).then(function(canvas) {
-            var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream00");
+            var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream00.png");
             console.log(image)
             window.location.href =image;
     });
