@@ -25,9 +25,10 @@
         <div class="item-content">
 
           <!-- Item Main Info -->
-          <div class="product-details p-6">
-            <div class="vx-row mt-6" style="position:relative; width:100%;height:100%">
-                <img  style="height: 500px; width:inherit;  border: 1px solid red;position: absolute;" :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
+          <div  class="product-details p-6"  >
+            <div id="capture" class="vx-row mt-6" style="position:relative; width:100%;height:100%" >
+             
+                <img  style="height: 500px; width:inherit;  border: none;position: absolute;" :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name" class="responsive" v-if="product.media[0]"/>
                 <div v-else> No Image to Display</div>
 
                 <div  style="height: 500px; position: relative;">
@@ -185,30 +186,19 @@
                        /Add To Cart Button -->
 
 
-                      <!-- Wishlist Button
+                      <!-- Wishlist Button -->
                       <vs-button
-                        v-if="isInWishList(item_data.objectID)"
+
                         key="filled"
                         class="mb-4"
                         icon-pack="feather"
                         icon="icon-heart"
                         color="danger"
-                        @click="toggleItemInWishList(item_data)">
-                        WHISHLIST
+                        v-on:click="downloadVisualReport()">
+                        Save to Desktop
                       </vs-button> 
 
-                      <vs-button
-                        v-else
-                        key="border"
-                        class="mb-4"
-                        type="border"
-                        icon-pack="feather"
-                        icon="icon-heart"
-                        color="danger"
-                        @click="toggleItemInWishList(item_data)">
-                        WHISHLIST
-                      </vs-button>
-                      /Wishlist Button -->
+     
 
                     </div>
                   </div>
@@ -241,6 +231,9 @@
 
 <script>
 import axios from 'axios'
+import jspdf from 'jspdf'
+import html2canvas from 'html2canvas'
+import html2canvas2 from 'vue-html2canvas'
 import VueDraggableResizable from 'vue-draggable-resizable'
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -344,6 +337,29 @@ export default{
         });
       },
 
+      downloadVisualReport () {
+
+
+
+  
+          html2canvas((document.querySelector("#capture")), {
+            width: 1200,
+            height: 1200
+          }).then(function(canvas) {
+            var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream00");
+            console.log(image)
+            window.location.href =image;
+    });
+ 
+        // html2canvas(document.querySelector("#capture")).then(canvas => {
+        // document.body.appendChild(canvas)
+        // var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream00");
+        // console.log(image)
+        // window.location.href =image;
+    //});
+
+      },
+
     onResize: function (x, y, width, height) {
       this.x = x
       this.y = y
@@ -354,6 +370,8 @@ export default{
       this.x = x
       this.y = y
     },
+
+
 
 
     toggleItemInWishList(item) {

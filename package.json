@@ -86,6 +86,7 @@
     "dependencies": {
         "element-ui": "^2.13.0",
         "html2canvas": "^1.0.0-rc.5",
+        "jspdf": "^1.5.3",
         "vue-draggable": "^2.0.6",
         "vue-draggable-resizable": "^2.1.0",
         "vue-free-transform": "^1.0.11",
