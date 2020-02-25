@@ -30,7 +30,7 @@
           <div  class="product-details p-6" style="border: none"  >
             <div id="capture" class="vx-row mt-6" style="position:relative;height:100;width:100" >
             
-                <img style="border: none;max-width:100%;height:auto position:absolute" :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name"  v-if="product.media[0]"/>
+                <img style="border: none;max-width:100%;height:auto position:absolute" :src="`/product/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name"  v-if="product.media[0]"/>
                 <div v-else> No Image to Display</div>
 
                 <div  style="height: 500px; position: absolute;">
