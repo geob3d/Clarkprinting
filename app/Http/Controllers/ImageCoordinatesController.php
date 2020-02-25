@@ -36,6 +36,8 @@ class ImageCoordinatesController extends Controller
             'row_id' => $request->input('row_id'),
             'field_name'=> $request->input('field_name'),
             'field_type'=> $request->input('field_type'),
+            'font_size'=> $request->input('font_size'),
+            'font_color'=> $request->input('font_color'),
             'x_coordinate'=> $request->input('x_coordinate'),
             'y_coordinate'=> $request->input('y_coordinate'),
             'scaleX'=> $request->input('scaleX'),
@@ -43,7 +45,7 @@ class ImageCoordinatesController extends Controller
             'width'=> $request->input('width'),
             'height'=> $request->input('height'),
             'angle'=> $request->input('angle'),
-            
+
 
         ]);
 
@@ -107,6 +109,8 @@ class ImageCoordinatesController extends Controller
         $imageCoordinates->model_id = $request->input('model_id');
         $imageCoordinates->row_id = $request->input('row_id');  // do not let user change
         $imageCoordinates->field_name= $request->input('field_name'); //only by clark
+        $imageCoordinates->font_size= $request->input('font_size'); //only by clark
+        $imageCoordinates->font_color= $request->input('font_color'); //only by clark
         $imageCoordinates->x_coordinate = $request->input('x_coordinate');
         $imageCoordinates->y_coordinate = $request->input('y_coordinate');
         $imageCoordinates->scaleX = $request->input('scaleX');
@@ -114,7 +118,7 @@ class ImageCoordinatesController extends Controller
         $imageCoordinates->width = $request->input('width');
         $imageCoordinates->height = $request->input('height');
         $imageCoordinates->angle = $request->input('angle');
-
+    
         if ($imageCoordinates->save()) {
             return new IoResource($imageCoordinates);
         }

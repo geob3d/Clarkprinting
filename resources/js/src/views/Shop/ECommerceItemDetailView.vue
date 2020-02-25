@@ -41,7 +41,8 @@
                   :h="Number(element.height)"
                   :draggable="false"                  
                   
-                  style="border:none; max-height:100%; min-width:100px; display: inline-block">
+                  v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}"
+                  style="border: none; max-height:100%; min-width:100px; display: inline-block">
                     <p>{{ element.field }}</p>
                   </vue-draggable-resizable>
 

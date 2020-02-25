@@ -19,6 +19,8 @@ class CreateImageCoordinatesTable extends Migration
             $table->integer('row_id');
             $table->string('field_name');
             $table->string('field_type');
+            $table->integer('font_size');
+            $table->string('font_color');
             $table->decimal('x_coordinate');
             $table->decimal('y_coordinate');
             $table->decimal('scaleX')->nullable();

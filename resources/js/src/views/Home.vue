@@ -17,7 +17,7 @@
       
       @change="updatelement();"
       
-      
+      v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}"
       style="border: 1px solid; max-height:100%; min-width:100px; display: inline-block">
         <p>{{ element.field }}</p>
       </vue-draggable-resizable>
@@ -56,9 +56,11 @@
                       <vs-th><strong>Field Name</strong></vs-th>
                       <vs-th><strong>Field Type</strong></vs-th>
                       <vs-th><strong>Field Value</strong></vs-th>
-                      <td><strong>X-Cordinate</strong></td>
+                      <vs-th><strong>Font Size</strong></vs-th>
+                      <vs-th><strong>Font color</strong></vs-th>
+                     <!--  <td><strong>X-Cordinate</strong></td>
                       <td><strong>Y-Cordinate</strong></td>
-                    <!--  <td><strong>ScaleX</strong></td>
+                      <td><strong>ScaleX</strong></td>
                       <td><strong>ScaleY</strong></td> -->
                       <vs-th><strong>Width</strong></vs-th>
                       <vs-th><strong>Height</strong></vs-th>
@@ -93,9 +95,19 @@
                       :key="`field-${label}`" >
                       </vs-td>
 
-                      <vs-td><input type="text" v-model.number="element.x_coordinate"></vs-td>
+                      <vs-td>
+                        <vs-td><input type="text" v-model="element.font_size"></vs-td>
+                      </vs-td>
+
+                      <vs-td>
+                        <el-color-picker v-model="element.font_color"></el-color-picker>
+                      </vs-td>
+
+
+
+                     <!--  <vs-td><input type="text" v-model.number="element.x_coordinate"></vs-td>
                       <vs-td><input type="text" v-model.number="element.y_coordinate"></vs-td>
-                     <!-- <vs-td><input type="text" v-model.number="element.scaleX"></vs-td>
+                     <vs-td><input type="text" v-model.number="element.scaleX"></vs-td>
                       <vs-td><input type="text" v-model.number="element.scaleY"></vs-td>-->
                       <vs-td><input type="text" v-model.number="element.width"></vs-td>
                       <vs-td><input type="text" v-model.number="element.height"></vs-td>
@@ -153,7 +165,15 @@ export default {
             "label": "Time",
             "name": "Time",
             "type": "time"
-          },]
+          },
+                    {
+            "label": "Text Area",
+            "name": "textarea",
+            "type": "textarea"
+          },
+          
+          
+          ]
         
 
 

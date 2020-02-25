@@ -11,8 +11,9 @@ class products extends Model implements HasMedia
     use HasMediaTrait;
 
 
-    protected $fillable = ['sku', 'name','description','price','ordering_company_id_fk','prod_cat_fk',];
-    
+    protected $fillable = ['sku', 'name','description','price','ordering_company_id_fk','prod_cat_fk','font_size'];
+
+ 
     public function prodCategories()
     {
  

@@ -1,26 +1,12 @@
 <template>
-  <div id="app">
-  <h2>Todos:</h2>
-  <button @click="downloadVisualReport">
-    Download
-  </button>
-  <ol ref="capture">
-    <li v-for="todo in todos">
-      <label>
-        <input type="checkbox"
-          v-on:change="toggle(todo)"
-          v-bind:checked="todo.done">
-
-        <del v-if="todo.done">
-          {{ todo.text }}
-        </del>
-        <span v-else>
-          {{ todo.text }}
-        </span>
-      </label>
-    </li>
-  </ol>
-</div>
+   <div>
+      
+         <div id="capture" class='m1 '>
+            // more markup...
+         </div>
+      
+      <button v-on:click="downloadVisualReport()">test</button>
+   </div>
 </template>
 
 <script>
@@ -51,27 +37,19 @@ export default {
     },
 
     created(){
-      this.downloadVisualReport();
+
     },
 
     methods: {
-      toggle: function(todo){
-        todo.done = !todo.done
-      },
-      showCaptureRef() {
-          console.log("this.$refs.capture: " + this.$refs.capture);
-          let vc = this;
-          return vc.$refs.capture;
-      },
+
       downloadVisualReport () {
-          let vc = this
-          // alert("Descargando reporte visual")
-          console.log('campaign-view#downloadVisualReport');
-          window.html2canvas(vc.showCaptureRef()).then(canvas => {
-              document.body.appendChild(canvas)
-          }).catch((error) => {
-            console.log("Erorr descargando reporte visual", error)
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+        //document.body.appendChild(canvas)
+        var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream00");
+        console.log(image)
+        window.location.href =image;
         });
+
     }
 }
 
