@@ -17,7 +17,7 @@
 
                     <!-- ITEM IMAGE -->
                     <div class="item-img-container bg-white h-64 flex items-center justify-center mb-4 cursor-pointer" @click="navigate_to_detail_view">
-                        <img :src="`/storage/${item.media[0].id}/${item.media[0].file_name}`" :alt="item.name" class="grid-view-img p-4" v-if="item.media[0]"/>
+                        <img :src="`/public/storage/${item.media[0].id}/${item.media[0].file_name}`" :alt="item.name" class="grid-view-img p-4" v-if="item.media[0]"/>
                         <div v-else> No Image to Display</div>
                     </div>
                     <div class="item-details px-4">
