@@ -1,6 +1,10 @@
 <template>
 
+
+
 <div>
+
+
 
   <div style="position:relative; width:100%;height:100%">
     <img style="height: 500px; width:inherit;  border: 1px solid red;position: absolute;" :src="`/storage/10/7x3_5_Shelf_LincolnMarket_GDF_RBG_72dpi.jpg`"/>
@@ -14,15 +18,21 @@
       :x="Number(element.x_coordinate)" 
       :y="Number(element.y_coordinate)" 
       :h="Number(element.height)"
+     
+      @dragging="onDrag"
+      @resizing="onResize"
       
       @change="updatelement();"
       
       v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}"
       style="border: 1px solid; max-height:100%; min-width:100px; display: inline-block">
         <p>{{ element.field }}</p>
+
       </vue-draggable-resizable>
 
     </div>
+
+    
 
   </div>
   
@@ -58,12 +68,12 @@
                       <vs-th><strong>Field Value</strong></vs-th>
                       <vs-th><strong>Font Size</strong></vs-th>
                       <vs-th><strong>Font color</strong></vs-th>
-                     <!--  <td><strong>X-Cordinate</strong></td>
+                      <td><strong>X-Cordinate</strong></td>
                       <td><strong>Y-Cordinate</strong></td>
-                      <td><strong>ScaleX</strong></td>
-                      <td><strong>ScaleY</strong></td> -->
-                      <vs-th><strong>Width</strong></vs-th>
-                      <vs-th><strong>Height</strong></vs-th>
+                    <!--    <td><strong>ScaleX</strong></td>
+                      <td><strong>ScaleY</strong></td> 
+                    <vs-th><strong>Width</strong></vs-th>
+                      <vs-th><strong>Height</strong></vs-th>-->
                       <!-- <td><strong>Angle</strong></td>-->
                   </vs-tr>
               </thead>
@@ -105,12 +115,12 @@
 
 
 
-                     <!--  <vs-td><input type="text" v-model.number="element.x_coordinate"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.x_coordinate"></vs-td>
                       <vs-td><input type="text" v-model.number="element.y_coordinate"></vs-td>
-                     <vs-td><input type="text" v-model.number="element.scaleX"></vs-td>
+                     <!--  <vs-td><input type="text" v-model.number="element.scaleX"></vs-td>
                       <vs-td><input type="text" v-model.number="element.scaleY"></vs-td>-->
-                      <vs-td><input type="text" v-model.number="element.width"></vs-td>
-                      <vs-td><input type="text" v-model.number="element.height"></vs-td>
+                     <!--  <vs-td><input type="text" v-model.number="element.width"></vs-td>
+                      <vs-td><input type="text" v-model.number="element.height"></vs-td>-->
                      <!-- <vs-td><input type="text" v-model.number="row.angle"></vs-td>-->
       
                       <vs-td>
@@ -119,7 +129,7 @@
 
                   </tr>
               </tbody>
-          </vs-table>
+    </vs-table>
 
   </div>
 
@@ -138,7 +148,7 @@ export default {
     return {
       
       output: null,
-      elements:[],
+      elements:{},
       elementa: {
         model_id: '',
         row_id: '',
@@ -185,6 +195,9 @@ export default {
   mounted() {
     this.element();
 
+  },
+
+  computed: {
 
   },
 
@@ -197,7 +210,6 @@ export default {
       axios
         .get('/api/imageCordianates') 
         .then(response => {
-            console.log(response);
             this.loading = false;
             this.elements = response.data.data;
         });
@@ -239,10 +251,16 @@ export default {
       this.width = width
       this.height = height
     },
-    onDrag: function (x, y) {
+    onDrag: function (x, y,selected) {
       this.x = x
       this.y = y
-    }
+
+
+      this.elements.height = selected
+      console.log(selected)
+      console.log(x,y)
+    },
+
   }
 }
 </script>

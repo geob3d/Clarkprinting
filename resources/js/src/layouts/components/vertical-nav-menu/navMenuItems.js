@@ -9,12 +9,12 @@
 
 
 export default [
-  // {
-  //   url: "/",
-  //   name: "Home",
-  //   slug: "home",
-  //   icon: "HomeIcon",
-  // },
+   {
+    url: "/test",
+    name: "test",
+    slug: "test",
+    icon: "HomeIcon",
+   },
   // {
   //   url: "/page2",
   //   name: "Page 2",

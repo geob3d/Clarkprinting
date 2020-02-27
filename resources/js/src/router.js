@@ -120,6 +120,11 @@ const router = new Router({
                 name: 'EditProductCategory',
                 component: () => import('./views/ProductCategories/ProductCatAddSideBar.vue'),
               },
+              {
+                path: '/test',
+                name: 'test',
+                component: () => import('./views/Home.vue'),
+              },
 
             ],
         },
