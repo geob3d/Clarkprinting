@@ -19,8 +19,6 @@
 
     <vx-card v-if="product" :key="product.id">
 
-      el=-
-
       <template slot="no-body">
 
         <div class="item-content">
@@ -29,37 +27,37 @@
           <!-- Item Main Info -->
 
           <div  class="product-details p-6" style="border: none"  >
-            <div id="capture" class="vx-row mt-6" style="position:relative;height:100;width:100" >
-            
-                <img style="border: none;max-width:100%;height:auto position:absolute" :src="`/public/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name"  v-if="product.media[0]"/>
+            <div id="capture" class="vx-row mt-6" style="position:relative;height:100%;width:100%" >
+                <img style="border: none;max-width:100%;height:auto position:absolute" :src="`/storage/${product.media[0].id}/${product.media[0].file_name}`" :alt="product.name"  v-if="product.media[0]"/>
                 <div v-else> No Image to Displays</div>
 
-                <div  style="height: 500px; position: absolute;">
+                <div>
                   <vue-draggable-resizable 
                   v-for="element in elements"
                   :key="element.id"
-                  :parent="true" 
                   :resizable="true" 
                   :x="Number(element.x_coordinate)" 
                   :y="Number(element.y_coordinate)" 
                   :h="Number(element.height)"
+                  :w="Number(element.width)"
+
                   :draggable="false"                  
                   
-                  v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}"
-                  style="border: none; max-height:100%; min-width:100px; display: inline-block">
-                    <p>{{ element.field }}</p>
+                  :style="{  width: Number(element.width) +'%', height: Number(element.height) +'%', left: Number(element.x_coordinate)+'%', top: Number(element.y_coordinate)+'%' }"        
+                 >
+                    <p v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}" >{{ element.field }}</p>
                   </vue-draggable-resizable>
 
                 </div>
 
           </div>
 
-
+          <vs-divider />
 
           <div class="vx-row mt-6" style="" >
               
               <div class="vx-col md:w-2/5 w-full ">
-                <vs-divider />
+
                     <vs-table class="table">
                       <tbody>
                       
@@ -321,6 +319,8 @@ export default{
             this.elements = response.data.data;
         });
     },
+
+
       
     getProducts() {
         this.error = this.products = null;
@@ -367,6 +367,13 @@ export default{
     //});
 
       },
+    select: function(targetId) {
+    targetId = event.currentTarget.id;
+     this.selectedItem =  targetId;
+    //console.log(this.selectedItem); // returns 'foo'
+    //alert("Hello! I am an alert box!!");
+
+    },
 
     onResize: function (x, y, width, height) {
       this.x = x
@@ -377,6 +384,7 @@ export default{
     onDrag: function (x, y) {
       this.x = x
       this.y = y
+
     },
 
 

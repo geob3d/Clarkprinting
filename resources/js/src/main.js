@@ -13,6 +13,11 @@ import App from './App.vue'
 window.Vue = Vue;
 
 
+///vue reponsive text
+
+import VueResizeText from 'vue-resize-text';
+
+Vue.use(VueResizeText)
 
 //html2canvas
 
