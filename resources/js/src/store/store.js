@@ -20,6 +20,7 @@ import actions from "./actions"
 Vue.use(Vuex)
 
 import moduleECommerce from './eCommerce/moduleECommerce.js'
+//import moduleAuth from './eCommerce/moduleECommerce.js'
 //\Vue.axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/";
 
 
@@ -34,7 +35,7 @@ export default new Vuex.Store({
       // calendar: moduleCalendar,
       // chat: moduleChat,
       // email: moduleEmail,
-      //auth: moduleAuth,
+     // auth: moduleAuth,
       eCommerce: moduleECommerce,
   },
     strict: process.env.NODE_ENV !== 'production',

@@ -1,6 +1,9 @@
 <template>
 
+
   <div>
+
+
       <vx-card>
 
           <div    class="product-details p-6" style="border: none"  >
@@ -8,31 +11,35 @@
                 <img style="border: none;max-width:100%;height:auto position:absolute" :src="`/storage/10/7x3_5_Shelf_LincolnMarket_GDF_RBG_72dpi.jpg`"/>
 
 
-            <div ref="parent" > <!--- root issue -->
-            <vue-draggable-resizable
-                v-for="element in elements"
-                :key="element.id"
-                :id="element.id"
-                :x="Number(element.x_coordinate)" 
-                :y="Number(element.y_coordinate)" 
+                <div ref="parent" > <!--- root issue -->
 
-                :h="Number(element.height)"
-                :w="Number(element.width)"
-                
+                <vue-draggable-resizable
+                    v-for="element in elements"
+                    :key="element.id"
+                    :id="element.id"
+                    :x="Number(element.x_coordinate)" 
+                    :y="Number(element.y_coordinate)" 
 
-                :style="{  width: Number(element.width) +'%', height: Number(element.height) +'%', left: Number(element.x_coordinate)+'%', top: Number(element.y_coordinate)+'%' }"        
-                @resizing="(left, top, width,height) => onResizing( id, width,height )"   
-                @dragging="( left, top) => onDragging( id, left, top)"
-                @dragstop="(left,top) => onDraggingStop(id,left,top)"
-                
-                @mousedown.native="select"
-                >
+                    :h="Number(element.height)"
+                    :w="Number(element.width)"
+                    
 
-                  <p v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}">{{ element.field}}</p>
+                    :style="{  width: Number(element.width) +'%', height: Number(element.height) +'%', left: Number(element.x_coordinate)+'%', top: Number(element.y_coordinate)+'%' }"        
+                    @resizing="(left, top, width,height) => onResizing( id, width,height )"   
+                    @dragging="( left, top) => onDragging( id, left, top)"
+                    @dragstop="(left,top) => onDraggingStop(id,left,top)"
+                    
+                    @mousedown.native="select"
+                    >
+                    
+                    <div v-resize-text="{ratio: 1}">Hello Vue</div>
 
-              </vue-draggable-resizable>
 
-              </div>
+                   <!-- <p v-bind:style="{fontSize:element.font_size+'px',color:element.font_color}" >{{ element.field }}</p>-->
+
+                  </vue-draggable-resizable>
+
+                  </div>
 
           </div>
 

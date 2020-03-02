@@ -17,7 +17,7 @@ class AddInfoToUsersTable extends Migration
             $table->integer('role')->default(1);
             $table->string('user_name');
             $table->integer('company_fk');
-            $table->integer('store');
+            $table->integer('store_fk');
 
 
 

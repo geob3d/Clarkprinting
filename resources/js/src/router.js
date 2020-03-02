@@ -39,7 +39,8 @@ const router = new Router({
               {
                 path: '/page2',
                 name: 'page-2',
-                component: () => import('./views/Page2.vue')
+                component: () => import('./views/Page2.vue'),
+
               },
               {
                 path: '/CompanyInfo',
@@ -124,6 +125,9 @@ const router = new Router({
                 path: '/test',
                 name: 'test',
                 component: () => import('./views/Home.vue'),
+                meta: {
+                  rule: 'editor'
+              }
               },
 
             ],
